@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Container } from "@mui/system"
 import EcoFashLogo from "@/public/ecofash_logo.svg"
 import styles from "@/styles/components/Nav.module.scss"
@@ -12,9 +12,13 @@ const routes = [
 ]
 
 //TODO: Responsive UI
-export default function Nav() {
+export default function Nav({ stickyNav }) {
   return (
-    <div className={styles.navbar_wrapper}>
+    <div
+      className={`${styles.navbar_wrapper} ${
+        stickyNav && styles.navbar_sticky
+      }`}
+    >
       <Container maxWidth="lg" className={styles.navbar}>
         <div className={styles.main}>
           <Link className={styles.logo_group} href="/" passHref>
