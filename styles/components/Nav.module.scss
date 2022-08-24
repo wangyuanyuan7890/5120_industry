@@ -1,0 +1,46 @@
+@use "../variables.scss";
+@use "../mixins.scss";
+
+.navbar_wrapper {
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.navbar_wrapper,
+.main,
+.logo_group,
+.link_group {
+  @include mixins.flex-center;
+}
+
+.main {
+  gap: 2em;
+}
+
+.logo_group {
+  gap: 0.5em;
+  cursor: pointer;
+  .logo {
+    height: 32px;
+    width: auto;
+  }
+  .name {
+    font-size: 2em;
+    font-weight: 700;
+    color: variables.$primary-color;
+  }
+}
+
+.link_group {
+  gap: 0.5em;
+  .link {
+    color: variables.$primary-color;
+  }
+}

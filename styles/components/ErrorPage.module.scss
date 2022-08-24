@@ -1,0 +1,30 @@
+@use "../variables.scss";
+@use "../mixins.scss";
+
+.error_wrapper {
+  @include mixins.flex-center;
+  flex: 1;
+  position: relative;
+}
+
+.error_image {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.error {
+  @include mixins.flex-center;
+  flex-direction: column;
+  color: variables.$primary-color;
+  text-align: center;
+  .status {
+    font-size: 3em;
+    font-weight: 500;
+  }
+  .message {
+    font-size: 1.5em;
+  }
+}

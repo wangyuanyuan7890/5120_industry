@@ -1,0 +1,14 @@
+@use "../mixins.scss";
+
+.layout_wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.container_wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
