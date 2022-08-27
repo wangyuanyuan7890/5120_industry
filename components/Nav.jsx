@@ -4,15 +4,16 @@ import EcoFashLogo from "@/public/ecofash_logo.svg"
 import styles from "@/styles/components/Nav.module.scss"
 import Link from "next/link"
 import { Button } from "@mui/material"
+import { useRouter } from "next/router"
 
 const routes = [
   { name: "Home", path: "/" },
-  { name: "About", path: "/a" },
-  { name: "Function 1", path: "/b" },
+  { name: "Materials", path: "/materials" },
 ]
 
 //TODO: Responsive UI
 export default function Nav({ stickyNav }) {
+  const router = useRouter()
   return (
     <div
       className={`${styles.navbar_wrapper} ${
@@ -30,7 +31,12 @@ export default function Nav({ stickyNav }) {
           <div className={styles.link_group}>
             {routes.map((route, index) => (
               <Link key={index} href={route.path} passHref>
-                <Button variant="text" className={styles.link}>
+                <Button
+                  variant="text"
+                  className={`${styles.link} ${
+                    router.pathname === route.path && styles.selected
+                  }`}
+                >
                   {route.name}
                 </Button>
               </Link>

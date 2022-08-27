@@ -52,7 +52,7 @@
   }
   .name {
     font-size: 2em;
-    font-weight: 700;
+    font-weight: 900;
     color: variables.$primary-color;
   }
 }
@@ -61,5 +61,8 @@
   gap: 0.5em;
   .link {
     color: variables.$primary-color;
+    .selected {
+      background-color: variables.$primary-background-color;
+    }
   }
 }
