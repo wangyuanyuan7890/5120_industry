@@ -2,6 +2,7 @@ import Head from "next/head"
 import Layout from "@/components/Layout"
 
 import "@/styles/globals.scss"
+import { ThemeProvider } from "next-themes"
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,9 +12,11 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/ecofash_favicon.svg" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </>
   )
 }

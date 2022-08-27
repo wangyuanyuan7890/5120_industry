@@ -3,8 +3,10 @@ import { Container } from "@mui/system"
 import EcoFashLogo from "@/public/ecofash_logo.svg"
 import styles from "@/styles/components/Nav.module.scss"
 import Link from "next/link"
-import { Button } from "@mui/material"
+import { Button, IconButton, Tooltip } from "@mui/material"
 import { useRouter } from "next/router"
+import { DarkMode, LightMode } from "@mui/icons-material/"
+import { useTheme } from "next-themes"
 
 const routes = [
   { name: "Home", path: "/" },
@@ -14,6 +16,15 @@ const routes = [
 //TODO: Responsive UI
 export default function Nav({ stickyNav }) {
   const router = useRouter()
+  const { theme, setTheme } = useTheme()
+
+  const handleToggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark")
+    } else {
+      setTheme("light")
+    }
+  }
   return (
     <div
       className={`${styles.navbar_wrapper} ${
@@ -42,6 +53,16 @@ export default function Nav({ stickyNav }) {
               </Link>
             ))}
           </div>
+        </div>
+        <div className={styles.action_group}>
+          <Tooltip title="Toggle theme">
+            <IconButton
+              className={styles.theme_button}
+              onClick={handleToggleTheme}
+            >
+              {theme === "dark" ? <DarkMode /> : <LightMode />}
+            </IconButton>
+          </Tooltip>
         </div>
       </Container>
     </div>

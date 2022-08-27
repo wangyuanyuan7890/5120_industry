@@ -15,7 +15,18 @@
   .logo_group .name,
   .link_group .link {
     transition: color 500ms ease;
-    color: white;
+    [data-theme="light"] & {
+      color: variables.$dark-primary-color;
+    }
+  }
+  .theme_button {
+    [data-theme="light"] & {
+      color: variables.$primary-color;
+      background-color: variables.$dark-primary-color;
+      &:hover {
+        background-color: variables.$dark-primary-color-lighten;
+      }
+    }
   }
 }
 
@@ -35,11 +46,14 @@
 .navbar_wrapper,
 .main,
 .logo_group,
-.link_group {
+.link_group,
+.action_group {
   @include mixins.flex-center;
 }
 
 .main {
+  justify-content: flex-start;
+  width: 100%;
   gap: 2em;
 }
 
@@ -54,6 +68,9 @@
     font-size: 2em;
     font-weight: 900;
     color: variables.$primary-color;
+    [data-theme="dark"] & {
+      color: variables.$dark-primary-color;
+    }
   }
 }
 
@@ -61,8 +78,30 @@
   gap: 0.5em;
   .link {
     color: variables.$primary-color;
+    [data-theme="dark"] & {
+      color: variables.$dark-primary-color;
+    }
     .selected {
       background-color: variables.$primary-background-color;
+    }
+  }
+}
+
+.action_group {
+  gap: 0.5em;
+}
+
+.theme_button {
+  color: variables.$dark-primary-color;
+  background-color: variables.$primary-color;
+  &:hover {
+    background-color: variables.$primary-color-lighten;
+  }
+  [data-theme="dark"] & {
+    color: variables.$primary-color;
+    background-color: variables.$dark-primary-color;
+    &:hover {
+      background-color: variables.$dark-primary-color-lighten;
     }
   }
 }

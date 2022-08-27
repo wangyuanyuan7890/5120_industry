@@ -5,6 +5,27 @@ export default function Home() {
   return (
     <Page title="Home">
       <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
+      <h1>Welcome to the home page</h1>
     </Page>
   )
 }
