@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Container } from "@mui/system"
 import EcoFashLogo from "@/public/ecofash_logo.svg"
 import styles from "@/styles/components/Nav.module.scss"
 import Link from "next/link"
 import { Button, IconButton, Tooltip } from "@mui/material"
 import { useRouter } from "next/router"
-import { DarkMode, LightMode } from "@mui/icons-material/"
+import { DarkMode } from "@mui/icons-material/"
 import { useTheme } from "next-themes"
 
 const routes = [
   { name: "Home", path: "/" },
+  { name: "Lifecycle", path: "/lifecycle" },
   { name: "Materials", path: "/materials" },
 ]
 
@@ -25,6 +26,7 @@ export default function Nav({ stickyNav }) {
       setTheme("light")
     }
   }
+
   return (
     <div
       className={`${styles.navbar_wrapper} ${
@@ -47,6 +49,9 @@ export default function Nav({ stickyNav }) {
                   className={`${styles.link} ${
                     router.pathname === route.path && styles.selected
                   }`}
+                  onClick={() => {
+                    console.log(router.pathname, route.path)
+                  }}
                 >
                   {route.name}
                 </Button>
@@ -60,7 +65,7 @@ export default function Nav({ stickyNav }) {
               className={styles.theme_button}
               onClick={handleToggleTheme}
             >
-              {theme === "dark" ? <DarkMode /> : <LightMode />}
+              {theme === "dark" ? <DarkMode /> : <DarkMode />}
             </IconButton>
           </Tooltip>
         </div>
