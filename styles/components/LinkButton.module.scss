@@ -1,0 +1,10 @@
+@use "../variables.scss";
+
+.link_button {
+  font-size: 1.1em;
+  background-color: variables.$primary-background-color;
+  color: variables.$primary-color;
+  &:hover {
+    background-color: variables.$primary-background-color-soft;
+  }
+}

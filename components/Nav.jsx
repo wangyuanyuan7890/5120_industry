@@ -33,38 +33,40 @@ export default function Nav({ stickyNav }) {
         stickyNav && styles.navbar_sticky
       }`}
     >
-      <Container maxWidth="lg" className={styles.navbar}>
-        <div className={styles.main}>
-          <Link className={styles.logo_group} href="/" passHref>
-            <div className={styles.logo_group}>
-              <EcoFashLogo className={styles.logo} />
-              <span className={styles.name}>Ecofash</span>
+      <Container maxWidth="lg">
+        <div className={styles.navbar}>
+          <div className={styles.main}>
+            <Link className={styles.logo_group} href="/" passHref>
+              <div className={styles.logo_group}>
+                <EcoFashLogo className={styles.logo} />
+                <span className={styles.name}>Ecofash</span>
+              </div>
+            </Link>
+            <div className={styles.link_group}>
+              {routes.map((route, index) => (
+                <Link key={index} href={route.path} passHref>
+                  <Button
+                    variant="text"
+                    className={`${styles.link} ${
+                      router.pathname === route.path && styles.selected
+                    }`}
+                  >
+                    {route.name}
+                  </Button>
+                </Link>
+              ))}
             </div>
-          </Link>
-          <div className={styles.link_group}>
-            {routes.map((route, index) => (
-              <Link key={index} href={route.path} passHref>
-                <Button
-                  variant="text"
-                  className={`${styles.link} ${
-                    router.pathname === route.path && styles.selected
-                  }`}
-                >
-                  {route.name}
-                </Button>
-              </Link>
-            ))}
           </div>
-        </div>
-        <div className={styles.action_group}>
-          <Tooltip title="Toggle theme">
-            <IconButton
-              className={styles.theme_button}
-              onClick={handleToggleTheme}
-            >
-              {theme === "dark" ? <DarkMode /> : <DarkMode />}
-            </IconButton>
-          </Tooltip>
+          <div className={styles.action_group}>
+            <Tooltip title="Toggle theme">
+              <IconButton
+                className={styles.theme_button}
+                onClick={handleToggleTheme}
+              >
+                {theme === "dark" ? <DarkMode /> : <DarkMode />}
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </Container>
     </div>

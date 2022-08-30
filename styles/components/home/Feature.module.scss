@@ -1,0 +1,14 @@
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  .title {
+    font-size: 1.75em;
+    font-weight: 700;
+  }
+  .description {
+    font-size: 1.25em;
+    text-align: justify;
+  }
+}

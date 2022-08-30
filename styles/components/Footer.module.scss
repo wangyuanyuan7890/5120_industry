@@ -1,0 +1,16 @@
+@use "../variables.scss";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  span {
+    font-size: 1.1em;
+  }
+}
+
+.highlight {
+  color: variables.$primary-background-color;
+  font-weight: 700;
+}
