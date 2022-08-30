@@ -36,7 +36,7 @@ const steps = [
   },
 ]
 
-export default function lifecycle() {
+export default function Lifecycle() {
   const [activeStep, setActiveStep] = useState(0)
 
   const handleNext = () => {

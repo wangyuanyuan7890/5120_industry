@@ -12,11 +12,11 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/ecofash_favicon.svg" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      {/* <ThemeProvider> */}
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      {/* </ThemeProvider> */}
     </>
   )
 }

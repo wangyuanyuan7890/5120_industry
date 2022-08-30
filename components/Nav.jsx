@@ -57,7 +57,7 @@ export default function Nav({ stickyNav }) {
               ))}
             </div>
           </div>
-          <div className={styles.action_group}>
+          {/* <div className={styles.action_group}>
             <Tooltip title="Toggle theme">
               <IconButton
                 className={styles.theme_button}
@@ -66,7 +66,7 @@ export default function Nav({ stickyNav }) {
                 {theme === "dark" ? <DarkMode /> : <DarkMode />}
               </IconButton>
             </Tooltip>
-          </div>
+          </div> */}
         </div>
       </Container>
     </div>
