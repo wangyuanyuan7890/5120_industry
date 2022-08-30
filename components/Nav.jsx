@@ -49,9 +49,6 @@ export default function Nav({ stickyNav }) {
                   className={`${styles.link} ${
                     router.pathname === route.path && styles.selected
                   }`}
-                  onClick={() => {
-                    console.log(router.pathname, route.path)
-                  }}
                 >
                   {route.name}
                 </Button>
