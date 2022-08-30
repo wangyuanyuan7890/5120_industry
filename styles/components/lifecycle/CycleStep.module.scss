@@ -1,0 +1,38 @@
+@use "../../custom.scss";
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.title {
+  font-size: 2em;
+}
+
+.subtitle {
+  font-size: 1.25em;
+}
+
+.description {
+  font-size: 1.25em;
+}
+
+.action_group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .start_group,
+  .end_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+  }
+}

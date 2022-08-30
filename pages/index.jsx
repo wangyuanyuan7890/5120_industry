@@ -6,10 +6,9 @@ import RedCrossLogo from "@/public/companies/red_cross.svg"
 import SalvationArmyLogo from "@/public/companies/salvation_army.svg"
 import SmithFamilyLogo from "@/public/companies/smith_family.svg"
 import LinkButton from "@/components/LinkButton"
+import Feature from "@/components/home/Feature"
 
 import styles from "@/styles/pages/Home.module.scss"
-import Feature from "@/components/home/Feature"
-import Link from "next/link"
 
 export default function Home() {
   return (
@@ -59,7 +58,7 @@ export default function Home() {
           <div className={styles.feature_header}>
             <span className={styles.title}>Features</span>
             <span className={styles.description}>
-              Below are some of the features offered on the site
+              Below are the the features available
             </span>
           </div>
           <div className={styles.feature_group}>

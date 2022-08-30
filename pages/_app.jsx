@@ -1,8 +1,8 @@
 import Head from "next/head"
 import Layout from "@/components/Layout"
+import { ThemeProvider } from "next-themes"
 
 import "@/styles/globals.scss"
-import { ThemeProvider } from "next-themes"
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -104,18 +104,18 @@
 }
 
 .theme_button {
-  color: variables.$dark-primary-color;
-  background-color: variables.$primary-color;
+  color: variables.$dark-primary-color !important;
+  background-color: variables.$primary-color !important;
   height: 28px;
   width: 28px;
   &:hover {
-    background-color: variables.$primary-color-lighten;
+    background-color: variables.$primary-color-lighten !important;
   }
   [data-theme="dark"] & {
-    color: variables.$primary-color;
-    background-color: variables.$dark-primary-color;
+    color: variables.$primary-color !important;
+    background-color: variables.$dark-primary-color !important;
     &:hover {
-      background-color: variables.$dark-primary-color-lighten;
+      background-color: variables.$dark-primary-color-lighten !important;
     }
   }
 }

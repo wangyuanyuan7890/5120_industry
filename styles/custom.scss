@@ -1,9 +1,13 @@
-@use "../variables.scss";
+@use "./variables.scss";
 
-.link_button {
+.button {
   background-color: variables.$primary-background-color !important;
   color: variables.$primary-color !important;
   &:hover {
     background-color: variables.$primary-background-color-soft !important;
   }
+}
+
+.buttonTransparent {
+  color: variables.$primary-background-color !important;
 }
