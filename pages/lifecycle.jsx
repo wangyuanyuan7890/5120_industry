@@ -4,8 +4,13 @@ import Hero from "@/components/Hero"
 
 import styles from "@/styles/pages/Lifecycle.module.scss"
 import CycleStep from "@/components/lifecycle/CycleStep"
-import { useState } from "react"
+import { Component, useState } from "react"
 import { Step, StepButton, StepLabel, Stepper, Tab, Tabs } from "@mui/material"
+
+import ReduceImage from "@/public/lifecycle/clothing_lifecycle_reduce.svg"
+import ReuseImage from "@/public/lifecycle/clothing_lifecycle_reuse.svg"
+import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
+import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
 
 const steps = [
   {
@@ -63,6 +68,21 @@ export default function Lifecycle() {
             title="Sustainable product lifecycle"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et felis maximus, blandit tortor et, posuere ante. Donec viverra dictum felis id gravida. Nunc nibh est, tincidunt non accumsan eget, lobortis eget enim."
           />
+        </div>
+        <div className={styles.clothing_lifecycle_wrapper}>
+          {activeStep === 0 && (
+            <ReduceImage className={styles.clothing_lifecycle} />
+          )}
+          {activeStep === 1 && (
+            <ReuseImage className={styles.clothing_lifecycle} />
+          )}
+          {activeStep === 2 && (
+            <RepairImage className={styles.clothing_lifecycle} />
+          )}
+          {activeStep === 3 && (
+            <RecycleImage className={styles.clothing_lifecycle} />
+          )}
+          <span>Product lifecycle</span>
         </div>
         <div className={styles.step_header}>
           <Stepper nonLinear activeStep={activeStep} className={styles.stepper}>
