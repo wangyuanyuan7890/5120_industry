@@ -17,8 +17,8 @@
   .logo_group .name,
   .link_group .link {
     transition: color 500ms ease;
+    color: variables.$dark-primary-color;
     [data-theme="light"] & {
-      color: variables.$dark-primary-color;
       &:hover {
         background-color: variables.$primary-color-lighten;
         &.selected {
