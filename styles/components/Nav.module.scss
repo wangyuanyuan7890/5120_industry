@@ -18,12 +18,10 @@
   .link_group .link {
     transition: color 500ms ease;
     color: variables.$dark-primary-color;
-    [data-theme="light"] & {
-      &:hover {
-        background-color: variables.$primary-color-lighten;
-        &.selected {
-          background-color: variables.$primary-background-color-soft;
-        }
+    &:hover {
+      background-color: variables.$primary-color-lighten;
+      &.selected {
+        background-color: variables.$primary-background-color-soft;
       }
     }
     &.selected {
@@ -70,9 +68,6 @@
     font-size: 2em;
     font-weight: 900;
     color: variables.$primary-color;
-    [data-theme="dark"] & {
-      color: variables.$dark-primary-color;
-    }
   }
 }
 
@@ -80,18 +75,12 @@
   gap: 0.5em;
   .link {
     color: variables.$primary-color;
-    [data-theme="dark"] & {
-      color: variables.$dark-primary-color;
-    }
     &.selected {
       color: variables.$primary-color;
       background-color: variables.$primary-background-color;
     }
     &:hover {
       background-color: variables.$primary-color-soft;
-      [data-theme="dark"] & {
-        background-color: variables.$primary-color-lighten;
-      }
       &.selected {
         background-color: variables.$primary-background-color-soft;
       }
@@ -110,12 +99,5 @@
   width: 28px;
   &:hover {
     background-color: variables.$primary-color-lighten !important;
-  }
-  [data-theme="dark"] & {
-    color: variables.$primary-color !important;
-    background-color: variables.$dark-primary-color !important;
-    &:hover {
-      background-color: variables.$dark-primary-color-lighten !important;
-    }
   }
 }

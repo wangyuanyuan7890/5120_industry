@@ -65,7 +65,6 @@ export default function Lifecycle() {
           />
         </div>
         <div className={styles.step_header}>
-          <span className={styles.title}>Stages</span>
           <Stepper nonLinear activeStep={activeStep} className={styles.stepper}>
             {steps.map((step, index) => {
               return (
