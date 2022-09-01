@@ -66,8 +66,7 @@ export default function Home() {
               title="Lifecycle"
               linkHref="lifecycle"
               linkText="See lifecycle"
-              description="The growth of the 'Fast Fashion' market has left our wardrobes full of unsustainable products. Hope is not lost! 
-              Follow the Reduce, Reuse, Repair and Recycle guidelines of the Sustainable Product Lifecycle to minimise the emsissions and harm of your garmets."
+              description="The growth of the 'Fast Fashion' market has left our wardrobes full of unsustainable products. Hope is not lost! Follow the Reduce, Reuse, Repair and Recycle guidelines of the Sustainable Product Lifecycle to minimise the emsissions and harm of your garmets."
             />
             <Feature
               title="Material search"
