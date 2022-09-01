@@ -66,7 +66,7 @@ export default function Lifecycle() {
         <div className={styles.hero_wrapper}>
           <Hero
             title="Sustainable product lifecycle"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et felis maximus, blandit tortor et, posuere ante. Donec viverra dictum felis id gravida. Nunc nibh est, tincidunt non accumsan eget, lobortis eget enim."
+            description="With the vast emissions of the fashion industry, we can minimise our emissions and harm by following the Sustainable Product Life Cycle. The ideal garmet is ethically sourced, worn many times, repaired to lengthen its use and recycled or desposed of ethically. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your garmets. By investing in your wardrobe and mending your clothing, you are ensuring that you can wear the pieces for longer, slowing down how much you consume and making sure that less goes to waste."
           />
         </div>
         <div className={styles.clothing_lifecycle_wrapper}>
@@ -113,7 +113,14 @@ export default function Lifecycle() {
                   linkHref={step.linkHref}
                   handleNext={handleNext}
                   handleBack={handleBack}
-                />
+                >
+                  {activeStep === 0 && (
+                    <div className={styles.chart_wrapper}>
+                      <span>Chart</span>
+                      <span>Text</span>
+                    </div>
+                  )}
+                </CycleStep>
               )
           })}
         </div>

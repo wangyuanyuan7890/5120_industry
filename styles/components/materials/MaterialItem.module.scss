@@ -6,11 +6,13 @@
   box-shadow: 2px 2px 4px 2px #888888;
 
   justify-content: space-between;
+  gap: 1em;
 }
 
 .content {
   display: flex;
   flex-direction: column;
+  text-align: justify;
   .title {
     font-size: 1.25em;
     font-weight: bold;
@@ -33,6 +35,7 @@
   align-items: center;
   gap: 1.5em;
   .stat_item {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,6 +48,7 @@
     .icon {
       height: auto;
       width: 40px;
+      flex: 1;
     }
   }
 }

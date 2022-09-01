@@ -4,6 +4,7 @@ import LinkButton from "../LinkButton"
 import { Button } from "@mui/material"
 
 export default function CycleStep({
+  children,
   title,
   subtitle,
   description,
@@ -19,6 +20,7 @@ export default function CycleStep({
         <span className={styles.subtitle}>{subtitle}</span>
       </div>
       <span className={styles.description}>{description}</span>
+      {children}
       <div className={styles.action_group}>
         <div className={styles.start_group}>
           {linkText && linkHref && (

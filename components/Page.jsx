@@ -8,7 +8,7 @@ export default function Page({ title, children }) {
       <Head>
         <title>{`${title} - Ecofash` || "Ecofash"}</title>
       </Head>
-      <>{children}</>
+      {children}
     </>
   )
 }

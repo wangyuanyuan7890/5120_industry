@@ -26,10 +26,10 @@ export default function Home() {
               </span>
             </div>
             <span className={styles.description}>
-              Ecofash makes finding design-focused ethical and sustainable
-              clothing easy. We aim to educate and inspire people to make better
-              economincal choices when it comes to their clothing in order to
-              reduce energy waste.
+              Ecofash makes finding ethical and sustainable clothing easy. We
+              aim to educate and inspire young Victorians to make better
+              environmental fashion choices to reduce their emissions. What are
+              you wearing?
             </span>
             <div>
               <LinkButton text="Learn more" href="lifecycle" />
@@ -66,21 +66,14 @@ export default function Home() {
               title="Lifecycle"
               linkHref="lifecycle"
               linkText="See lifecycle"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              gravida est lobortis lorem tempor, sed feugiat elit tincidunt.
-              Aliquam fermentum neque gravida molestie lacinia. Cras bibendum
-              laoreet elit, nec aliquet nunc egestas ac. Nulla erat lacus,
-              consectetur nec risus sed, porta accumsan nunc."
+              description="The growth of the 'Fast Fashion' market has left our wardrobes full of unsustainable products. Hope is not lost! 
+              Follow the Reduce, Reuse, Repair and Recycle guidelines of the Sustainable Product Lifecycle to minimise the emsissions and harm of your garmets."
             />
             <Feature
               title="Material search"
               linkHref="materials"
               linkText="See materials"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              gravida est lobortis lorem tempor, sed feugiat elit tincidunt.
-              Aliquam fermentum neque gravida molestie lacinia. Cras bibendum
-              laoreet elit, nec aliquet nunc egestas ac. Nulla erat lacus,
-              consectetur nec risus sed, porta accumsan nunc."
+              description="When shopping for sustainable items the Material Checker is all you need to determine whether each garment is sustainable. Just check and select the materials of each garment and the Material Checker will outline the biodegradability and ethical sustainability of each item."
             />
           </div>
         </div>
