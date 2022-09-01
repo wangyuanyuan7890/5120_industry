@@ -1,6 +1,6 @@
 {
   "name": "ecofash",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
+    "@prisma/client": "^4.3.0",
     "next": "12.2.5",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
@@ -23,6 +24,10 @@
     "@svgr/webpack": "^6.3.1",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "prisma": "^4.3.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

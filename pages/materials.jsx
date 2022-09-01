@@ -49,10 +49,12 @@ export default function Materials() {
     setErrorActive(false)
   }
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setErrorActive(false)
+    setErrorAlertActive(false)
+    setFoundMaterials([])
     if (selectedMaterials.length > 0) {
-      fetch("/api/material", {
+      await fetch("/api/material", {
         method: "POST",
         body: JSON.stringify({ materials: selectedMaterials }),
       })
@@ -62,9 +64,9 @@ export default function Materials() {
           if (materials) {
             // sort materials by material name
             const sortedMaterials = materials.sort((a, b) => {
-              if (a.material < b.material) {
+              if (a.name < b.name) {
                 return -1
-              } else if (a.material > b.material) {
+              } else if (a.name > b.name) {
                 return 1
               }
               return 0
@@ -79,8 +81,9 @@ export default function Materials() {
     }
   }
 
-  const getMaterialName = (material) => {
-    return material.charAt(0).toUpperCase() + material.slice(1)
+  const getMaterialName = (name) => {
+    if (!name) return
+    return name.charAt(0).toUpperCase() + name.slice(1)
   }
 
   return (
