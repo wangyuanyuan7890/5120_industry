@@ -11,6 +11,7 @@ import ReduceImage from "@/public/lifecycle/clothing_lifecycle_reduce.svg"
 import ReuseImage from "@/public/lifecycle/clothing_lifecycle_reuse.svg"
 import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
 import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
+import SectorEmissionsChart from "@/components/lifecycle/SectorEmissionsChart"
 
 const steps = [
   {
@@ -116,8 +117,7 @@ export default function Lifecycle() {
                 >
                   {activeStep === 0 && (
                     <div className={styles.chart_wrapper}>
-                      <span>Chart</span>
-                      <span>Text</span>
+                      <SectorEmissionsChart />
                     </div>
                   )}
                 </CycleStep>
