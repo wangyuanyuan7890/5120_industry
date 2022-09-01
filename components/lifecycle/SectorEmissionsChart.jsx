@@ -47,7 +47,6 @@ export default function SectorEmissionsChart() {
   const extractValuesByYear = (data) => {
     const obj = {}
     SectorEmissionLabels.map((x) => {
-      console.log(x)
       const v = data.find((y) => x === y.year)
       obj[x] = v.emissions_tonnes_per_capita
     })
@@ -59,8 +58,6 @@ export default function SectorEmissionsChart() {
   const sectorValues3 = extractValuesByYear(sector3)
   const sectorValues4 = extractValuesByYear(sector4)
 
-  console.log(sectorValues1)
-  console.log(SectorEmissionLabels)
   const data = {
     SectorEmissionLabels,
     datasets: [
