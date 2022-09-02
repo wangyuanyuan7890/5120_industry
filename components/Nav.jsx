@@ -13,6 +13,7 @@ const routes = [
   { name: "Home", path: "/" },
   { name: "Lifecycle", path: "/lifecycle" },
   { name: "Materials", path: "/materials" },
+  { name: "Trends", path: "/trends" },
 ]
 
 // Navbar that appears on all pages

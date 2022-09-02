@@ -29,8 +29,7 @@ export default function Home() {
             <span className={styles.description}>
               Ecofash makes finding ethical and sustainable clothing easy. We
               aim to educate and inspire young Victorians to make better
-              environmental fashion choices to reduce their emissions. What are
-              you wearing?
+              environmental fashion choices to reduce their emissions.
             </span>
             <div>
               <LinkButton text="Learn more" href="lifecycle" />
@@ -70,10 +69,16 @@ export default function Home() {
               description="The growth of the 'Fast Fashion' market has left our wardrobes full of unsustainable products. Hope is not lost! Follow the Reduce, Reuse, Repair and Recycle guidelines of the Sustainable Product Lifecycle to minimise the emsissions and harm of your garmets."
             />
             <Feature
-              title="Material search"
+              title="Material checker"
               linkHref="materials"
-              linkText="See materials"
+              linkText="Check materials"
               description="When shopping for sustainable items the Material Checker is all you need to determine whether each garment is sustainable. Just check and select the materials of each garment and the Material Checker will outline the biodegradability and ethical sustainability of each item."
+            />
+            <Feature
+              title="Trends"
+              linkHref="trends"
+              linkText="See trends"
+              description="View data in the form of data visualistions, that summarise topics such as nationwide carbon emissions."
             />
           </div>
         </div>

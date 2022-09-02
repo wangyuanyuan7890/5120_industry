@@ -11,7 +11,6 @@ import ReduceImage from "@/public/lifecycle/clothing_lifecycle_reduce.svg"
 import ReuseImage from "@/public/lifecycle/clothing_lifecycle_reuse.svg"
 import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
 import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
-import SectorEmissionsChart from "@/components/lifecycle/SectorEmissionsChart"
 
 // Step data for each lifecycle
 const steps = [
@@ -20,7 +19,7 @@ const steps = [
     subtitle:
       "Do something drastic, cut the plastics! Make a difference by reducing waste now.",
     description:
-      "When purchasing garments, emissions through production should be a major factor. The components of ethical sustainable garments are raw materials, transport, production, recyclability influence the emissions of a garment over its lifecycle. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey. Victoria emission totals have been decreasing, we must continue to reduce these. Explore the emission trends through from Victoria between 2009-2019 shown below.",
+      "When purchasing garments, emissions through production should be a major factor. The components of ethical sustainable garments are raw materials, transport, production, recyclability influence the emissions of a garment over its lifecycle. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
     linkText: "Material Checker",
     linkHref: "materials",
   },
@@ -77,21 +76,20 @@ export default function Lifecycle() {
             title="Sustainable product lifecycle"
             description="With the vast emissions of the fashion industry, we can minimise our emissions and harm by following the Sustainable Product Life Cycle. The ideal garment is ethically sourced, worn many times, repaired to lengthen its use and recycled or disposed of ethically. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your garments. By investing in your wardrobe and mending your clothing, you are ensuring that you can wear the pieces for longer, slowing down how much you consume and making sure that less goes to waste."
           />
-        </div>
-        <div className={styles.clothing_lifecycle_wrapper}>
-          {activeStep === 0 && (
-            <ReduceImage className={styles.clothing_lifecycle} />
-          )}
-          {activeStep === 1 && (
-            <ReuseImage className={styles.clothing_lifecycle} />
-          )}
-          {activeStep === 2 && (
-            <RepairImage className={styles.clothing_lifecycle} />
-          )}
-          {activeStep === 3 && (
-            <RecycleImage className={styles.clothing_lifecycle} />
-          )}
-          <span>Product lifecycle</span>
+          <div className={styles.clothing_lifecycle_wrapper}>
+            {activeStep === 0 && (
+              <ReduceImage className={styles.clothing_lifecycle} />
+            )}
+            {activeStep === 1 && (
+              <ReuseImage className={styles.clothing_lifecycle} />
+            )}
+            {activeStep === 2 && (
+              <RepairImage className={styles.clothing_lifecycle} />
+            )}
+            {activeStep === 3 && (
+              <RecycleImage className={styles.clothing_lifecycle} />
+            )}
+          </div>
         </div>
         <div className={styles.step_header}>
           <Stepper nonLinear activeStep={activeStep} className={styles.stepper}>
@@ -122,13 +120,7 @@ export default function Lifecycle() {
                   linkHref={step.linkHref}
                   handleNext={handleNext}
                   handleBack={handleBack}
-                >
-                  {activeStep === 0 && (
-                    <div className={styles.chart_wrapper}>
-                      <SectorEmissionsChart />
-                    </div>
-                  )}
-                </CycleStep>
+                ></CycleStep>
               )
           })}
         </div>

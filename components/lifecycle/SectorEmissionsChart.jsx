@@ -22,7 +22,7 @@ const options = {
   plugins: {
     title: {
       display: true,
-      text: "Victorian Co2 emissions by sector (2009-2019)",
+      text: "Victorian Co2 emissions by sector (tonnes per capita)",
     },
   },
   responsive: true,

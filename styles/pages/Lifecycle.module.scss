@@ -2,6 +2,7 @@
 
 .hero_wrapper {
   display: flex;
+  gap: 2em;
 }
 
 .clothing_lifecycle_wrapper {
@@ -10,13 +11,10 @@
   align-items: center;
   flex-direction: column;
   gap: 0.5em;
-  span {
-    font-size: 1.25em;
-  }
 }
 
 .clothing_lifecycle {
-  height: 400px;
+  height: 200px;
   width: auto;
 }
 
