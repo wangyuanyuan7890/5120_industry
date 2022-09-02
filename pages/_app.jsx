@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes"
 
 import "@/styles/globals.scss"
 
+// Main app component to render layout and pages
 function MyApp({ Component, pageProps }) {
   return (
     <>

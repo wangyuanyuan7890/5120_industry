@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "@/styles/components/Footer.module.scss"
 
+// Footer to be shown on each page
 export default function Footer() {
   return (
     <div className={styles.footer}>

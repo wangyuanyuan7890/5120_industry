@@ -3,6 +3,7 @@ import Page from "@/components/Page"
 import SearchVoid from "@/public/search_void.svg"
 import styles from "@/styles/components/ErrorPage.module.scss"
 
+// Generic error page template that changes based on the error type
 export default function ErrorPage({ title, status, message }) {
   return (
     <Page title={title || "Error"}>

@@ -1,5 +1,6 @@
 import ErrorPage from "@/components/ErrorPage"
 
+// Custom 404 page using the generic ErrorPage componnt
 export default function Custom404() {
   return (
     <ErrorPage

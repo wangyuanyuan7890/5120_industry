@@ -10,6 +10,7 @@ import Feature from "@/components/home/Feature"
 
 import styles from "@/styles/pages/Home.module.scss"
 
+// Home page design
 export default function Home() {
   return (
     <Page title="Home">

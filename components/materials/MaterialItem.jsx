@@ -4,11 +4,12 @@ import styles from "@/styles/components/materials/MaterialItem.module.scss"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 
+// Material page item template that shows up when searching for items
 export default function MaterialItem({ material }) {
+  // Gets the name of a material with a capital first character
   const getMaterialName = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
   }
-
   return (
     <div className={styles.item_wrapper}>
       <div className={styles.content}>

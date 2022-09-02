@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import styles from "@/styles/components/home/Feature.module.scss"
 import LinkButton from "../LinkButton"
 
+// Home page feature template to represent a feature in the website
 export default function Feature({
   title,
   description,

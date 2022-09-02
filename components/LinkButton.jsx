@@ -4,6 +4,7 @@ import React from "react"
 
 import styles from "@/styles/components/LinkButton.module.scss"
 
+// Generic link button component template
 export default function LinkButton({ text, href }) {
   return (
     <Link href={href} passHref>

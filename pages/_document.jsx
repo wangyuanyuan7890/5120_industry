@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document"
 
+// Main document component to render app
 export default function Document() {
   return (
     <Html>

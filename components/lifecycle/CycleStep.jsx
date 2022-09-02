@@ -3,6 +3,7 @@ import styles from "@/styles/components/lifecycle/CycleStep.module.scss"
 import LinkButton from "../LinkButton"
 import { Button } from "@mui/material"
 
+// Lifecycle page cycle steps - shows when you click a tab and shows data for each step
 export default function CycleStep({
   children,
   title,

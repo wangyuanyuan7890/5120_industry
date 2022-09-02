@@ -13,6 +13,7 @@ import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
 import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
 import SectorEmissionsChart from "@/components/lifecycle/SectorEmissionsChart"
 
+// Step data for each lifecycle
 const steps = [
   {
     title: "Reduce",
@@ -46,9 +47,11 @@ const steps = [
   },
 ]
 
+// Lifecycle page that shows the different steps of the product lifecycle
 export default function Lifecycle() {
   const [activeStep, setActiveStep] = useState(0)
 
+  // handles going forward a step
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       setActiveStep(0)
@@ -57,6 +60,7 @@ export default function Lifecycle() {
     }
   }
 
+  // handles going back a step
   const handleBack = () => {
     if (activeStep === 0) {
       setActiveStep(steps.length - 1)

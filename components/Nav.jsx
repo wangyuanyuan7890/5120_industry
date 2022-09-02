@@ -8,17 +8,19 @@ import { useRouter } from "next/router"
 import { DarkMode } from "@mui/icons-material/"
 import { useTheme } from "next-themes"
 
+// Page routes
 const routes = [
   { name: "Home", path: "/" },
   { name: "Lifecycle", path: "/lifecycle" },
   { name: "Materials", path: "/materials" },
 ]
 
-//TODO: Responsive UI
+// Navbar that appears on all pages
 export default function Nav({ stickyNav }) {
   const router = useRouter()
   const { theme, setTheme } = useTheme()
 
+  // Toggling theme
   const handleToggleTheme = () => {
     if (theme === "light") {
       setTheme("dark")

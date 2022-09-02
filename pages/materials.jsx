@@ -19,6 +19,7 @@ import { Box } from "@mui/system"
 import { useState } from "react"
 
 // TODO: fetch list of materials from database
+// List of material labels
 const materialList = [
   "cotton",
   "organic cotton",
@@ -37,23 +38,28 @@ const materialList = [
   "synthetic leather",
 ]
 
+// Material page that allows you to select materials and receive results
 export default function Materials() {
   const [selectedMaterials, setSelectedMaterials] = useState([])
   const [errorActive, setErrorActive] = useState(false)
   const [errorAlertActive, setErrorAlertActive] = useState(false)
   const [foundMaterials, setFoundMaterials] = useState([])
 
+  // updates stored data when selection has been made
   const handleSelectionChange = (e) => {
     const v = e.target.value
     setSelectedMaterials(typeof v === "string" ? v.split(",") : v)
     setErrorActive(false)
   }
 
+  // handles the search functionality to query materials
   const handleSearch = async () => {
+    // reset state
     setErrorActive(false)
     setErrorAlertActive(false)
     setFoundMaterials([])
     if (selectedMaterials.length > 0) {
+      // query material api
       await fetch("/api/material", {
         method: "POST",
         body: JSON.stringify({ materials: selectedMaterials }),
@@ -76,11 +82,13 @@ export default function Materials() {
         })
         .catch((_err) => {})
     } else {
+      // error out
       setErrorAlertActive(true)
       setErrorActive(true)
     }
   }
 
+  // gets the material name where the first letter is a capital
   const getMaterialName = (name) => {
     if (!name) return
     return name.charAt(0).toUpperCase() + name.slice(1)

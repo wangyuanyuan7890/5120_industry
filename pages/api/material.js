@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
+// Material endpoint to return data about the materials searched
 export default async function handler(req, res) {
   // only accept post requests
   if (req.method !== "POST") {

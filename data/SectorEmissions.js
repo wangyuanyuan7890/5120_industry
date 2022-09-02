@@ -1,3 +1,4 @@
+// Labels for chart
 export const SectorEmissionLabels = [
   "2009",
   "2010",
@@ -12,6 +13,7 @@ export const SectorEmissionLabels = [
   "2019",
 ]
 
+// Data for chart - Victorian Co2 emissions
 export const SectorEmissionData = [
   {
     state: "vic",

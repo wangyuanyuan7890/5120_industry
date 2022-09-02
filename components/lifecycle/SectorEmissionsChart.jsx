@@ -14,8 +14,10 @@ import {
   SectorEmissionData,
 } from "@/data/SectorEmissions"
 
+// Register components for stacked bar chart
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
+// Setup options for chart
 const options = {
   plugins: {
     title: {
@@ -34,7 +36,9 @@ const options = {
   },
 }
 
+// Chart to display for the lifecycle page that shows sector emissions based on different sectors
 export default function SectorEmissionsChart() {
+  // Filters out data for each sector
   const sector1 = SectorEmissionData.filter((x) => x.sector === "waste")
   const sector2 = SectorEmissionData.filter((x) => x.sector === "agriculture")
   const sector3 = SectorEmissionData.filter(
@@ -44,6 +48,7 @@ export default function SectorEmissionsChart() {
     (x) => x.sector === "manufacturing industries and construction"
   )
 
+  // Extracts values for each year by sector
   const extractValuesByYear = (data) => {
     const obj = {}
     SectorEmissionLabels.map((x) => {
@@ -58,6 +63,7 @@ export default function SectorEmissionsChart() {
   const sectorValues3 = extractValuesByYear(sector3)
   const sectorValues4 = extractValuesByYear(sector4)
 
+  // Imports these values into our data set for the chart
   const data = {
     SectorEmissionLabels,
     datasets: [
