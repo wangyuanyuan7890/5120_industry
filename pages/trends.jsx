@@ -9,7 +9,7 @@ export default function trends() {
   return (
     <Page title="Trends">
       <Container maxWidth="lg">
-        <Hero title="Trends" description="Lorem ipsum text" />
+        <Hero title="Trends" />
         <div className={styles.trend_wrapper}>
           <span className={styles.title}>
             Victorian emission trends (2009-2019)

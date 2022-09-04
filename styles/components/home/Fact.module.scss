@@ -1,0 +1,28 @@
+@use "../../variables.scss";
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: variables.$primary-color-soft;
+  padding: 1em;
+  gap: 1em;
+  border-radius: 4px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 1em;
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+.text {
+  font-size: 1.25em;
+  text-align: center;
+}
