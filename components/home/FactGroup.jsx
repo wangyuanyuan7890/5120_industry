@@ -11,17 +11,17 @@ export default function FactGroup() {
       <Fact
         stat="95%"
         image={<Co2Icon className={styles.fact_icon} />}
-        text="Textiles that are in landfill can be recycled"
+        text="95% of textiles that are in landfill can be recycled"
       />
       <Fact
         stat="10%"
         image={<TextilesIcon className={styles.fact_icon} />}
-        text="Emissions come from the fashion industry"
+        text="10% of emissions come from the fashion industry"
       />
       <Fact
         stat="27kg"
         image={<WasteIcon className={styles.fact_icon} />}
-        text="Clothing is wasted by the average Victorian per year"
+        text="27kg of clothing is wasted by the average Victorian per year"
       />
     </div>
   )
