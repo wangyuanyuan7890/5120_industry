@@ -1,6 +1,7 @@
 .fact_group {
-  display: flex;
-  gap: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2em;
   margin-bottom: 2em;
 }
 

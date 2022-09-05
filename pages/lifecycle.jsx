@@ -20,8 +20,8 @@ const steps = [
       "Do something drastic, cut the plastics! Make a difference by reducing waste now.",
     description:
       "When purchasing garments, emissions through production should be a major factor. The components of ethical sustainable garments are raw materials, transport, production, recyclability influence the emissions of a garment over its lifecycle. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
-    linkText: "Material Checker",
-    linkHref: "materials",
+    linkText: "See Trends",
+    linkHref: "trends",
   },
   {
     title: "Reuse",
