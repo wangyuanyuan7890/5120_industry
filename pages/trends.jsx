@@ -11,8 +11,7 @@ export default function trends() {
       <Container maxWidth="lg">
         <Hero
           title="Trends"
-          description="Victorias annual emissions are on the decline as citizens reduce their consumption behaviours. However, these positive behaviours have not followed into the fashion industry. Explore the elements of the Victorian fashion industries consistent emissions.
-"
+          description="The trends feature utilises visualisations to illustrate the past, present, and emerging trends in the fashion landscape. Explore the visualisations below to learn about your role in dressing for sustainability."
         />
         <div className={styles.trend_wrapper}>
           <span className={styles.title}>
