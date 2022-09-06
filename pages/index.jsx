@@ -9,6 +9,7 @@ import LinkButton from "@/components/LinkButton"
 import Feature from "@/components/home/Feature"
 
 import styles from "@/styles/pages/Home.module.scss"
+import FactGroup from "@/components/home/FactGroup"
 
 // Home page design
 export default function Home() {
@@ -52,6 +53,9 @@ export default function Home() {
             <SmithFamilyLogo className={styles.company_logo} />
           </a>
         </div>
+      </Container>
+      <Container maxWidth="lg">
+        <FactGroup />
       </Container>
       <Container maxWidth="lg">
         <div className={styles.feature_wrapper}>

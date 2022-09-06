@@ -6,7 +6,7 @@ export default function Hero({ title, description }) {
   return (
     <div className={styles.hero}>
       <span className={styles.title}>{title}</span>
-      <span className={styles.description}>{description}</span>
+      {description && <span className={styles.description}>{description}</span>}
     </div>
   )
 }

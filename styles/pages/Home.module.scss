@@ -8,7 +8,7 @@
 .hero_wrapper {
   position: relative;
   height: 700px;
-  margin-bottom: 4em;
+  margin-bottom: 3em;
 }
 
 .hero {
@@ -46,7 +46,7 @@
   background-color: variables.$primary-color-soft;
   padding: 1em 3em;
   border-radius: 4px;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
   .company_logo {
     max-height: 150px;
     width: 100%;
@@ -57,9 +57,26 @@
 .feature_wrapper {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
 }
 
+<<<<<<< HEAD
+=======
+.feature_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .title {
+    font-size: 2em;
+    font-weight: 700;
+  }
+  .description {
+    font-size: 1.25em;
+  }
+}
+
+>>>>>>> de522210cd2d0d6d7b03962471b7e0a7f4e72a8b
 .feature_group {
   display: grid;
   grid-template-columns: 1fr 1fr;
