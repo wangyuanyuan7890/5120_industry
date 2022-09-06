@@ -60,20 +60,6 @@
   gap: 2em;
 }
 
-.feature_header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  .title {
-    font-size: 3em;
-    font-weight: 700;
-  }
-  .description {
-    font-size: 1.5em;
-  }
-}
-
 .feature_group {
   display: grid;
   grid-template-columns: 1fr 1fr;

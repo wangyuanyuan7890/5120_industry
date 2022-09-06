@@ -55,12 +55,6 @@ export default function Home() {
       </Container>
       <Container maxWidth="lg">
         <div className={styles.feature_wrapper}>
-          <div className={styles.feature_header}>
-            <span className={styles.title}>Features</span>
-            <span className={styles.description}>
-              Below are the the features available
-            </span>
-          </div>
           <div className={styles.feature_group}>
             <Feature
               title="Lifecycle"
