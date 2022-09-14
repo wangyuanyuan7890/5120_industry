@@ -78,6 +78,12 @@ export default function Home() {
               linkText="See trends"
               description="View data in the form of data visualistions, that summarise topics such as nationwide carbon emissions."
             />
+            <Feature
+              title="Map"
+              linkHref="opshops"
+              linkText="Browse locations"
+              description="View location of ops shop nearby that you could possibly look to donate your clothes."
+            />
           </div>
         </div>
       </Container>
