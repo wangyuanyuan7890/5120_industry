@@ -32,11 +32,11 @@ export default function Opshops() {
   // Display the content of the Op shop location map page if isLoaded returns true
   if (isLoaded)
     return (
-      <Page title="OpShops">
+      <Page title="Locator">
         <Container maxwidth="lg">
           <Hero
-            title="Pre-Loved Clothing Locator"
-            description="Explore the map below to find shopping and recycling opportunities through Pre-Loved Clothing stores near you."
+            title="Clothing Locator"
+            description="Explore the map below to find recycling, repairing and donating opportunities through locations near you."
           />
           <OpShopsLocation />
         </Container>
