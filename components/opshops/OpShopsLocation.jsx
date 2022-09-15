@@ -1,5 +1,5 @@
 import styles from "@/styles/pages/Opshop.module.scss"
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api"
+import { GoogleMap, Marker, MarkerF, InfoWindow } from "@react-google-maps/api"
 import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
@@ -18,9 +18,18 @@ const center = {
   lng: 144.96527232900124,
 }
 
+var radius = {
+  path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+  fillColor: "#59bfff",
+  fillOpacity: 0.3,
+  // anchor: new google.maps.Point(0, 0),
+  strokeWeight: 0,
+  scale: 2,
+}
+
 export default function OpShopsLocation() {
-  const [latitude, setLatitude] = useState(-37.8132524811935)
-  const [longitude, setLongitude] = useState(144.96527232900124)
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
   const [responseData, setResponseData] = useState({})
   const [markers, setMarkers] = useState([])
   const [openSnack, setOpenSnack] = useState(false)
@@ -137,6 +146,11 @@ export default function OpShopsLocation() {
           onClick={onMapClick}
           onLoad={onMapLoad}
         >
+          <MarkerF
+            position={{ lat: latitude, lng: longitude }}
+            icon={radius}
+          ></MarkerF>
+
           {markers.map((marker) => (
             <Marker
               key={marker.time?.toISOString()}
@@ -170,7 +184,7 @@ export default function OpShopsLocation() {
 function Locate({ panTo, setOpenSnack }) {
   return (
     <button
-      title="Current Location"
+      title="Pinpoint current location"
       className={styles.locate}
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
