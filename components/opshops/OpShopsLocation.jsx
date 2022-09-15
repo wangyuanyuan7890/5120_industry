@@ -1,6 +1,6 @@
 import styles from "@/styles/pages/Opshop.module.scss"
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api"
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
 import TextField from "@mui/material/TextField"
@@ -28,11 +28,21 @@ export default function OpShopsLocation() {
     setOpenSnack(false)
   }
 
+  // useEffect(() => {
+  //   fetch("/api/locations", {
+  //     method: "GET",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //     })
+  // })
+
   // use to display info when user clicks on the marker
   const [selected, setSelected] = useState(null)
 
   // create a function that will always retain the same value unless props being passed in
-  const onMapClick = React.useCallback((event) => {
+  const onMapClick = useCallback((event) => {
     setMarkers((current) => [
       ...current,
       {
@@ -44,7 +54,7 @@ export default function OpShopsLocation() {
   }, [])
 
   // get current user position
-  React.useEffect(() => {
+  useEffect(() => {
     // using geolocation function to get current position latitude and longitude
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude)
@@ -55,13 +65,13 @@ export default function OpShopsLocation() {
   }, [])
 
   // To avoid map re-rendering
-  const mapRef = React.useRef()
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef()
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map
   }, [])
 
   // callBack function to be called when lat lng of a coordinate changes
-  const panTo = React.useCallback(({ lat, lng }) => {
+  const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng })
     mapRef.current.setZoom(14)
   }, [])
@@ -88,8 +98,8 @@ export default function OpShopsLocation() {
         autoHideDuration={5000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Please enable your location!
+        <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+          Please enable your location first!
         </Alert>
       </Snackbar>
       <div className={styles.charities}>
@@ -118,7 +128,7 @@ export default function OpShopsLocation() {
       </div>
 
       <div className="map">
-        <Locate panTo={panTo} />
+        <Locate panTo={panTo} setOpenSnack={setOpenSnack} />
         <GoogleMap
           zoom={11}
           center={center}
@@ -160,6 +170,7 @@ export default function OpShopsLocation() {
 function Locate({ panTo, setOpenSnack }) {
   return (
     <button
+      title="Current Location"
       className={styles.locate}
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
