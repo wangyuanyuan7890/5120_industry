@@ -27,6 +27,24 @@
     border: none;
 }
 
+.searchLocation {
+    color: darkgray;
+}
+
+.filterLocation {
+    padding-top: 1rem;
+    color: darkgray;
+}
+
+.filterIcon{
+    color: darkgreen;
+}
+
+.filterLabels {
+    color: black;
+    padding-left: 0.5rem;
+}
+
 .search {
     position: absolute;
     top: 14rem;

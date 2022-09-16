@@ -8,7 +8,11 @@ import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
-import { Alert, Snackbar } from "@mui/material"
+import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
+import { filter } from "@chakra-ui/react"
+import styledEngine from "@mui/styled-engine"
+import { style } from "@mui/system"
 
 // iocns for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
@@ -38,6 +42,18 @@ export default function OpShopsLocation() {
   const [openSnack, setOpenSnack] = useState(false)
   const handleClose = () => {
     setOpenSnack(false)
+  }
+
+  const [formats, setFormats] = useState(() => [
+    "op shops",
+    "repair locations",
+    "donation points",
+  ])
+
+  const handleFormat = (event, newFormats) => {
+    if (newFormats.length) {
+      setFormats(newFormats)
+    }
   }
 
   // useEffect(() => {
@@ -71,8 +87,6 @@ export default function OpShopsLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
       setLatitude(position.coords.latitude)
       setLongitude(position.coords.longitude)
-      // console.log(latitude)
-      // console.log(longitude)
     })
   }, [])
 
@@ -102,6 +116,7 @@ export default function OpShopsLocation() {
     []
   )
 
+  // group the selection dropdown list data
   const options_mov = top100Films.map((option) => {
     const firstLetter = option.title[0].toUpperCase()
     return {
@@ -123,6 +138,7 @@ export default function OpShopsLocation() {
         </Alert>
       </Snackbar>
       <div className={styles.charities}>
+        <h2 className={styles.searchLocation}>Search Location:</h2>
         <Autocomplete
           multiple
           limitTags={5}
@@ -149,6 +165,30 @@ export default function OpShopsLocation() {
             <TextField {...params} label="Search" placeholder="Locations" />
           )}
         />
+
+        <h2 className={styles.filterLocation}>Filter:</h2>
+        <ToggleButtonGroup
+          value={formats}
+          style={{ width: 200 }}
+          orientation="vertical"
+          onChange={handleFormat}
+          aria-label="location filtering"
+        >
+          <ToggleButton value="op shops" aria-label="op shops">
+            <AddShoppingCart className={styles.filterIcon} />
+            <p className={styles.filterLabels}>Op Shops</p>
+          </ToggleButton>
+
+          <ToggleButton value="repair locations" aria-label="repair locations">
+            <Handyman className={styles.filterIcon} />
+            <p className={styles.filterLabels}>Repair Locations</p>
+          </ToggleButton>
+
+          <ToggleButton value="donation points" aria-label="donation points">
+            <DeleteOutline className={styles.filterIcon} />
+            <p className={styles.filterLabels}>Donation Points</p>
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
 
       <div className="map">
@@ -166,7 +206,7 @@ export default function OpShopsLocation() {
             icon={radius}
           ></MarkerF>
 
-          {markers.map((marker) => (
+          {/* {markers.map((marker) => (
             <Marker
               key={marker.time?.toISOString()}
               position={{ lat: marker.lat, lng: marker.lng }}
@@ -174,9 +214,9 @@ export default function OpShopsLocation() {
                 setSelected(marker) // click event on the marker to set selected to whichever market was clicked
               }}
             />
-          ))}
+          ))} */}
 
-          {selected ? (
+          {/* {selected ? (
             <InfoWindow
               position={{ lat: selected.lat, lng: selected.lng }}
               onCloseClick={() => {
@@ -188,7 +228,7 @@ export default function OpShopsLocation() {
                 <p>Address: 69 Bourke St, Melbourne VIC 3000</p>
               </div>
             </InfoWindow>
-          ) : null}
+          ) : null} */}
         </GoogleMap>
       </div>
     </div>
