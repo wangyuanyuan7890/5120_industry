@@ -10,7 +10,10 @@ import ClothingTable from "@/components/clothingtracker/ClothingTable"
 export default function ClothingTracker() {
   const [clothingItems, setClothingItems] = useState<ClothingItem[]>([])
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    const items = fetchClothingItems()
+    setClothingItems(items)
+  }, [])
 
   return (
     <Page title="Clothing Tracker">

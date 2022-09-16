@@ -2,7 +2,8 @@ export const CLOTHING_ITEMS_KEY = "clothing-data"
 
 export function fetchClothingItems(): ClothingItem[] {
   const json = localStorage.getItem(CLOTHING_ITEMS_KEY)
-  return JSON.parse(json)
+  if (json) return JSON.parse(json)
+  return []
 }
 
 export function setClothingItems(items: ClothingItem[]): void {
