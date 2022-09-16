@@ -10,14 +10,17 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
 import { Alert, Snackbar } from "@mui/material"
 
+// iocns for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
+// default coordiantes of the map component
 const center = {
   lat: -37.8132524811935,
   lng: 144.96527232900124,
 }
 
+// center radius for user current location
 var radius = {
   path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
   fillColor: "#59bfff",
@@ -99,10 +102,18 @@ export default function OpShopsLocation() {
     []
   )
 
+  const options_mov = top100Films.map((option) => {
+    const firstLetter = option.title[0].toUpperCase()
+    return {
+      firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
+      ...option,
+    }
+  })
+
   return (
     <div className={styles.container}>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         open={openSnack}
         autoHideDuration={5000}
         onClose={handleClose}
@@ -114,8 +125,12 @@ export default function OpShopsLocation() {
       <div className={styles.charities}>
         <Autocomplete
           multiple
-          id="checkboxes-tags-demo"
-          options={top100Films}
+          limitTags={5}
+          id="multiple-limit-tags"
+          options={options_mov.sort(
+            (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
+          )}
+          groupBy={(option) => option.firstLetter}
           disableCloseOnSelect
           getOptionLabel={(option) => option.title}
           renderOption={(props, option, { selected }) => (
