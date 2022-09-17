@@ -74,6 +74,16 @@
     cursor: pointer;
   }
 
+.popUpButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 10px;
+    right: 0;
+    bottom: 0;
+}
+
 // loading icon styling
 .loading_wrapper {
     width: 200px;

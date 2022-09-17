@@ -4,22 +4,64 @@ import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
 import TextField from "@mui/material/TextField"
+import { styled } from "@mui/material/styles"
+import Dialog from "@mui/material/Dialog"
+import DialogTitle from "@mui/material/DialogTitle"
+import DialogContent from "@mui/material/DialogContent"
+import DialogActions from "@mui/material/DialogActions"
+import PropTypes from "prop-types"
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import CloseIcon from "@mui/icons-material/Close"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
-import {
-  Alert,
-  Snackbar,
-  ToggleButton,
-  ToggleButtonGroup,
-  useStepContext,
-} from "@mui/material"
+import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
 import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
 
 // icons for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+}))
+
+const BootstrapDialogTitle = (props) => {
+  const { children, onClose, ...other } = props
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  )
+}
+
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+}
 
 // default coordiantes of the map component
 const center = {
@@ -46,8 +88,16 @@ export default function OpShopsLocation() {
   const [markers, setMarkers] = useState([])
   const [openSnack, setOpenSnack] = useState(false)
   const [foundShops, setFoundShops] = useState([])
+  const [open, setOpen] = useState(false)
   const handleClose = () => {
     setOpenSnack(false)
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClickClose = () => {
+    setOpen(false)
   }
 
   const [formats, setFormats] = useState(() => [
@@ -210,7 +260,6 @@ export default function OpShopsLocation() {
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
-
       <div className="map">
         <Locate panTo={panTo} setOpenSnack={setOpenSnack} />
         <GoogleMap
@@ -253,10 +302,55 @@ export default function OpShopsLocation() {
               <div>
                 <h3>{selectedMarker.shop.name}</h3>
                 <p>{selectedMarker.address}</p>
+                <Button
+                  className={styles.popUpButton}
+                  variant="outlined"
+                  onClick={handleClickOpen}
+                >
+                  View More
+                </Button>
               </div>
             </InfoWindow>
           )}
         </GoogleMap>
+
+        <div>
+          <BootstrapDialog
+            onClose={handleClickClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <BootstrapDialogTitle
+            // id="customized-dialog-title"
+            // onClose={handleClickClose}
+            >
+              Shop Details
+            </BootstrapDialogTitle>
+            <DialogContent dividers>
+              <Typography gutterBottom>Shop Name</Typography>
+              <Typography gutterBottom>Located Suburb</Typography>
+              <Typography gutterBottom>Address</Typography>
+              <Typography gutterBottom>
+                Description: Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Nullam quis eleifend nulla, nec ultrices erat. Fusce nec
+                orci nisl. Sed nec quam tortor. Suspendisse eget consectetur ex.
+                Fusce sollicitudin, libero nec maximus bibendum, enim nulla
+                sodales ligula, sed aliquet nisi magna eget ante. Integer ante
+                enim, faucibus a enim rutrum, imperdiet dignissim felis.
+                Vestibulum eu tincidunt ipsum, ut aliquam ante. Praesent
+                molestie dolor arcu, id lobortis mi pharetra eu. Sed id dui
+                malesuada, suscipit elit at, imperdiet orci. Vestibulum felis
+                lacus, venenatis et dolor nec, aliquam tempus magna.
+              </Typography>
+              <Typography gutterBottom>Shop Type</Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClickClose}>
+                Close
+              </Button>
+            </DialogActions>
+          </BootstrapDialog>
+        </div>
       </div>
     </div>
   )
@@ -266,7 +360,7 @@ export default function OpShopsLocation() {
 function Locate({ panTo, setOpenSnack }) {
   return (
     <button
-      title="Pinpoint current location"
+      title="Pan to current location"
       className={styles.locate}
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
