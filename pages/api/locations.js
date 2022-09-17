@@ -1,26 +1,32 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { PrismaClient } from "@/prisma/client"
+import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
+// shop location end point to return data of all shop locations from the database
 export default async function handler(req, res) {
-if (req.method !== "GET") {
-    res.status(405).end()
-}
+    if (req.method !== "GET") {
+        res.status(405).end() // if request type is not a GET request then throw a method not allowed response
+    }
 
-const foundLocations = await prisma.location.findMany()
+    const foundShops = await prisma.shop.findMany()
+    const foundShopLocations = await prisma.shopLocation.findMany({
+        include:{
+            shop: true, // include shop within shop location
+        },
+    })
 
-if (foundLocations?.length>0){
-    res.status(200).json({locations: foundLocations})
-} else {
-    res.status(204).end()
-}
+    // if (foundShops?.length>0){
+    //     res.status(200).json({shops: foundShops})
+    // } else {
+    //     res.status(204).end()
+    // }
 
-//   //Find the absolute path of the json directory
-//   const jsonDirectory = path.join(process.cwd(), 'json');
-//   //Read the json data file data.json
-//   const fileContents = await fs.readFile(jsonDirectory + '/data.json', 'utf8');
-//   //Return the content of the data file in json format
-//   res.status(200).json(fileContents);
+    // send appropriate response if we found appropriate shop locations or not
+    if (foundShopLocations?.length>0){
+        res.status(200).json({shopLocations: foundShopLocations})
+    } else {
+        res.status(204).end()
+    }
 }
