@@ -10,18 +10,12 @@ export default async function handler(req, res) {
         res.status(405).end() // if request type is not a GET request then throw a method not allowed response
     }
 
-    const foundShops = await prisma.shop.findMany()
+    // const foundShops = await prisma.shop.findMany()
     const foundShopLocations = await prisma.shopLocation.findMany({
         include:{
             shop: true, // include shop within shop location
         },
     })
-
-    // if (foundShops?.length>0){
-    //     res.status(200).json({shops: foundShops})
-    // } else {
-    //     res.status(204).end()
-    // }
 
     // send appropriate response if we found appropriate shop locations or not
     if (foundShopLocations?.length>0){

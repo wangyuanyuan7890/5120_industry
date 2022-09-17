@@ -8,12 +8,14 @@ import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
-import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import {
+  Alert,
+  Snackbar,
+  ToggleButton,
+  ToggleButtonGroup,
+  useStepContext,
+} from "@mui/material"
 import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
-import { filter } from "@chakra-ui/react"
-import styledEngine from "@mui/styled-engine"
-import { style } from "@mui/system"
-import { top100Films } from "@/data/Locations"
 
 // icons for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
@@ -54,6 +56,9 @@ export default function OpShopsLocation() {
     "donation points",
   ])
 
+  // state use to filter by type of locations selected
+  const [filteredShops, setFilteredShops] = useState([])
+
   const handleFormat = (event, newFormats) => {
     if (newFormats.length) {
       setFormats(newFormats)
@@ -79,8 +84,8 @@ export default function OpShopsLocation() {
       .catch((_err) => {})
   }, [])
 
-  // use to display info when user clicks on the marker
   const [selected, setSelected] = useState(null)
+  const [selectedMarker, setSelectedMarker] = useState(null)
 
   // create a function that will always retain the same value unless props being passed in
   const onMapClick = useCallback((event) => {
@@ -221,40 +226,36 @@ export default function OpShopsLocation() {
             icon={radius}
           ></MarkerF>
 
-          {foundShops.map((x) => (
+          {foundShops.map((shop) => (
             <Marker
-              key={x.id}
-              position={{ lat: x.latitude, lng: x.longitude }}
+              key={shop.id}
+              position={{ lat: shop.latitude, lng: shop.longitude }}
               icon={{
                 url: "/charity/heart.svg",
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
+              onClick={() => {
+                setSelectedMarker(shop)
+              }}
             />
           ))}
 
-          {/* {markers.map((marker) => (
-            <Marker
-              key={marker.time?.toISOString()}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              onClick={() => {
-                setSelected(marker) // click event on the marker to set selected to whichever market was clicked
-              }}
-            />
-          ))} */}
-
-          {/* {selected ? (
+          {selectedMarker && (
             <InfoWindow
-              position={{ lat: selected.lat, lng: selected.lng }}
+              position={{
+                lat: selectedMarker.latitude,
+                lng: selectedMarker.longitude,
+              }}
               onCloseClick={() => {
-                setSelected(null) // when pop up of marker is closed, set selected marker back to null
+                setSelectedMarker(null) // when pop up of marker is closed, set selected marker back to null
               }}
             >
               <div>
-                <h3>Salvation Army Melbourne Central</h3>
-                <p>Address: 69 Bourke St, Melbourne VIC 3000</p>
+                <h3>{selectedMarker.shop.name}</h3>
+                <p>{selectedMarker.address}</p>
               </div>
             </InfoWindow>
-          ) : null} */}
+          )}
         </GoogleMap>
       </div>
     </div>
