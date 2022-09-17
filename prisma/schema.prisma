@@ -18,3 +18,21 @@ model Material {
   biodegradable Boolean
   sustainability_score Float
 }
+
+model Shop {
+  id Int @id @default(autoincrement())
+  name String
+  types String
+  description String
+  shopLocations ShopLocation[]
+}
+
+model ShopLocation {
+  id Int @id @default(autoincrement())
+  address String
+  suburb String
+  latitude Float
+  longitude Float
+  shopId Int
+  shop Shop @relation(fields: [shopId], references: [id])
+}
