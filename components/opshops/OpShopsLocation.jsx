@@ -1,5 +1,5 @@
 import styles from "@/styles/pages/Opshop.module.scss"
-import { GoogleMap, MarkerF, Marker, InfoWindow } from "@react-google-maps/api"
+import { GoogleMap, MarkerF, Marker, InfoWindowF } from "@react-google-maps/api"
 import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
@@ -290,7 +290,7 @@ export default function OpShopsLocation() {
           ))}
 
           {selectedMarker && (
-            <InfoWindow
+            <InfoWindowF
               position={{
                 lat: selectedMarker.latitude,
                 lng: selectedMarker.longitude,
@@ -310,7 +310,7 @@ export default function OpShopsLocation() {
                   View More
                 </Button>
               </div>
-            </InfoWindow>
+            </InfoWindowF>
           )}
         </GoogleMap>
 
