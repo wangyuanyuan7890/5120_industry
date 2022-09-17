@@ -13,7 +13,9 @@ export default async function handler(req, res) {
 
   // send appropriate response if we found materials or not
   if (foundMaterials?.length > 0) {
-    res.status(200).json({ materials: foundMaterials })
+    res.status(200).json({
+      materials: foundMaterials,
+    })
   } else {
     res.status(204).end()
   }
