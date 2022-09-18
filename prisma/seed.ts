@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client"
-import { materials } from "./materials"
+import materials from "./materials"
 import shopLocations from "./shopLocations"
 import shops from "./shops"
 
