@@ -41,7 +41,7 @@ interface ClothingType {
   value: string
 }
 
-const clothingTypes: ClothingType[] = [
+export const clothingTypes: ClothingType[] = [
   { name: "Headwear", value: "1" },
   { name: "Shirt", value: "2" },
   { name: "Jacket", value: "3" },
