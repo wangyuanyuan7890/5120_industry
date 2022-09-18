@@ -1,7 +1,9 @@
 declare interface ClothingItem {
-  id: number
+  id: string
   name: string
-  type: number
+  type: string
   materials: Material[]
+  selectedMaterialIds: number[]
   wearCount: number
+  isEditing: boolean
 }

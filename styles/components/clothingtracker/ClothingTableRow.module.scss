@@ -1,3 +1,28 @@
-.full_width {
-  width: 100%;
+.counter_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+  .counter {
+    font-size: 1.25em;
+  }
+}
+
+.materials_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.1em;
+}
+
+.center_group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.text {
+  font-size: 1.1em;
 }

@@ -4,8 +4,9 @@ import { Container } from "@mui/system"
 import Hero from "@/components/Hero"
 
 import styles from "@/styles/pages/Clothingtracker.module.scss"
-import { fetchClothingItems, setClothingItems } from "util/clothingtracker"
+import { fetchClothingItems } from "util/clothingtracker"
 import ClothingTable from "@/components/clothingtracker/ClothingTable"
+import LinkButton from "@/components/LinkButton"
 
 export default function ClothingTracker() {
   const [clothingItems, setClothingItems] = useState<ClothingItem[]>([])
@@ -19,20 +20,23 @@ export default function ClothingTracker() {
     <Page title="Clothing Tracker">
       <Container maxWidth="lg">
         <Hero
-          title="How to use clothing tracker"
+          title="How to use the clothing tracker"
           description="Track an outfit or your entire wardrobe and get instant feedback based on your entries."
         >
           <ul>
             <li>Create a new clothing record</li>
             <li>
-              Enter a type of clothing, custom name, list of materials and
-              amount times that clothing has been worn
+              Enter a name for your clothing item, the type, a list of materials
+              and the amount times that clothing has been worn
             </li>
             <li>
-              Then click the clothing summary button to see how eco-friendly you
+              Then click the view summary button to see how eco-friendly you
               are!
             </li>
           </ul>
+          <div>
+            <LinkButton text="View summary" href="/clothingtracker/summary" />
+          </div>
         </Hero>
       </Container>
       <Container maxWidth="lg">

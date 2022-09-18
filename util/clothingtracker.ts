@@ -6,6 +6,10 @@ export function fetchClothingItems(): ClothingItem[] {
   return []
 }
 
-export function setClothingItems(items: ClothingItem[]): void {
+export function saveClothingItems(items: ClothingItem[]): void {
   localStorage.setItem(CLOTHING_ITEMS_KEY, JSON.stringify(items))
+}
+
+export function removeClothingItems(): void {
+  localStorage.removeItem(CLOTHING_ITEMS_KEY)
 }
