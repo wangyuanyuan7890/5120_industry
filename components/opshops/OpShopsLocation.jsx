@@ -136,6 +136,8 @@ export default function OpShopsLocation() {
 
   const [selected, setSelected] = useState(null)
   const [selectedMarker, setSelectedMarker] = useState(null)
+  const [selectedShop, setSelectedShop] = useState({})
+  const [selectedShopDetails, setSelectedShopDetails] = useState({})
 
   // create a function that will always retain the same value unless props being passed in
   const onMapClick = useCallback((event) => {
@@ -285,6 +287,8 @@ export default function OpShopsLocation() {
               }}
               onClick={() => {
                 setSelectedMarker(shop)
+                setSelectedShop(shop)
+                setSelectedShopDetails(shop.shop)
               }}
             />
           ))}
@@ -321,28 +325,27 @@ export default function OpShopsLocation() {
             open={open}
           >
             <BootstrapDialogTitle
-            // id="customized-dialog-title"
-            // onClose={handleClickClose}
+              id="customized-dialog-title"
+              onClose={handleClickClose}
             >
               Shop Details
             </BootstrapDialogTitle>
             <DialogContent dividers>
-              <Typography gutterBottom>Shop Name</Typography>
-              <Typography gutterBottom>Located Suburb</Typography>
-              <Typography gutterBottom>Address</Typography>
               <Typography gutterBottom>
-                Description: Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Nullam quis eleifend nulla, nec ultrices erat. Fusce nec
-                orci nisl. Sed nec quam tortor. Suspendisse eget consectetur ex.
-                Fusce sollicitudin, libero nec maximus bibendum, enim nulla
-                sodales ligula, sed aliquet nisi magna eget ante. Integer ante
-                enim, faucibus a enim rutrum, imperdiet dignissim felis.
-                Vestibulum eu tincidunt ipsum, ut aliquam ante. Praesent
-                molestie dolor arcu, id lobortis mi pharetra eu. Sed id dui
-                malesuada, suscipit elit at, imperdiet orci. Vestibulum felis
-                lacus, venenatis et dolor nec, aliquam tempus magna.
+                <b>Name: </b> {selectedShopDetails.name}
               </Typography>
-              <Typography gutterBottom>Shop Type</Typography>
+              <Typography gutterBottom>
+                <b>Suburb: </b> {selectedShop.suburb}
+              </Typography>
+              <Typography gutterBottom>
+                <b>Address: </b> {selectedShop.address}
+              </Typography>
+              <Typography gutterBottom>
+                <b>Description: </b> {selectedShopDetails.description}
+              </Typography>
+              <Typography gutterBottom>
+                <b>Shop Type: </b> {selectedShopDetails.types}
+              </Typography>
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClickClose}>
