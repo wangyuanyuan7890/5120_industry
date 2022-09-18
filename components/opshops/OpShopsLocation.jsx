@@ -13,6 +13,7 @@ import PropTypes from "prop-types"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import IconButton from "@mui/material/IconButton"
+import LoopIcon from "@mui/icons-material/Loop"
 import CloseIcon from "@mui/icons-material/Close"
 import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
@@ -101,10 +102,13 @@ export default function OpShopsLocation() {
   }
 
   const [formats, setFormats] = useState(() => [
-    "op shops",
-    "repair locations",
-    "donation points",
+    "opshop",
+    "repair",
+    "donation",
+    "recycling",
   ])
+
+  const [name, setName] = useState([])
 
   // state use to filter by type of locations selected
   const [filteredShops, setFilteredShops] = useState([])
@@ -113,6 +117,14 @@ export default function OpShopsLocation() {
     // console.log(newFormats)
     if (newFormats !== null) {
       setFormats(newFormats)
+    }
+  }
+
+  const handleName = (event, array) => {
+    const flatArray = array.map((x) => x.shop.name)
+    // console.log(flatArray)
+    if (flatArray !== null) {
+      setName(flatArray)
     }
   }
 
@@ -139,6 +151,30 @@ export default function OpShopsLocation() {
   const [selectedMarker, setSelectedMarker] = useState(null)
   const [selectedShop, setSelectedShop] = useState({})
   const [selectedShopDetails, setSelectedShopDetails] = useState({})
+
+  const finalFilteredMarkers = () => {
+    // check if any shop type is selected, if none; return all shops
+    if (formats.length <= 0) {
+      return foundShops
+    } else if (formats.length > 0) {
+      foundShops.filter(
+        (a) => a.shop.types !== formats.find((b) => a.shop.types === b)
+      )
+    }
+    // performs the filter by shop type looking into user selected value(s)
+    const filteredByType = foundShops.filter(
+      (w) => w.shop.types === formats.find((x) => w.shop.types === x)
+    )
+    if (filteredByType.length <= 0) return [] // if no values selected then do nothing
+
+    // check if any shop name is selected, if none; then return the filtered shops filtered by type
+    if (name.length <= 0) return filteredByType
+    const filteredByNames = filteredByType.filter(
+      (y) => y.shop.name === name.find((z) => y.shop.name === z)
+    )
+    if (filteredByNames.length <= 0) return []
+    return filteredByNames
+  }
 
   // create a function that will always retain the same value unless props being passed in
   const onMapClick = useCallback((event) => {
@@ -218,8 +254,9 @@ export default function OpShopsLocation() {
         <h2 className={styles.searchLocation}>Search Location:</h2>
         <Autocomplete
           multiple
-          limitTags={5}
+          limitTags={3}
           id="multiple-limit-tags"
+          onChange={handleName}
           options={options_mov.sort(
             (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
           )}
@@ -251,19 +288,24 @@ export default function OpShopsLocation() {
           onChange={handleFormat}
           aria-label="location filtering"
         >
-          <ToggleButton value="op shops" aria-label="op shops">
+          <ToggleButton value="opshop" aria-label="op shops">
             <AddShoppingCart className={styles.filterIcon} />
             <p className={styles.filterLabels}>Op Shops</p>
           </ToggleButton>
 
-          <ToggleButton value="repair locations" aria-label="repair locations">
+          <ToggleButton value="repair" aria-label="repair locations">
             <Handyman className={styles.filterIcon} />
             <p className={styles.filterLabels}>Repair Locations</p>
           </ToggleButton>
 
-          <ToggleButton value="donation points" aria-label="donation points">
+          <ToggleButton value="donation" aria-label="donation points">
             <DeleteOutline className={styles.filterIcon} />
             <p className={styles.filterLabels}>Donation Points</p>
+          </ToggleButton>
+
+          <ToggleButton value="recycling" aria-label="recycling points">
+            <LoopIcon className={styles.filterIcon} />
+            <p className={styles.filterLabels}>Recycling Points</p>
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
@@ -282,7 +324,7 @@ export default function OpShopsLocation() {
             icon={radius}
           ></MarkerF>
 
-          {foundShops.map((shop) => (
+          {finalFilteredMarkers().map((shop) => (
             <Marker
               key={shop.id}
               // category={shop.shop.name}
