@@ -110,7 +110,8 @@ export default function OpShopsLocation() {
   const [filteredShops, setFilteredShops] = useState([])
 
   const handleFormat = (event, newFormats) => {
-    if (newFormats.length) {
+    // console.log(newFormats)
+    if (newFormats !== null) {
       setFormats(newFormats)
     }
   }
@@ -186,9 +187,13 @@ export default function OpShopsLocation() {
     []
   )
 
-  // group the selection dropdown list data
-  const options_mov = foundShops.map((option) => {
-    // console.log(option.latitude)
+  // group the selection dropdown list data and display distinct selection value
+  const filtered_options = foundShops.filter(
+    (value, index, self) =>
+      self.findIndex((v) => v.shop.name === value.shop.name) === index
+  )
+  const options_mov = filtered_options.map((option) => {
+    // console.log(option)
     const firstLetter = option.shop["name"][0].toUpperCase()
     // const firstLetter = option.title[0].toUpperCase()
     return {
@@ -280,6 +285,14 @@ export default function OpShopsLocation() {
           {foundShops.map((shop) => (
             <Marker
               key={shop.id}
+              // category={shop.shop.name}
+              animation={
+                selectedMarker
+                  ? shop.id === selectedMarker.id
+                    ? "1"
+                    : "0"
+                  : "0"
+              }
               position={{ lat: shop.latitude, lng: shop.longitude }}
               icon={{
                 url: "/charity/heart.svg",
@@ -298,6 +311,9 @@ export default function OpShopsLocation() {
               position={{
                 lat: selectedMarker.latitude,
                 lng: selectedMarker.longitude,
+              }}
+              options={{
+                pixelOffset: new window.google.maps.Size(0, -35),
               }}
               onCloseClick={() => {
                 setSelectedMarker(null) // when pop up of marker is closed, set selected marker back to null
