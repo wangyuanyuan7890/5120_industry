@@ -10,6 +10,9 @@ import SummaryTable from "@/components/clothingtracker/SummaryTable"
 import SummaryChartGroup from "@/components/clothingtracker/SummaryChartGroup"
 import LinkButton from "@/components/LinkButton"
 
+import ClothingImage from "@/public/clothingtracker/clothing.svg"
+import { Button } from "@mui/material"
+
 export default function Summary() {
   const [clothingItems, setClothingItems] = useState([])
 
@@ -31,8 +34,18 @@ export default function Summary() {
         </Hero>
       </Container>
       <Container maxWidth="lg">
-        <SummaryChartGroup clothingItems={clothingItems} />
-        <SummaryTable clothingItems={clothingItems} />
+        {clothingItems.length <= 0 ? (
+          <div className={styles.notfound_container}>
+            <ClothingImage className={styles.image} />
+            <span className={styles.title}>No clothing items found</span>
+            <LinkButton text="Clothing tracker" href="/clothingtracker" />
+          </div>
+        ) : (
+          <>
+            <SummaryChartGroup clothingItems={clothingItems} />
+            <SummaryTable clothingItems={clothingItems} />
+          </>
+        )}
       </Container>
     </Page>
   )

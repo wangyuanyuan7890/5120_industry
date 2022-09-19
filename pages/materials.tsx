@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero"
 import MaterialItem from "@/components/materials/MaterialItem"
+import MaterialSummary from "@/components/materials/MaterialSummary"
 import Page from "@/components/Page"
 import styles from "@/styles/pages/Materials.module.scss"
 import { Chip, Container } from "@mui/material"
@@ -82,16 +83,19 @@ export default function Materials() {
             }
           })}
         </div>
-        <div className={styles.results_wrapper}>
-          {selectedMaterials.length > 0 && (
-            <span className={styles.title}>
-              Results ({selectedMaterials.length})
-            </span>
-          )}
-          {selectedMaterials.map((material, index) => (
-            <MaterialItem key={index} material={material} />
-          ))}
-        </div>
+        {selectedMaterials.length > 0 && (
+          <>
+            <MaterialSummary materials={selectedMaterials} />
+            <div className={styles.results_wrapper}>
+              <span className={styles.title}>
+                Material information ({selectedMaterials.length})
+              </span>
+              {selectedMaterials.map((material, index) => (
+                <MaterialItem key={index} material={material} />
+              ))}
+            </div>
+          </>
+        )}
       </Container>
     </Page>
   )

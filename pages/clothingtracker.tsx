@@ -34,9 +34,11 @@ export default function ClothingTracker() {
               are!
             </li>
           </ul>
-          <div>
-            <LinkButton text="View summary" href="/clothingtracker/summary" />
-          </div>
+          {clothingItems.length > 0 && (
+            <div>
+              <LinkButton text="View summary" href="/clothingtracker/summary" />
+            </div>
+          )}
         </Hero>
       </Container>
       <Container maxWidth="lg">
