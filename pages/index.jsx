@@ -82,7 +82,7 @@ export default function Home() {
               title="Map"
               linkHref="map"
               linkText="Browse locations"
-              description="View location of ops shop nearby that you could possibly look to donate your clothes."
+              description="View locations of op shops nearby that you could possibly find sustainable clothing within accessible price ranges. Donation, repairing and recycling points are also available to help you locate potential nearby places to donate, repair or recycle your old clothes and other apparels."
             />
           </div>
         </div>
