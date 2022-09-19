@@ -16,35 +16,33 @@ import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
 const steps = [
   {
     title: "Reduce",
-    subtitle:
-      "Do something drastic, cut the plastics! Make a difference by reducing waste now.",
+    subtitle: "Do something drastic, don't wear microplastic!",
     description:
-      "When purchasing garments, emissions through production should be a major factor. The components of ethical sustainable garments are raw materials, transport, production, recyclability influence the emissions of a garment over its lifecycle. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
+      "When buying clothing, emissions through production should be a major factor. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
     linkText: "See Trends",
     linkHref: "trends",
   },
   {
     title: "Reuse",
-    subtitle:
-      "Never refuse to reuse. When you refuse to reuse, its our Earth you abuse.",
+    subtitle: "When you refuse to reuse, its our Earth you abuse.",
     description:
-      "The average Victorian yields around 27kg of clothing waste each year! This figure demonstrates the disconnect between consumers and our clothing as the fashion industry moved towards fast production and fast use garments. To counted this disconnect each garment should be worn at least 30 times to reduce this unnecessary waste. Reusing fashion products allows each garment to last longer, significantly reducing the carbon, water and waste footprints of sourcing new garments. Form a connection to your clothes, look after them and compare your wears of your favourite items to your friends.",
+      "The average Victorian yields around 27kg of clothing waste each year! Each item in your wardrobe should be worn at least 30 times to reduce this unnecessary waste.  Form a connection to your clothes, look after them and compare your wears of your favourite items to your friends.",
     linkText: "Track Clothing",
     linkHref: "clothingtracker",
   },
   {
-    title: "Repair",
-    subtitle:
-      "When in doubt, do not throw it out! Practice good habits of reparing.",
+    title: "Renew",
+    subtitle: "Repair or donate, if in doubt don't throw it out!",
     description:
-      "Repairing, restoring, and salvaging is something previous generations knew all too well. Taking your old shoes to a cobbler or patching over a hole in a shirt takes less than an hour but can lengthen the garments lifetime. By mending your clothing, you are lengthening the garments life, which means you reduce your total amount of waste. This step is where lowering your fashion emissions gets creative, and presents an opportunity to learn a new skill, personalise a garment and connect more with your clothing.",
+      "Repairing, rehoming, and salvaging clothing is something previous generations knew all too well, when the fashion industries emissions were far lower. This step is where lowering your fashion emissions gets creative. Renewing presents an opportunity to personalise a garment and further the experience of your clothing.",
+    linkText: "Browse Locations",
+    linkHref: "map",
   },
   {
     title: "Recycle",
-    subtitle:
-      "Recycle today for a better tomorrow, it is time to take a stand!",
+    subtitle: "Recycle today for a better tomorrow!",
     description:
-      "The majority of materials in landfill each year could be recycled! With the rise of the sustainable fashion movement around the world, more and more commercial companies are dedicated to the repair, recycling and reselling of fashion products, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. There are thousands of Victorian second opportunity stores which can resell your donated old clothing. Contact them or any charitable organisations to see if they have recycling opportunities.",
+      "The majority of materials in landfill each year could be recycled! More and more commercial companies are dedicated to the repair, recycling and reselling of clothing, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. Victoria also hosts countless textile recycling opportunities.",
     linkText: "Check materials",
     linkHref: "materials",
   },
@@ -78,7 +76,7 @@ export default function Lifecycle() {
         <div className={styles.hero_wrapper}>
           <Hero
             title="Sustainable product lifecycle"
-            description="With the vast emissions of the fashion industry, we can minimise our emissions and harm by following the Sustainable Product Life Cycle. The ideal garment is ethically sourced, worn many times, repaired to lengthen its use and recycled or disposed of ethically. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your garments. By investing in your wardrobe and mending your clothing, you are ensuring that you can wear the pieces for longer, slowing down how much you consume and making sure that less goes to waste."
+            description="The Sustainable Product Lifecycle outlines cyclical the stages of a sustainable garment. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your clothing."
           />
           <div className={styles.clothing_lifecycle_wrapper}>
             {activeStep === 0 && (

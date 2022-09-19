@@ -28,12 +28,12 @@ export default function Home() {
               </span>
             </div>
             <span className={styles.description}>
-              Ecofash makes finding ethical and sustainable clothing easy. We
-              aim to educate and inspire young Victorians to make better
-              environmental fashion choices to reduce their emissions.
+              Ecofash makes finding ethical and sustainable clothing easy. Out
+              shopping? Check if an item is sustainable and biodegradable with
+              our Material checker.
             </span>
             <div>
-              <LinkButton text="Learn more" href="lifecycle" />
+              <LinkButton text="Material checker" href="materials" />
             </div>
           </div>
         </div>
@@ -61,34 +61,34 @@ export default function Home() {
         <div className={styles.feature_wrapper}>
           <div className={styles.feature_group}>
             <Feature
-              title="Lifecycle"
+              title="Sustainable Lifecycle"
               linkHref="lifecycle"
               linkText="See lifecycle"
-              description="The growth of the 'Fast Fashion' market has left our wardrobes full of unsustainable products. Hope is not lost! Follow the Reduce, Reuse, Repair and Recycle guidelines of the Sustainable Product Lifecycle to minimise the emsissions and harm of your garmets."
+              description="Ensure your clothing follows the four R's of the Sustainable Lifecycle"
             />
             <Feature
               title="Material checker"
               linkHref="materials"
               linkText="Check materials"
-              description="When shopping for sustainable items the Material Checker is all you need to determine whether each garment is sustainable. Just check and select the materials of each garment and the Material Checker will outline the biodegradability and ethical sustainability of each item."
+              description="Grab a material tag and check if a garment is sustainability and biodegradability"
             />
             <Feature
               title="Clothing tracker"
               linkHref="clothingtracker"
               linkText="Track clothing"
-              description="Keep track of your wardrobe and track the amount of times you've worn your clothing."
+              description="Unsure if you've worn an item the sustainable 30 times? Use the Wear Tracker to hit this mark"
             />
             <Feature
-              title="Trends"
-              linkHref="trends"
-              linkText="See trends"
-              description="View data in the form of data visualistions, that summarise topics such as nationwide carbon emissions."
-            />
-            <Feature
-              title="Map"
+              title="Find a Sustainable Stores and Donation Points"
               linkHref="map"
               linkText="Browse locations"
-              description="View locations of op shops nearby that you could possibly find sustainable clothing within accessible price ranges. Donation, repairing and recycling points are also available to help you locate potential nearby places to donate, repair or recycle your old clothes and other apparels."
+              description="Want to shop affordably, donate old clothing, repair old clothing? Explore the opportunities close to you"
+            />
+            <Feature
+              title="Victorian Clothing Trends"
+              linkHref="trends"
+              linkText="See trends"
+              description="Think your clothing is more sustainable than the average Victorian? Compare your behaviours and find out"
             />
           </div>
         </div>

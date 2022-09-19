@@ -8,9 +8,11 @@ import { fetchClothingItems } from "util/clothingtracker"
 import ClothingTable from "@/components/clothingtracker/ClothingTable"
 import LinkButton from "@/components/LinkButton"
 
+// keeps track of clothing items
 export default function ClothingTracker() {
   const [clothingItems, setClothingItems] = useState<ClothingItem[]>([])
 
+  // loads json clothing data from local storage
   useEffect(() => {
     const items = fetchClothingItems()
     setClothingItems(items)

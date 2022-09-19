@@ -20,6 +20,7 @@ interface HeaderCell {
   type: string
 }
 
+// header cell values for each column
 const headerCells = [
   {
     id: 1,
@@ -69,6 +70,7 @@ export default function SummaryTable({ clothingItems }) {
   const [orderBy, setOrderBy] = useState(null)
   const [orderDirection, setOrderDirection] = useState<Order>("asc")
 
+  // sets the sorting direction of a column
   const handleSort = (id: number) => {
     if (orderBy === id) {
       if (orderDirection === "asc") {
@@ -81,6 +83,7 @@ export default function SummaryTable({ clothingItems }) {
     }
   }
 
+  // sorts by the selected column
   const sortedRows = (): ClothingItem[] => {
     const items: ClothingItem[] = [...clothingItems]
     let sortedItems: ClothingItem[] = []

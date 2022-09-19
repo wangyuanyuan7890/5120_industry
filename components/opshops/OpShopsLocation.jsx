@@ -254,7 +254,7 @@ export default function OpShopsLocation() {
         <h2 className={styles.searchLocation}>Search Location:</h2>
         <Autocomplete
           multiple
-          limitTags={5}
+          limitTags={3}
           id="checkboxes-tags-demo"
           onChange={handleName}
           options={options_mov.sort(
@@ -309,7 +309,7 @@ export default function OpShopsLocation() {
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
-      <div className="map">
+      <div className={styles.map}>
         <Locate panTo={panTo} setOpenSnack={setOpenSnack} />
         <GoogleMap
           zoom={11}

@@ -23,6 +23,7 @@ type Props = {
   setClothingItems: Function
 }
 
+// column header values
 const headCells: any[] = [
   { id: 1, label: "", width: 10, align: "center" },
   { id: 2, label: "Name", width: 25 },
@@ -31,6 +32,7 @@ const headCells: any[] = [
   { id: 5, label: "Wear count", width: 12.5, align: "center" },
 ]
 
+// handles all of the clothing records
 export default function ClothingTable({
   clothingItems,
   setClothingItems,
@@ -39,6 +41,7 @@ export default function ClothingTable({
   const [materials, setMaterials] = useState<Material[]>([])
   const [openClearAllModal, setOpenClearAllModal] = useState<boolean>(false)
 
+  // fetches clothing from local storage and also queries material API for data
   useEffect(() => {
     const items = fetchClothingItems()
     setClothingItems(items)

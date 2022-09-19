@@ -53,7 +53,7 @@ export const clothingTypes: ClothingType[] = [
 ]
 
 const defaultItem = {
-  id: uuidv4(),
+  id: "",
   name: "",
   type: "",
   materials: [],
@@ -62,6 +62,7 @@ const defaultItem = {
   isEditing: true,
 }
 
+// shows a clothing record in the clothing tracker
 export default function ClothingTableRow({
   index,
   clothingItem,
@@ -146,12 +147,13 @@ export default function ClothingTableRow({
       setDirtyState(true)
       return
     } else {
-      item.isEditing = false
-      setModifiedClothingItem(item)
-      updateClothingItem(item)
       if (index === undefined) {
         setIsAddingItem(false)
       }
+      if (item.id === "") item.id = uuidv4()
+      item.isEditing = false
+      setModifiedClothingItem(item)
+      updateClothingItem(item)
       setDirtyState(false)
       return
     }
@@ -198,16 +200,19 @@ export default function ClothingTableRow({
     if (value) handleDelete()
   }
 
+  // checks for invalid names
   const invalidName = (name: string) => {
     if (!name || name === "") return true
     return false
   }
 
+  // checks for invalid types
   const invalidType = (type: string) => {
     if (!type || type === "") return true
     return false
   }
 
+  // checks for invalid materials
   const invalidMaterialSelection = (materialIds: number[]) => {
     if (!materialIds || !(materialIds.length > 0)) return true
     return false

@@ -58,7 +58,7 @@ export default function Materials() {
       <Container maxWidth="lg">
         <Hero
           title="Material Checker"
-          description="Unsure of the sustainability or biodegradability of your garment material composition? Worry not! Material search feature offers you the option to look up multiple materials at once and learn more about each of their environmental impacts. If you are hesistant about actions that you can take, be sure to check out suggestions of each material to help you with better decision making!"
+          description="Unsure of the sustainability or biodegradability of your clothing? Just check the clothing tag and select the materials below!"
         />
         <span className={styles.material_title}>Select clothing materials</span>
         <div className={styles.material_search_wrapper}>

@@ -8,9 +8,10 @@ import { isBiodegradable, isSustainable } from "./SummaryTable"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+// shows the charts for summary page which break down the tracked clothing
 export default function SummaryChartGroup({ clothingItems }) {
+  // generates data set for wear count
   const prepareWearCountData = () => {
-    // TODO: Limit to 16 characters
     const labels: string[] = clothingItems.map((x: ClothingItem) => x.name)
     const datasetData: number[] = clothingItems.map(
       (x: ClothingItem) => x.wearCount
@@ -31,6 +32,8 @@ export default function SummaryChartGroup({ clothingItems }) {
     }
     return data
   }
+
+  // generates data set for biodegradability
   const prepareBiodegradabilityData = () => {
     const labels: string[] = ["Biodegradable", "Non-biodegradable"]
     let biodegradable = 0
@@ -57,6 +60,7 @@ export default function SummaryChartGroup({ clothingItems }) {
     return data
   }
 
+  // generates data set for sustainability
   const prepareSustainabilityData = () => {
     const labels: string[] = ["Sustainable", "Non-sustainable"]
     let sustainable = 0
@@ -83,6 +87,7 @@ export default function SummaryChartGroup({ clothingItems }) {
     return data
   }
 
+  // generates random color set for data
   const generateColors = (length: number) => {
     const backgroundColors: string[] = []
     const borderColors: string[] = []

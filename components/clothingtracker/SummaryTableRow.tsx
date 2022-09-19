@@ -6,6 +6,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import { isBiodegradable, isSustainable } from "./SummaryTable"
 
+// summary table row for details about each clothing item
 export default function SummaryTableRow({ clothingItem }) {
   const getTypeNameById = (value: string) => {
     return clothingTypes.find((x) => x.value === value).name

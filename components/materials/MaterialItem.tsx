@@ -11,6 +11,7 @@ import RemoveIcon from "@mui/icons-material/Remove"
 export default function MaterialItem({ material }) {
   const [expanded, setExpanded] = useState(false)
 
+  // Toggle expansion for item
   const handleExpandToggle = (e) => {
     setExpanded(!expanded)
   }

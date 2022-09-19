@@ -5,6 +5,7 @@ import { LinearProgress } from "@mui/material"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 
+// list of static recommendations
 const recommendations = {
   sustainable: {
     label: "Sustainable",
@@ -34,7 +35,9 @@ const recommendations = {
   },
 }
 
+// shows a summary for the materials selected
 export default function MaterialSummary({ materials }) {
+  // set default values
   const [calculatedData, setCalculatedData] = useState({
     totalCount: 0,
     biodegradableCount: 0,
@@ -43,6 +46,7 @@ export default function MaterialSummary({ materials }) {
     sustainabilityPercentage: 0,
   })
 
+  // runs whenever materials change and recalculates values
   useEffect(() => {
     let biodegradableCount = 0
     let sustainabilityCount = 0

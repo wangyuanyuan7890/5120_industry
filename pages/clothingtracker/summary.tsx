@@ -13,9 +13,11 @@ import LinkButton from "@/components/LinkButton"
 import ClothingImage from "@/public/clothingtracker/clothing.svg"
 import { Button } from "@mui/material"
 
+// summary of clothing tracker items
 export default function Summary() {
   const [clothingItems, setClothingItems] = useState([])
 
+  // loads json clothing data from local storage
   useEffect(() => {
     const items = fetchClothingItems()
     setClothingItems(items)

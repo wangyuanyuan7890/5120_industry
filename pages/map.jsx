@@ -33,11 +33,13 @@ export default function Map() {
   if (isLoaded)
     return (
       <Page title="Map">
-        <Container maxwidth="lg">
+        <Container maxWidth="lg">
           <Hero
             title="Explore Locations"
             description="Explore the map below to find op shops, recycling, repairing and donating opportunities through locations near you."
           />
+        </Container>
+        <Container maxWidth="lg">
           <OpShopsLocation />
         </Container>
       </Page>

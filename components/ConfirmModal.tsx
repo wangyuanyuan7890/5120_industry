@@ -16,6 +16,7 @@ const style = {
   p: 4,
 }
 
+// modal that confirms an action with Yes or No
 export default function ConfirmModal({ open, setOpen, onConfirm, text }) {
   const handleConfirm = () => {
     onConfirm(true)
