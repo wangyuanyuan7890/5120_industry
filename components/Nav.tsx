@@ -15,6 +15,7 @@ const routes = [
   { name: "Materials", path: "/materials" },
   { name: "Clothing tracker", path: "/clothingtracker" },
   { name: "Trends", path: "/trends" },
+  { name: "Map", path: "/map" }, // href link to ops shop map page
 ]
 
 // Navbar that appears on all pages

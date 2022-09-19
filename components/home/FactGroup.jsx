@@ -5,6 +5,7 @@ import Co2Icon from "@/public/home/co2_fact.svg"
 import TextilesIcon from "@/public/home/textiles_fact.svg"
 import WasteIcon from "@/public/home/waste_fact.svg"
 
+// Three fact group infographic cards located in the hompage
 export default function FactGroup() {
   return (
     <div className={styles.fact_group}>

@@ -84,6 +84,12 @@ export default function Home() {
               linkText="See trends"
               description="View data in the form of data visualistions, that summarise topics such as nationwide carbon emissions."
             />
+            <Feature
+              title="Map"
+              linkHref="map"
+              linkText="Browse locations"
+              description="View locations of op shops nearby that you could possibly find sustainable clothing within accessible price ranges. Donation, repairing and recycling points are also available to help you locate potential nearby places to donate, repair or recycle your old clothes and other apparels."
+            />
           </div>
         </div>
       </Container>
