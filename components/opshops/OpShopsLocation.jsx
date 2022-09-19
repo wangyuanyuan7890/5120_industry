@@ -254,8 +254,8 @@ export default function OpShopsLocation() {
         <h2 className={styles.searchLocation}>Search Location:</h2>
         <Autocomplete
           multiple
-          limitTags={3}
-          id="multiple-limit-tags"
+          limitTags={5}
+          id="checkboxes-tags-demo"
           onChange={handleName}
           options={options_mov.sort(
             (a, b) => -b.firstLetter.localeCompare(a.firstLetter)

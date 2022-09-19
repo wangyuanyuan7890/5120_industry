@@ -80,7 +80,7 @@ export default function Home() {
             />
             <Feature
               title="Map"
-              linkHref="opshops"
+              linkHref="map"
               linkText="Browse locations"
               description="View location of ops shop nearby that you could possibly look to donate your clothes."
             />
