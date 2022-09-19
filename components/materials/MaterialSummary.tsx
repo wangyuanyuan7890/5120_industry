@@ -104,8 +104,8 @@ function Recommendation({ recommendation }) {
       <span className={styles.subtitle}>{recommendation.label}</span>
       {recommendation.points.length > 0 && (
         <ul>
-          {recommendation.points.map((x) => (
-            <li>{x}</li>
+          {recommendation.points.map((x, index) => (
+            <li key={index}>{x}</li>
           ))}
         </ul>
       )}

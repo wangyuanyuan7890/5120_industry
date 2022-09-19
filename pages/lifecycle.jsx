@@ -29,6 +29,8 @@ const steps = [
       "Never refuse to reuse. When you refuse to reuse, its our Earth you abuse.",
     description:
       "The average Victorian yields around 27kg of clothing waste each year! This figure demonstrates the disconnect between consumers and our clothing as the fashion industry moved towards fast production and fast use garments. To counted this disconnect each garment should be worn at least 30 times to reduce this unnecessary waste. Reusing fashion products allows each garment to last longer, significantly reducing the carbon, water and waste footprints of sourcing new garments. Form a connection to your clothes, look after them and compare your wears of your favourite items to your friends.",
+    linkText: "Track Clothing",
+    linkHref: "clothingtracker",
   },
   {
     title: "Repair",
@@ -43,6 +45,8 @@ const steps = [
       "Recycle today for a better tomorrow, it is time to take a stand!",
     description:
       "The majority of materials in landfill each year could be recycled! With the rise of the sustainable fashion movement around the world, more and more commercial companies are dedicated to the repair, recycling and reselling of fashion products, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. There are thousands of Victorian second opportunity stores which can resell your donated old clothing. Contact them or any charitable organisations to see if they have recycling opportunities.",
+    linkText: "Check materials",
+    linkHref: "materials",
   },
 ]
 
