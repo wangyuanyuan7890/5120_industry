@@ -1,0 +1,61 @@
+.summary_wrapper {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .subtitle {
+    font-size: 1.25em;
+    font-weight: 500;
+  }
+}
+
+.summary_container {
+  display: flex;
+  gap: 2em;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px 2px #888888;
+}
+
+.percentage_group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.percentage_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+  flex: 1;
+}
+
+.progress_bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 0.5em;
+  .percentage {
+    position: absolute;
+    z-index: 1;
+    font-weight: bold;
+  }
+}
+
+.recommendation_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.recommendation {
+}

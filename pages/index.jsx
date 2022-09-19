@@ -73,6 +73,12 @@ export default function Home() {
               description="When shopping for sustainable items the Material Checker is all you need to determine whether each garment is sustainable. Just check and select the materials of each garment and the Material Checker will outline the biodegradability and ethical sustainability of each item."
             />
             <Feature
+              title="Clothing tracker"
+              linkHref="clothingtracker"
+              linkText="Track clothing"
+              description="Keep track of your wardrobe and track the amount of times you've worn your clothing."
+            />
+            <Feature
               title="Trends"
               linkHref="trends"
               linkText="See trends"

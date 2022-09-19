@@ -13,6 +13,7 @@ const routes = [
   { name: "Home", path: "/" },
   { name: "Lifecycle", path: "/lifecycle" },
   { name: "Materials", path: "/materials" },
+  { name: "Clothing tracker", path: "/clothingtracker" },
   { name: "Trends", path: "/trends" },
   { name: "Map", path: "/map" }, // href link to ops shop map page
 ]
@@ -29,6 +30,11 @@ export default function Nav({ stickyNav }) {
     } else {
       setTheme("light")
     }
+  }
+
+  const getPageSection = (path: string) => {
+    const paths = path.split("/")
+    return "/" + paths[1]
   }
 
   return (
@@ -52,7 +58,8 @@ export default function Nav({ stickyNav }) {
                   <Button
                     variant="text"
                     className={`${styles.link} ${
-                      router.pathname === route.path && styles.selected
+                      getPageSection(router.pathname) === route.path &&
+                      styles.selected
                     }`}
                   >
                     {route.name}
@@ -61,16 +68,6 @@ export default function Nav({ stickyNav }) {
               ))}
             </div>
           </div>
-          {/* <div className={styles.action_group}>
-            <Tooltip title="Toggle theme">
-              <IconButton
-                className={styles.theme_button}
-                onClick={handleToggleTheme}
-              >
-                {theme === "dark" ? <DarkMode /> : <DarkMode />}
-              </IconButton>
-            </Tooltip>
-          </div> */}
         </div>
       </Container>
     </div>
