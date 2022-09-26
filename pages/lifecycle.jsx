@@ -18,7 +18,7 @@ const steps = [
     title: "Reduce",
     subtitle: "Do something drastic, don't wear microplastic!",
     description:
-      "When buying clothing, emissions through production should be a major factor. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
+      "When buying clothing, emissions through production should be a major factor. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the clothings journey.",
     linkText: "See Trends",
     linkHref: "trends",
   },
@@ -34,7 +34,7 @@ const steps = [
     title: "Renew",
     subtitle: "Repair or donate, if in doubt don't throw it out!",
     description:
-      "Repairing, rehoming, and salvaging clothing is something previous generations knew all too well, when the fashion industries emissions were far lower. This step is where lowering your fashion emissions gets creative. Renewing presents an opportunity to personalise a garment and further the experience of your clothing.",
+      "Repairing, rehoming, and salvaging clothing is something previous generations knew all too well, when the fashion industries emissions were far lower. This step is where lowering your fashion emissions gets creative. Renewing presents an opportunity to personalise a clothing and further the experience of your clothing.",
     linkText: "Browse Locations",
     linkHref: "map",
   },
@@ -76,7 +76,7 @@ export default function Lifecycle() {
         <div className={styles.hero_wrapper}>
           <Hero
             title="Sustainable product lifecycle"
-            description="The Sustainable Product Lifecycle outlines cyclical the stages of a sustainable garment. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your clothing."
+            description="The Sustainable Product Lifecycle outlines cyclical the stages of a sustainable clothing. Explore the stages of this cycle to learn to Reduce, Reuse, Recycle and Repair your clothing."
           />
           <div className={styles.clothing_lifecycle_wrapper}>
             {activeStep === 0 && (

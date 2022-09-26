@@ -3,7 +3,7 @@ export default [
     id: 1,
     name: "Cotton",
     description:
-      "Cotton is the most common material in clothing, with over 75% of garments containing it. Cotton is not very environmentally friendly, the plant product requires around 20,000 Litres to reproduce a 1kg of raw cotton.",
+      "Cotton is the most common material in clothing, with over 75% of clothings containing it. Cotton is not very environmentally friendly, the plant product requires around 20,000 Litres to reproduce a 1kg of raw cotton.",
     suggestion:
       "Ask about the cotton sourcing, Sustainable and Organic cotton is a great option reducing the environmental harm of the material.",
     biodegradable: true,
@@ -13,7 +13,7 @@ export default [
     id: 2,
     name: "Cotton woven",
     description:
-      "Commonly comprises of a combination of tightly wound natural and commonly unnatural fibres. The material is predominantly used for fun prints, crafting, quilting, and garments.",
+      "Commonly comprises of a combination of tightly wound natural and commonly unnatural fibres. The material is predominantly used for fun prints, crafting, quilting, and clothings.",
     suggestion:
       "Seek more recyclable and biodegradable alternatives like viscose or lyocell.",
     biodegradable: true,
@@ -23,7 +23,7 @@ export default [
     id: 3,
     name: "Hemp",
     description:
-      "A majority of hemp garment is produced in China. Worldwide hemp production has become more common as the Cannabis plant and its biomass can be used to develop hemp garments.",
+      "A majority of hemp clothing is produced in China. Worldwide hemp production has become more common as the Cannabis plant and its biomass can be used to develop hemp clothings.",
     suggestion:
       "A highly biodegradable material you could place in the compost bin. A great product for our one Earth.",
     biodegradable: true,
@@ -43,7 +43,7 @@ export default [
     id: 5,
     name: "Leather",
     description:
-      "One of the oldest materials manufactured with mentions through the bible. As a by product of the meat industry, leather utilises the hide which would go to waste. The tanning process converting the hide to a garment is detrimental to the environment.",
+      "One of the oldest materials manufactured with mentions through the bible. As a by product of the meat industry, leather utilises the hide which would go to waste. The tanning process converting the hide to a clothing is detrimental to the environment.",
     suggestion:
       "There are many more sustainable alternatives to the animal hide. With lesser emissions through the tanning process, seek synthetic or non-tanned leather.",
     biodegradable: false,
@@ -63,7 +63,7 @@ export default [
     id: 7,
     name: "Linen",
     description:
-      "Organic flax is one of the most sustainable fibres. The fibre is grown from the natural product, flax. Flax or linen garments are highly biodegradable if not bleached or dyed.",
+      "Organic flax is one of the most sustainable fibres. The fibre is grown from the natural product, flax. Flax or linen clothings are highly biodegradable if not bleached or dyed.",
     suggestion:
       "Highly biodegradable if not bleached or dyed, ask whether the linen was bleached or dyed. Explore the recycling opportunities of Linen.",
     biodegradable: true,
@@ -84,7 +84,7 @@ export default [
     description:
       "More common used for tights, raincoats, and swimwear. Nylon production generates large emissions. However, Nylon is very commonly and relatively simply recycled.",
     suggestion:
-      "Ensure you recycle this garment and seek recycled nylon! Options are available.",
+      "Ensure you recycle this clothing and seek recycled nylon! Options are available.",
     biodegradable: false,
     sustainability_score: 0.7,
   },
@@ -114,7 +114,7 @@ export default [
     description:
       "Silk is considered a sustainable, renewable resource, can biodegrade, and uses less water, chemicals, and energy than many other fibres. However silk production has many ethical issues arise with the chemical use, animal rights, and labour practices.",
     suggestion:
-      "Seek alternate clothing option. Explore the chemical use and labour of the silk garments production.",
+      "Seek alternate clothing option. Explore the chemical use and labour of the silk clothings production.",
     biodegradable: true,
     sustainability_score: 0.19,
   },
@@ -124,7 +124,7 @@ export default [
     description:
       "Synthetic Leather is an ethical animal alternative to leather. There are many natural products processed to be alternatives to the animal hide as far more biodegradable options than common leather.",
     suggestion:
-      "If possible choose syntenic leather with recycling opportunities for the garment.",
+      "If possible choose syntenic leather with recycling opportunities for the clothing.",
     biodegradable: false,
     sustainability_score: 0.62,
   },
