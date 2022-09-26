@@ -8,7 +8,7 @@ import { useState } from "react"
 
 const libraries = ["places"]
 
-export default function Map() {
+export default function SustainableLocations() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -32,7 +32,7 @@ export default function Map() {
   // Display the content of the Op shop location map page if isLoaded returns true
   if (isLoaded)
     return (
-      <Page title="Map">
+      <Page title="Sustainable Locations">
         <Container maxWidth="lg">
           <Hero
             title="Explore Locations"

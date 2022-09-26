@@ -70,7 +70,7 @@ export default function Home() {
               title="Material checker"
               linkHref="materials"
               linkText="Check materials"
-              description="Grab a material tag and check if a garment is sustainability and biodegradability"
+              description="Grab a material tag and check if a clothing is sustainability and biodegradability"
             />
             <Feature
               title="Clothing tracker"
@@ -79,8 +79,8 @@ export default function Home() {
               description="Unsure if you've worn an item the sustainable 30 times? Use the Wear Tracker to hit this mark"
             />
             <Feature
-              title="Find a Sustainable Stores and Donation Points"
-              linkHref="map"
+              title="Find Sustainable and Donation Locations"
+              linkHref="sustainablelocations"
               linkText="Browse locations"
               description="Want to shop affordably, donate old clothing, repair old clothing? Explore the opportunities close to you"
             />

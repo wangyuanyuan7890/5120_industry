@@ -26,6 +26,7 @@ import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
+// component for the pop up dialog
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -35,6 +36,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
+// component for the pop up dialog title
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props
 
@@ -59,12 +61,13 @@ const BootstrapDialogTitle = (props) => {
   )
 }
 
+// define pop up dialog prop types
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 }
 
-// default coordiantes of the map component
+// default coordiantes of the map component (Melbourne city)
 const center = {
   lat: -37.8132524811935,
   lng: 144.96527232900124,
@@ -75,12 +78,9 @@ var radius = {
   path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
   fillColor: "#59bfff",
   fillOpacity: 0.3,
-  // anchor: new google.maps.Point(0, 0),
   strokeWeight: 0,
   scale: 2,
 }
-
-// const Marker = ({ children }) => children
 
 export default function OpShopsLocation() {
   const [latitude, setLatitude] = useState(0)
@@ -102,10 +102,10 @@ export default function OpShopsLocation() {
   }
 
   const [formats, setFormats] = useState(() => [
-    "opshop",
-    "repair",
-    "donation",
-    "recycling",
+    // "opshop",
+    // "repair",
+    // "donation",
+    // "recycling",
   ])
 
   const [name, setName] = useState([])
@@ -157,8 +157,8 @@ export default function OpShopsLocation() {
     if (formats.length <= 0) {
       return foundShops
     } else if (formats.length > 0) {
-      foundShops.filter(
-        (a) => a.shop.types !== formats.find((b) => a.shop.types === b)
+      return foundShops.filter(
+        (a) => a.shop.types === formats.find((b) => a.shop.types === b)
       )
     }
     // performs the filter by shop type looking into user selected value(s)

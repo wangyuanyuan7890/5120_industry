@@ -14,7 +14,7 @@ const routes = [
   { name: "Lifecycle", path: "/lifecycle" },
   { name: "Materials", path: "/materials" },
   { name: "Clothing tracker", path: "/clothingtracker" },
-  { name: "Map", path: "/map" },
+  { name: "Sustainable locations", path: "/sustainablelocations" },
   { name: "Trends", path: "/trends" },
 ]
 
