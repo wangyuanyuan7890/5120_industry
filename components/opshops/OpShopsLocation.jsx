@@ -20,7 +20,13 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
 import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
-import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
+import {
+  AddShoppingCart,
+  DeleteOutline,
+  Handyman,
+  NearMeSharp,
+} from "@mui/icons-material"
+import { format } from "path"
 
 // icons for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
@@ -117,6 +123,9 @@ export default function OpShopsLocation() {
     // console.log(newFormats)
     if (newFormats !== null) {
       setFormats(newFormats)
+      // options_mov.filter(
+      //   (x) => x.shop["types"] === formats.find((y) => x.shop["types"] === y)
+      // )
     }
   }
 
@@ -156,10 +165,6 @@ export default function OpShopsLocation() {
     // check if any shop type is selected, if none; return all shops
     if (formats.length <= 0) {
       return foundShops
-    } else if (formats.length > 0) {
-      return foundShops.filter(
-        (a) => a.shop.types === formats.find((b) => a.shop.types === b)
-      )
     }
     // performs the filter by shop type looking into user selected value(s)
     const filteredByType = foundShops.filter(
@@ -169,6 +174,7 @@ export default function OpShopsLocation() {
 
     // check if any shop name is selected, if none; then return the filtered shops filtered by type
     if (name.length <= 0) return filteredByType
+    // performs the filter by shop name from the multi-select search drop down list
     const filteredByNames = filteredByType.filter(
       (y) => y.shop.name === name.find((z) => y.shop.name === z)
     )
@@ -223,11 +229,16 @@ export default function OpShopsLocation() {
     []
   )
 
+  const listFoundShops = foundShops.filter(
+    (x) => x.shop.types === formats.find((y) => x.shop.types === y)
+  )
+
   // group the selection dropdown list data and display distinct selection value
-  const filtered_options = foundShops.filter(
+  const filtered_options = listFoundShops.filter(
     (value, index, self) =>
       self.findIndex((v) => v.shop.name === value.shop.name) === index
   )
+
   const options_mov = filtered_options.map((option) => {
     // console.log(option)
     const firstLetter = option.shop["name"][0].toUpperCase()
