@@ -29,11 +29,11 @@ export default function CycleStep({
           {children}
           <div className={styles.links}>
             <span className={styles.link_title}>
-              You may also be interested in
+              You may also be interested in:
             </span>
             <ul>
-              {links.map((x) => (
-                <li className={styles.link_text}>
+              {links.map((x, index) => (
+                <li className={styles.link_text} key={index}>
                   <Link href={x.href}>
                     <span className={styles.link_color}>{x.label}</span>
                   </Link>

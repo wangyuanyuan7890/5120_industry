@@ -4,14 +4,17 @@ import { Container } from "@mui/system"
 import Hero from "@/components/Hero"
 
 import styles from "@/styles/pages/clothingtracker/Summary.module.scss"
-import ClothingTable from "@/components/clothingtracker/ClothingTable"
 import { fetchClothingItems } from "@/util/clothingtracker"
 import SummaryTable from "@/components/clothingtracker/SummaryTable"
 import SummaryChartGroup from "@/components/clothingtracker/SummaryChartGroup"
 import LinkButton from "@/components/LinkButton"
 
 import ClothingImage from "@/public/clothingtracker/clothing.svg"
-import { Button } from "@mui/material"
+
+const breadcrumbs = [
+  { label: "Tracker", href: "/clothingtracker" },
+  { label: "Summary" },
+]
 
 // summary of clothing tracker items
 export default function Summary() {
@@ -29,11 +32,8 @@ export default function Summary() {
         <Hero
           title="Clothing tracker summary"
           description="Sustainable management summary of tracked clothing items."
-        >
-          <div>
-            <LinkButton text="Track clothing" href="/clothingtracker" />
-          </div>
-        </Hero>
+          breadcrumbs={breadcrumbs}
+        />
       </Container>
       <Container maxWidth="lg">
         {clothingItems.length <= 0 ? (

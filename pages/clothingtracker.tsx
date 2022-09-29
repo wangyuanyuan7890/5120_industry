@@ -8,6 +8,9 @@ import { fetchClothingItems } from "@/util/clothingtracker"
 import ClothingTable from "@/components/clothingtracker/ClothingTable"
 import LinkButton from "@/components/LinkButton"
 
+import DeleteIcon from "@mui/icons-material/Delete"
+import DescriptionIcon from "@mui/icons-material/Description"
+
 // keeps track of clothing items
 export default function ClothingTracker() {
   const [clothingItems, setClothingItems] = useState<ClothingItem[]>([])
@@ -37,8 +40,17 @@ export default function ClothingTracker() {
             </li>
           </ul>
           {clothingItems.length > 0 && (
-            <div>
-              <LinkButton text="View summary" href="/clothingtracker/summary" />
+            <div className={styles.action_group}>
+              <LinkButton
+                text="View summary"
+                href="/clothingtracker/summary"
+                icon={<DescriptionIcon />}
+              />
+              <LinkButton
+                text="Disposal tool"
+                href="/clothingtracker/disposal"
+                icon={<DeleteIcon />}
+              />
             </div>
           )}
         </Hero>

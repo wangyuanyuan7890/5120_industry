@@ -1,3 +1,5 @@
+@use "../variables.scss";
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -10,5 +12,13 @@
   .description {
     font-size: 1.25em;
     text-align: justify;
+  }
+}
+
+a.link {
+  color: variables.$primary-background-color;
+  &:hover {
+    color: variables.$primary-background-color-soft;
+    text-decoration: underline;
   }
 }
