@@ -1,5 +1,11 @@
 import styles from "@/styles/pages/Opshop.module.scss"
-import { GoogleMap, MarkerF, Marker, InfoWindowF } from "@react-google-maps/api"
+import {
+  GoogleMap,
+  MarkerF,
+  Marker,
+  InfoWindowF,
+  MarkerClusterer,
+} from "@react-google-maps/api"
 import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
@@ -20,13 +26,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
 import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
-import {
-  AddShoppingCart,
-  DeleteOutline,
-  Handyman,
-  NearMeSharp,
-} from "@mui/icons-material"
-import { format } from "path"
+import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
 
 // icons for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
@@ -123,9 +123,6 @@ export default function OpShopsLocation() {
     // console.log(newFormats)
     if (newFormats !== null) {
       setFormats(newFormats)
-      // options_mov.filter(
-      //   (x) => x.shop["types"] === formats.find((y) => x.shop["types"] === y)
-      // )
     }
   }
 
@@ -163,14 +160,12 @@ export default function OpShopsLocation() {
 
   const finalFilteredMarkers = () => {
     // check if any shop type is selected, if none; return all shops
-    if (formats.length <= 0) {
-      return foundShops
-    }
+    if (formats.length <= 0) return foundShops
     // performs the filter by shop type looking into user selected value(s)
     const filteredByType = foundShops.filter(
       (w) => w.shop.types === formats.find((x) => w.shop.types === x)
     )
-    if (filteredByType.length <= 0) return [] // if no values selected then do nothing
+    if (filteredByType.length <= 0) return [] // if no filtered values then do nothing
 
     // check if any shop name is selected, if none; then return the filtered shops filtered by type
     if (name.length <= 0) return filteredByType
@@ -229,9 +224,12 @@ export default function OpShopsLocation() {
     []
   )
 
-  const listFoundShops = foundShops.filter(
-    (x) => x.shop.types === formats.find((y) => x.shop.types === y)
-  )
+  const listFoundShops =
+    formats.length >= 0
+      ? foundShops.filter(
+          (x) => x.shop.types === formats.find((y) => x.shop.types === y)
+        )
+      : foundShops
 
   // group the selection dropdown list data and display distinct selection value
   const filtered_options = listFoundShops.filter(
@@ -271,7 +269,7 @@ export default function OpShopsLocation() {
           options={options_mov.sort(
             (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
           )}
-          groupBy={(option) => option.firstLetter}
+          groupBy={(option) => option.firstLetter} // group list by first letter
           disableCloseOnSelect
           getOptionLabel={(option) => option.shop["name"]}
           renderOption={(props, option, { selected }) => (
@@ -286,6 +284,7 @@ export default function OpShopsLocation() {
             </li>
           )}
           style={{ width: 200 }}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
           renderInput={(params) => (
             <TextField {...params} label="Search" placeholder="Locations" />
           )}
@@ -335,7 +334,32 @@ export default function OpShopsLocation() {
             icon={radius}
           ></MarkerF>
 
-          {finalFilteredMarkers().map((shop) => (
+          <MarkerClusterer>
+            {(clusterer) =>
+              finalFilteredMarkers().map((shop) => (
+                <Marker
+                  key={shop.id}
+                  clusterer={clusterer}
+                  animation={
+                    selectedMarker
+                      ? shop.id === selectedMarker.id
+                        ? "1"
+                        : "0"
+                      : "0"
+                  }
+                  position={{ lat: shop.latitude, lng: shop.longitude }}
+                  icon={GetIcon(shop.shop.types)}
+                  onClick={() => {
+                    setSelectedMarker(shop)
+                    setSelectedShop(shop)
+                    setSelectedShopDetails(shop.shop)
+                  }}
+                />
+              ))
+            }
+          </MarkerClusterer>
+
+          {/* {finalFilteredMarkers().map((shop) => (
             <Marker
               key={shop.id}
               // category={shop.shop.name}
@@ -348,7 +372,7 @@ export default function OpShopsLocation() {
               }
               position={{ lat: shop.latitude, lng: shop.longitude }}
               icon={{
-                url: "/charity/heart.svg",
+                url: "/charity/charity.svg",
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
               onClick={() => {
@@ -357,7 +381,7 @@ export default function OpShopsLocation() {
                 setSelectedShopDetails(shop.shop)
               }}
             />
-          ))}
+          ))} */}
 
           {selectedMarker && (
             <InfoWindowF
@@ -451,4 +475,12 @@ function Locate({ panTo, setOpenSnack }) {
       <img src="/navigation/navigator.svg" alt="navigator - locate me" />
     </button>
   )
+}
+
+// function to categorise markers into different groups
+function GetIcon(shopType) {
+  return {
+    url: "/charity/" + shopType + ".svg",
+    scaledSize: new window.google.maps.Size(30, 30),
+  }
 }
