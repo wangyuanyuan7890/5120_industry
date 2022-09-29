@@ -1,4 +1,5 @@
 @use "../../custom.scss";
+@use "../../variables.scss";
 
 .tab {
   display: flex;
@@ -19,21 +20,56 @@
 
 .subtitle {
   font-size: 1.25em;
+  margin-bottom: 0.5em;
 }
 
 .description {
   font-size: 1.25em;
+  margin-bottom: 0.5em;
 }
 
 .action_group {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  .start_group,
-  .end_group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
+  gap: 0.5em;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.main_content {
+  width: 75%;
+}
+
+.image_content {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.links {
+  margin-top: 1em;
+  ul {
+    margin-top: 0.3em;
+  }
+}
+
+.link_title {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.link_text {
+  font-size: 1.25em;
+}
+
+.link_color {
+  cursor: pointer;
+  color: variables.$primary-background-color;
+  &:hover {
+    color: variables.$primary-background-color-soft;
   }
 }

@@ -1,18 +1,24 @@
 import Page from "@/components/Page"
 import { Container } from "@mui/system"
 import HomeHeroImage from "@/public/home_hero.svg"
-import LifelineLogo from "@/public/companies/lifeline.svg"
-import RedCrossLogo from "@/public/companies/red_cross.svg"
-import SalvationArmyLogo from "@/public/companies/salvation_army.svg"
-import SmithFamilyLogo from "@/public/companies/smith_family.svg"
 import LinkButton from "@/components/LinkButton"
 import Feature from "@/components/home/Feature"
 
 import styles from "@/styles/pages/Home.module.scss"
 import FactGroup from "@/components/home/FactGroup"
+import { Suspense, useEffect, useRef, useState } from "react"
+import Scene from "@/components/home/SplineScene"
+import { OrbitControls, useProgress } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 
 // Home page design
 export default function Home() {
+  useEffect(() => {}, [])
+
+  const target = useRef()
+  const { active, loaded, total } = useProgress()
+  const isLoaded = !active && total > 0 && loaded === total
+
   return (
     <Page title="Home">
       <Container maxWidth="lg">
@@ -39,23 +45,29 @@ export default function Home() {
         </div>
       </Container>
       <Container maxWidth="lg">
-        <div className={styles.company_group}>
-          <a href="https://www.lifeline.org.au/">
-            <LifelineLogo className={styles.company_logo} />
-          </a>
-          <a href="https://www.redcross.org.au/">
-            <RedCrossLogo className={styles.company_logo} />
-          </a>
-          <a href="https://www.salvationarmy.org.au/">
-            <SalvationArmyLogo className={styles.company_logo} />
-          </a>
-          <a href="https://www.thesmithfamily.com.au/">
-            <SmithFamilyLogo className={styles.company_logo} />
-          </a>
-        </div>
+        <FactGroup />
       </Container>
       <Container maxWidth="lg">
-        <FactGroup />
+        <div ref={target} className={styles.spline_container}>
+          <Suspense fallback={null}>
+            <Canvas
+              shadows
+              flat
+              linear
+              onCreated={(state) => state.events.connect(target.current)}
+            >
+              <Scene />
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                minAzimuthAngle={Math.PI * 0.4}
+                maxAzimuthAngle={Math.PI * 0.4}
+                minPolarAngle={0}
+                maxPolarAngle={Math.PI * 0.3}
+              />
+            </Canvas>
+          </Suspense>
+        </div>
       </Container>
       <Container maxWidth="lg">
         <div className={styles.feature_wrapper}>

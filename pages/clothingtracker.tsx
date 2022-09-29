@@ -4,7 +4,7 @@ import { Container } from "@mui/system"
 import Hero from "@/components/Hero"
 
 import styles from "@/styles/pages/Clothingtracker.module.scss"
-import { fetchClothingItems } from "util/clothingtracker"
+import { fetchClothingItems } from "@/util/clothingtracker"
 import ClothingTable from "@/components/clothingtracker/ClothingTable"
 import LinkButton from "@/components/LinkButton"
 
