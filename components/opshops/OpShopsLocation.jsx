@@ -219,7 +219,10 @@ export default function OpShopsLocation() {
       disableDefaultUI: true,
       streetViewControl: true,
       zoomControl: true,
-      styles: mapStyles,
+      // styles: mapStyles,
+      mapId: "9e9809c759a6364",
+      // heading: 320,
+      // title: 47.5,
     }),
     []
   )
@@ -246,6 +249,12 @@ export default function OpShopsLocation() {
       ...option,
     }
   })
+
+  // const markerClusterer = new MarkerClusterer({map, markers})
+  // const clusterOptions = {
+  //   imagePath:
+  //     "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m", // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  // }
 
   return (
     <div className={styles.container}>
