@@ -30,6 +30,7 @@ export default function Disposal() {
   const router = useRouter()
   const [clothingItem, setClothingItem] = useState<ClothingItem>(null)
 
+  // checks if a clothing item Id is in the query params otherwise will return to the clothing tracker page
   useEffect(() => {
     if (!router.isReady) return
     const queryId: any = router.query["id"]
