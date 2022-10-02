@@ -1,0 +1,14 @@
+.text {
+  font-size: 1.1em;
+}
+
+.counter_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .text {
+    font-size: 1.25em;
+    word-break: break-all;
+  }
+}

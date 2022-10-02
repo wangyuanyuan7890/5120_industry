@@ -7,14 +7,18 @@ import {
   FormControl,
   IconButton,
   InputLabel,
+  ListItemIcon,
   ListItemText,
+  Menu,
   MenuItem,
   OutlinedInput,
   Select,
   Snackbar,
+  SvgIcon,
   TableCell,
   TableRow,
   TextField,
+  Tooltip,
 } from "@mui/material"
 import { v4 as uuidv4 } from "uuid"
 import styles from "@/styles/components/clothingtracker/ClothingTableRow.module.scss"
@@ -25,7 +29,10 @@ import DoneIcon from "@mui/icons-material/Done"
 import ClearIcon from "@mui/icons-material/Clear"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ConfirmModal from "../ConfirmModal"
+import RecyclingIcon from "@/public/clothingtracker/recycling.svg"
+import { useRouter } from "next/router"
 
 type Props = {
   index?: number
@@ -71,6 +78,7 @@ export default function ClothingTableRow({
   deleteClothingItem,
   materials,
 }: Props) {
+  const router = useRouter()
   const [modifiedClothingItem, setModifiedClothingItem] = useState(
     clothingItem ? { ...clothingItem } : { ...defaultItem }
   )
@@ -79,6 +87,15 @@ export default function ClothingTableRow({
   const [dirtyName, setDirtyName] = useState<boolean>(false)
   const [dirtyType, setDirtyType] = useState<boolean>(false)
   const [dirtyMaterial, setDirtyMaterial] = useState<boolean>(false)
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null)
+  const menuOpen = Boolean(menuAnchor)
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setMenuAnchor(event.currentTarget)
+  }
+  const handleMenuClose = () => {
+    setMenuAnchor(null)
+  }
 
   const handleEditName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item: ClothingItem = { ...modifiedClothingItem }
@@ -216,6 +233,16 @@ export default function ClothingTableRow({
   const invalidMaterialSelection = (materialIds: number[]) => {
     if (!materialIds || !(materialIds.length > 0)) return true
     return false
+  }
+
+  const handleRecycleItem = () => {
+    const item: ClothingItem = { ...clothingItem }
+    router.push({
+      pathname: "/clothingtracker/disposal",
+      query: {
+        id: item.id,
+      },
+    })
   }
 
   return (
@@ -386,15 +413,34 @@ export default function ClothingTableRow({
               </>
             ) : (
               <>
-                <IconButton color="primary" onClick={() => handleEdit()}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  sx={{ color: "black" }}
-                  onClick={() => setOpenDeleteModal(true)}
+                <Tooltip title="Recycle" className={styles.recycle_hover}>
+                  <IconButton onClick={handleRecycleItem}>
+                    <SvgIcon component={RecyclingIcon} viewBox="3 2 42 42" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Options">
+                  <IconButton onClick={handleMenuClick}>
+                    <MoreVertIcon />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  open={menuOpen}
+                  anchorEl={menuAnchor}
+                  onClose={handleMenuClose}
                 >
-                  <DeleteIcon />
-                </IconButton>
+                  <MenuItem onClick={() => handleEdit()}>
+                    <ListItemIcon>
+                      <EditIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Edit</ListItemText>
+                  </MenuItem>
+                  <MenuItem onClick={() => setOpenDeleteModal(true)}>
+                    <ListItemIcon>
+                      <DeleteIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Delete</ListItemText>
+                  </MenuItem>
+                </Menu>
                 <ConfirmModal
                   open={openDeleteModal}
                   setOpen={setOpenDeleteModal}

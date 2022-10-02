@@ -1,3 +1,5 @@
+@use "../../variables.scss";
+
 .counter_container {
   display: flex;
   justify-content: center;
@@ -25,4 +27,20 @@
 
 .text {
   font-size: 1.1em;
+  word-break: break-all;
+}
+
+.menu_item_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.recycle_hover {
+  transition: color 0.2s ease;
+  &:hover {
+    color: variables.$primary-background-color;
+    transition: color 0.2s ease;
+  }
 }

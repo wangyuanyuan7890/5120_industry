@@ -1,4 +1,11 @@
 .action_group {
   display: flex;
-  gap: 0.25em;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero_divider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
