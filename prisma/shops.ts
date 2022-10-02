@@ -158,7 +158,7 @@ export default [
     name: "VMCH",
     types: "opshop",
     description:
-      "descriptVMCH (Villa Maria Catholic Homes) is the Catholic Archdiocese of Melbourne\u00e2\u0080\u0099s leading provider of high-quality disability, specialist education, aged care and retirement living services, They are particularly committed to helping the disadvantaged and marginalized. Their Op Shops will raise funds for VMCH's Innovative and Inclusive School by selling quality used goods donated by the public.",
+      "VMCH (Villa Maria Catholic Homes) is the Catholic Archdiocese of Melbourne\u00e2\u0080\u0099s leading provider of high-quality disability, specialist education, aged care and retirement living services, They are particularly committed to helping the disadvantaged and marginalized. Their Op Shops will raise funds for VMCH's Innovative and Inclusive School by selling quality used goods donated by the public.",
   },
   {
     id: 25,
@@ -353,7 +353,7 @@ export default [
     name: "Tailor To Clothing Alterations",
     types: "repair",
     description:
-      "Tailor To Clothing Alterations offer custom clothing alterations, tailoring, and garment repair, including emergency alterations.",
+      "Tailor To Clothing Alterations offer custom clothing alterations, tailoring, and clothing repair, including emergency alterations.",
   },
   {
     id: 54,
@@ -856,7 +856,7 @@ export default [
     name: "Secondo Boutique",
     types: "opshop",
     description:
-      "Secondo is home of melbourne's premier recycle and consignment\u00a0boutique\u00a0of pre-loved garments and accessories",
+      "Secondo is home of melbourne's premier recycle and consignment\u00a0boutique\u00a0of pre-loved clothings and accessories",
   },
   {
     id: 131,

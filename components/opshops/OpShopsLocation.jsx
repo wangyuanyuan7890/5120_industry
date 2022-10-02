@@ -1,5 +1,11 @@
 import styles from "@/styles/pages/Opshop.module.scss"
-import { GoogleMap, MarkerF, Marker, InfoWindowF } from "@react-google-maps/api"
+import {
+  GoogleMap,
+  MarkerF,
+  Marker,
+  InfoWindowF,
+  MarkerClusterer,
+} from "@react-google-maps/api"
 import { useMemo, useState, useEffect, useCallback, useRef } from "react"
 import * as React from "react"
 import Checkbox from "@mui/material/Checkbox"
@@ -26,6 +32,7 @@ import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
 const checkedIcon = <CheckBoxIcon fontSize="small" />
 
+// component for the pop up dialog
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -35,6 +42,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }))
 
+// component for the pop up dialog title
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props
 
@@ -59,12 +67,13 @@ const BootstrapDialogTitle = (props) => {
   )
 }
 
+// define pop up dialog prop types
 BootstrapDialogTitle.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
 }
 
-// default coordiantes of the map component
+// default coordiantes of the map component (Melbourne city)
 const center = {
   lat: -37.8132524811935,
   lng: 144.96527232900124,
@@ -75,12 +84,9 @@ var radius = {
   path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
   fillColor: "#59bfff",
   fillOpacity: 0.3,
-  // anchor: new google.maps.Point(0, 0),
   strokeWeight: 0,
   scale: 2,
 }
-
-// const Marker = ({ children }) => children
 
 export default function OpShopsLocation() {
   const [latitude, setLatitude] = useState(0)
@@ -102,10 +108,10 @@ export default function OpShopsLocation() {
   }
 
   const [formats, setFormats] = useState(() => [
-    "opshop",
-    "repair",
-    "donation",
-    "recycling",
+    // "opshop",
+    // "repair",
+    // "donation",
+    // "recycling",
   ])
 
   const [name, setName] = useState([])
@@ -154,21 +160,16 @@ export default function OpShopsLocation() {
 
   const finalFilteredMarkers = () => {
     // check if any shop type is selected, if none; return all shops
-    if (formats.length <= 0) {
-      return foundShops
-    } else if (formats.length > 0) {
-      foundShops.filter(
-        (a) => a.shop.types !== formats.find((b) => a.shop.types === b)
-      )
-    }
+    if (formats.length <= 0) return foundShops
     // performs the filter by shop type looking into user selected value(s)
     const filteredByType = foundShops.filter(
       (w) => w.shop.types === formats.find((x) => w.shop.types === x)
     )
-    if (filteredByType.length <= 0) return [] // if no values selected then do nothing
+    if (filteredByType.length <= 0) return [] // if no filtered values then do nothing
 
     // check if any shop name is selected, if none; then return the filtered shops filtered by type
     if (name.length <= 0) return filteredByType
+    // performs the filter by shop name from the multi-select search drop down list
     const filteredByNames = filteredByType.filter(
       (y) => y.shop.name === name.find((z) => y.shop.name === z)
     )
@@ -219,15 +220,26 @@ export default function OpShopsLocation() {
       streetViewControl: true,
       zoomControl: true,
       styles: mapStyles,
+      // mapId: "9e9809c759a6364",
+      // heading: 320,
+      // title: 47.5,
     }),
     []
   )
 
+  const listFoundShops =
+    formats.length >= 0
+      ? foundShops.filter(
+          (x) => x.shop.types === formats.find((y) => x.shop.types === y)
+        )
+      : foundShops
+
   // group the selection dropdown list data and display distinct selection value
-  const filtered_options = foundShops.filter(
+  const filtered_options = listFoundShops.filter(
     (value, index, self) =>
       self.findIndex((v) => v.shop.name === value.shop.name) === index
   )
+
   const options_mov = filtered_options.map((option) => {
     // console.log(option)
     const firstLetter = option.shop["name"][0].toUpperCase()
@@ -237,6 +249,11 @@ export default function OpShopsLocation() {
       ...option,
     }
   })
+
+  // const clusterOptions = {
+  //   imagePath:
+  //     "https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m",
+  // }
 
   return (
     <div className={styles.container}>
@@ -260,7 +277,7 @@ export default function OpShopsLocation() {
           options={options_mov.sort(
             (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
           )}
-          groupBy={(option) => option.firstLetter}
+          groupBy={(option) => option.firstLetter} // group list by first letter
           disableCloseOnSelect
           getOptionLabel={(option) => option.shop["name"]}
           renderOption={(props, option, { selected }) => (
@@ -275,6 +292,7 @@ export default function OpShopsLocation() {
             </li>
           )}
           style={{ width: 200 }}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
           renderInput={(params) => (
             <TextField {...params} label="Search" placeholder="Locations" />
           )}
@@ -324,7 +342,36 @@ export default function OpShopsLocation() {
             icon={radius}
           ></MarkerF>
 
-          {finalFilteredMarkers().map((shop) => (
+          <MarkerClusterer
+            // imagePath={clusterOptions}
+            minimumClusterSize={5}
+            maxZoom={20}
+          >
+            {(clusterer) =>
+              finalFilteredMarkers().map((shop) => (
+                <Marker
+                  key={shop.id}
+                  clusterer={clusterer}
+                  animation={
+                    selectedMarker
+                      ? shop.id === selectedMarker.id
+                        ? "1"
+                        : "0"
+                      : "0"
+                  }
+                  position={{ lat: shop.latitude, lng: shop.longitude }}
+                  icon={GetIcon(shop.shop.types)}
+                  onClick={() => {
+                    setSelectedMarker(shop)
+                    setSelectedShop(shop)
+                    setSelectedShopDetails(shop.shop)
+                  }}
+                />
+              ))
+            }
+          </MarkerClusterer>
+
+          {/* {finalFilteredMarkers().map((shop) => (
             <Marker
               key={shop.id}
               // category={shop.shop.name}
@@ -337,7 +384,7 @@ export default function OpShopsLocation() {
               }
               position={{ lat: shop.latitude, lng: shop.longitude }}
               icon={{
-                url: "/charity/heart.svg",
+                url: "/charity/charity.svg",
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
               onClick={() => {
@@ -346,7 +393,7 @@ export default function OpShopsLocation() {
                 setSelectedShopDetails(shop.shop)
               }}
             />
-          ))}
+          ))} */}
 
           {selectedMarker && (
             <InfoWindowF
@@ -440,4 +487,12 @@ function Locate({ panTo, setOpenSnack }) {
       <img src="/navigation/navigator.svg" alt="navigator - locate me" />
     </button>
   )
+}
+
+// function to categorise markers into different groups
+function GetIcon(shopType) {
+  return {
+    url: "/charity/" + shopType + ".svg",
+    scaledSize: new window.google.maps.Size(30, 30),
+  }
 }
