@@ -1,0 +1,31 @@
+@use "../../variables.scss";
+
+.option_group {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.links {
+  margin-top: 0.5em;
+  ul {
+    margin-top: 0.3em;
+  }
+}
+
+.link_title {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.link_text {
+  font-size: 1.25em;
+}
+
+.link_color {
+  cursor: pointer;
+  color: variables.$primary-background-color;
+  &:hover {
+    color: variables.$primary-background-color-soft;
+  }
+}

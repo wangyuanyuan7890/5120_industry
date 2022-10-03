@@ -41,6 +41,7 @@ type Props = {
   deleteClothingItem: Function
   setIsAddingItem?: Function
   materials: Material[]
+  handleShowError: Function
 }
 
 interface ClothingType {
@@ -77,13 +78,13 @@ export default function ClothingTableRow({
   updateClothingItem,
   deleteClothingItem,
   materials,
+  handleShowError,
 }: Props) {
   const router = useRouter()
   const [modifiedClothingItem, setModifiedClothingItem] = useState(
     clothingItem ? { ...clothingItem } : { ...defaultItem }
   )
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
-  const [openUpdateError, setOpenUpdateError] = useState<boolean>(false)
   const [dirtyName, setDirtyName] = useState<boolean>(false)
   const [dirtyType, setDirtyType] = useState<boolean>(false)
   const [dirtyMaterial, setDirtyMaterial] = useState<boolean>(false)
@@ -126,8 +127,6 @@ export default function ClothingTableRow({
 
   const handleAddCount = () => {
     const item: ClothingItem = { ...modifiedClothingItem }
-    if (modifiedClothingItem.isEditing) {
-    }
     item.wearCount = item.wearCount + 1
     setModifiedClothingItem(item)
     if (!modifiedClothingItem.isEditing && index !== undefined) {
@@ -152,6 +151,7 @@ export default function ClothingTableRow({
   }
 
   const handleConfirm = () => {
+    setMenuAnchor(null)
     let item: ClothingItem = { ...modifiedClothingItem }
     if (
       modifiedClothingItem.isEditing &&
@@ -160,7 +160,11 @@ export default function ClothingTableRow({
         invalidMaterialSelection(item.selectedMaterialIds))
     ) {
       // show popup error
-      setOpenUpdateError(true)
+      if (item.name.length > 30) {
+        handleShowError("Name must be less than 30 characters")
+      } else {
+        handleShowError(null)
+      }
       setDirtyState(true)
       return
     } else {
@@ -177,6 +181,7 @@ export default function ClothingTableRow({
   }
 
   const handleCancel = () => {
+    setMenuAnchor(null)
     const item: ClothingItem = { ...clothingItem }
     if (index === undefined) {
       setIsAddingItem(false)
@@ -220,6 +225,7 @@ export default function ClothingTableRow({
   // checks for invalid names
   const invalidName = (name: string) => {
     if (!name || name === "") return true
+    if (name.length > 30) return true
     return false
   }
 
@@ -452,19 +458,6 @@ export default function ClothingTableRow({
           </div>
         </TableCell>
       </TableRow>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        open={openUpdateError}
-        autoHideDuration={5000}
-        onClose={() => setOpenUpdateError(false)}
-      >
-        <Alert onClose={() => setOpenUpdateError(false)} severity="error">
-          There was an issue while updating that record
-        </Alert>
-      </Snackbar>
     </>
   )
 }

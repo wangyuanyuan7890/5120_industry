@@ -15,13 +15,19 @@ export default function SummaryTableRow({ clothingItem }) {
   return (
     <TableRow>
       <TableCell>
-        <Typography>{clothingItem.name}</Typography>
+        <Typography sx={{ wordBreak: "break-all" }}>
+          {clothingItem.name}
+        </Typography>
       </TableCell>
       <TableCell>
-        <Typography>{getTypeNameById(clothingItem.type)}</Typography>
+        <Typography sx={{ wordBreak: "break-all" }}>
+          {getTypeNameById(clothingItem.type)}
+        </Typography>
       </TableCell>
       <TableCell sx={{ textAlign: "center" }}>
-        <Typography variant="h6">{clothingItem.wearCount}</Typography>
+        <Typography sx={{ fontSize: "1.25em" }}>
+          {clothingItem.wearCount}
+        </Typography>
       </TableCell>
       <TableCell sx={{ textAlign: "center" }}>
         {isBiodegradable(clothingItem.materials) ? (

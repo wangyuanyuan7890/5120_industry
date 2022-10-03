@@ -13,6 +13,7 @@ import {
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import styles from "@/styles/pages/clothingtracker/Disposal.module.scss"
+import DisposalOptionGroup from "@/components/clothingtracker/DisposalOptionGroup"
 
 const breadcrumbs = [
   { label: "Tracker", href: "/clothingtracker" },
@@ -83,12 +84,10 @@ export default function Disposal() {
                   <TableCell>
                     <span className={styles.text}>{clothingItem.type}</span>
                   </TableCell>
-                  <TableCell>
-                    <div className={styles.counter_wrapper}>
-                      <span className={styles.text}>
-                        {clothingItem.wearCount}
-                      </span>
-                    </div>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    <span className={styles.count_text}>
+                      {clothingItem.wearCount}
+                    </span>
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -97,6 +96,10 @@ export default function Disposal() {
         ) : (
           <span>No content</span>
         )}
+      </Container>
+      <Container maxWidth="lg">
+        <span className={styles.option_title}>What are your options?</span>
+        {clothingItem && <DisposalOptionGroup clothingItem={clothingItem} />}
       </Container>
     </Page>
   )

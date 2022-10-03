@@ -1,14 +1,16 @@
 .text {
   font-size: 1.1em;
+  word-break: break-all;
 }
 
-.counter_wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .text {
-    font-size: 1.25em;
-    word-break: break-all;
-  }
+.option_title {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.count_text {
+  font-size: 1.25em;
 }
