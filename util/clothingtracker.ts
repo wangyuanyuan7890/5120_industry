@@ -4,7 +4,6 @@ export function fetchClothingItems(id?: string | null): ClothingItem[] {
   const json = localStorage.getItem(CLOTHING_ITEMS_KEY)
   if (!json) return []
   const parsedJson = JSON.parse(json)
-  console.log(id, parsedJson)
   if (!id) return parsedJson
   return parsedJson.filter((x: ClothingItem) => x.id === id)
 }
