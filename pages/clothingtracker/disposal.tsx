@@ -14,6 +14,12 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import styles from "@/styles/pages/clothingtracker/Disposal.module.scss"
 import DisposalOptionGroup from "@/components/clothingtracker/DisposalOptionGroup"
+import {
+  isBiodegradable,
+  isSustainable,
+} from "@/components/clothingtracker/SummaryTable"
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
+import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 
 const breadcrumbs = [
   { label: "Tracker", href: "/clothingtracker" },
@@ -22,14 +28,16 @@ const breadcrumbs = [
 
 // column header values
 const headCells: any[] = [
-  { id: 1, label: "Name", width: 40 },
-  { id: 2, label: "Type", width: 40 },
+  { id: 1, label: "Name", width: 45 },
+  { id: 2, label: "Type", width: 20 },
   { id: 3, label: "Wear count", width: 20, align: "center" },
+  { id: 4, label: "Biodegradable", width: 10, align: "center" },
+  { id: 5, label: "Sustainable", width: 10, align: "center" },
 ]
 
 export default function Disposal() {
   const router = useRouter()
-  const [clothingItem, setClothingItem] = useState<ClothingItem>(null)
+  const [clothingItem, setClothingItem] = useState<any>(null)
 
   // checks if a clothing item Id is in the query params otherwise will return to the clothing tracker page
   useEffect(() => {
@@ -39,11 +47,13 @@ export default function Disposal() {
       router.push("/clothingtracker")
       return
     }
-    const item = fetchClothingItems(queryId)[0]
+    const item: any = fetchClothingItems(queryId)[0]
     if (!item) {
       router.push("/clothingtracker")
       return
     }
+    item.isBiodegradable = isBiodegradable(item.materials)
+    item.isSustainable = isSustainable(item.materials)
     setClothingItem(item)
   }, [router])
 
@@ -88,6 +98,26 @@ export default function Disposal() {
                     <span className={styles.count_text}>
                       {clothingItem.wearCount}
                     </span>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {clothingItem.isBiodegradable ? (
+                      <CheckCircleOutlineIcon
+                        color="success"
+                        fontSize="large"
+                      />
+                    ) : (
+                      <HighlightOffIcon color="error" fontSize="large" />
+                    )}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {clothingItem.isSustainable ? (
+                      <CheckCircleOutlineIcon
+                        color="success"
+                        fontSize="large"
+                      />
+                    ) : (
+                      <HighlightOffIcon color="error" fontSize="large" />
+                    )}
                   </TableCell>
                 </TableRow>
               </TableBody>

@@ -1,67 +1,120 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "@/styles/components/clothingtracker/DisposalOptionGroup.module.scss"
 import DisposalOption from "./DisposalOption"
 import Link from "next/link"
+import DisposalOptionGroupContainer from "./DisposalOptionGroupContainer"
+import DisposalOptionGroupHeader from "./DisposalOptionGroupHeader"
 
 interface Option {
   title: string
   description: string
 }
 
-const mildWearOptions: Option[] = [
-  {
-    title: "Rewear Clothing",
-    description: "Please continue to consume the wear times of this item.",
+const options = {
+  rewearClothing: {
+    // low, medium, high (STATIC?)
+    title: "Rewear",
+    description: "Please continue to wear this clothing item.",
   },
-  {
+  donate: {
+    // medium, high
     title: "Donate",
-    description:
-      "If you would like to donate this item, please clean it and pack it properly and send it to the donation points/Op Shops, click on the link below to go to the sustainable locations page, which will help you find the suitable locations.",
+    description: "This item is still in okay condition you should donate it.",
   },
-  {
+  donateOrSell: {
+    // low
+    title: "Donate or sell",
+    description:
+      "This item is still in great condition you should donate it or sell it second hand to an op shop.",
+  },
+  renew: {
+    // high
     title: "Renew",
     description:
-      "If you would like to repair this item, click on the link below to go to the sustainable locations page, which will help you find the suitable repair locations.",
+      "If you really like this item you should get it repaired at a repair location.",
   },
-]
-
-const highWearOptions: Option[] = [
-  {
-    title: "Rewear Clothing",
-    description:
-      "Please continue to consume the wear times of this item until it is completely worn out.",
-  },
-  {
+  recycle: {
+    // high
     title: "Recycle",
     description:
-      "Click on the link below to go to the sustainable locations page, which will help you find the suitable recycling point.",
+      "You should consider recycling this item either directly to a recycling point or by giving it to a repair shop that can reuse the materials.",
   },
+  waste: {
+    // high
+    title: "Waste",
+    description:
+      "This is a last resort and throwing your clothing in the trash may cause environmental harm.",
+  },
+  compost: {
+    // biodegradable
+    title: "Compost",
+    description:
+      "This clothing item is made mostly of natural fibers and can be composted, any synthetic fibers should be removed before composting.",
+  },
+}
+
+const lowWearOptions = [
+  options.rewearClothing,
+  options.donateOrSell,
+  options.waste,
+]
+const mediumWearOptions = [
+  options.rewearClothing,
+  options.donate,
+  options.recycle,
+  options.waste,
+]
+const highWearOptions = [
+  options.rewearClothing,
+  options.donate,
+  options.renew,
+  options.recycle,
+  options.waste,
 ]
 
 export default function DisposalOptionGroup({ clothingItem }) {
   return (
     <div className={styles.option_group}>
-      {clothingItem.wearCount >= 0 &&
-        clothingItem.wearCount < 20 &&
-        mildWearOptions.map((x, index) => (
-          <DisposalOption
-            key={index}
-            title={x.title}
-            description={x.description}
+      {clothingItem.wearCount >= 0 && clothingItem.wearCount < 30 && (
+        <>
+          <DisposalOptionGroupHeader
+            wearCount={clothingItem.wearCount}
+            limit={30}
+            type="low"
           />
-        ))}
-      {clothingItem.wearCount >= 20 &&
-        clothingItem.wearCount <= 30 &&
-        highWearOptions.map((x, index) => (
-          <DisposalOption
-            key={index}
-            title={x.title}
-            description={x.description}
+          <DisposalOptionGroupContainer options={lowWearOptions} />
+        </>
+      )}
+      {clothingItem.wearCount >= 30 && clothingItem.wearCount < 60 && (
+        <>
+          <DisposalOptionGroupHeader
+            wearCount={clothingItem.wearCount}
+            limit={60}
+            type="moderate"
           />
-        ))}
+          <DisposalOptionGroupContainer options={mediumWearOptions} />
+        </>
+      )}
+      {clothingItem.wearCount >= 60 && (
+        <>
+          <DisposalOptionGroupHeader
+            wearCount={clothingItem.wearCount}
+            limit={null}
+            type="high"
+          />
+          <DisposalOptionGroupContainer options={highWearOptions} />
+          {clothingItem.isBiodegradable && (
+            <DisposalOption
+              title={options.compost.title}
+              description={options.compost.description}
+            />
+          )}
+        </>
+      )}
       <div className={styles.links}>
         <span className={styles.link_title}>
-          You may also be interested in:
+          See the following for a map showing op shops, repair, donation and
+          recycling locations:
         </span>
         <ul>
           <li className={styles.link_text}>

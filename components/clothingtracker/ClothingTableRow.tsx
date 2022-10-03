@@ -127,7 +127,11 @@ export default function ClothingTableRow({
 
   const handleEditWearCount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item: ClothingItem = { ...modifiedClothingItem }
-    item.wearCount = parseInt(e.target.value)
+    if (e.target.value === "") {
+      item.wearCount = 0
+    } else {
+      item.wearCount = parseInt(e.target.value)
+    }
     setModifiedClothingItem(item)
     setDirtyType(true)
   }
@@ -407,7 +411,7 @@ export default function ClothingTableRow({
                   shrink: true,
                 }}
                 onChange={handleEditWearCount}
-                value={modifiedClothingItem?.wearCount || "0"}
+                value={modifiedClothingItem?.wearCount || ""}
                 sx={{ width: "100%" }}
                 error={
                   dirtyType && invalidWearCount(modifiedClothingItem.wearCount)
