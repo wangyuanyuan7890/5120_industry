@@ -125,6 +125,13 @@ export default function ClothingTableRow({
     setDirtyMaterial(true)
   }
 
+  const handleEditWearCount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const item: ClothingItem = { ...modifiedClothingItem }
+    item.wearCount = parseInt(e.target.value)
+    setModifiedClothingItem(item)
+    setDirtyType(true)
+  }
+
   const handleAddCount = () => {
     const item: ClothingItem = { ...modifiedClothingItem }
     item.wearCount = item.wearCount + 1
@@ -238,6 +245,11 @@ export default function ClothingTableRow({
   // checks for invalid materials
   const invalidMaterialSelection = (materialIds: number[]) => {
     if (!materialIds || !(materialIds.length > 0)) return true
+    return false
+  }
+
+  const invalidWearCount = (count: number) => {
+    if (count < 0) return true
     return false
   }
 
@@ -387,23 +399,41 @@ export default function ClothingTableRow({
         </TableCell>
         <TableCell sx={{ padding: 0 }}>
           <div className={styles.counter_container}>
-            <IconButton
-              color="error"
-              size="small"
-              onClick={() => handleReduceCount()}
-            >
-              <RemoveIcon />
-            </IconButton>
-            <span className={styles.counter}>
-              {modifiedClothingItem?.wearCount || 0}
-            </span>
-            <IconButton
-              color="success"
-              size="small"
-              onClick={() => handleAddCount()}
-            >
-              <AddIcon />
-            </IconButton>
+            {modifiedClothingItem.isEditing ? (
+              <TextField
+                label="Wears"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleEditWearCount}
+                value={modifiedClothingItem?.wearCount || "0"}
+                sx={{ width: "100%" }}
+                error={
+                  dirtyType && invalidWearCount(modifiedClothingItem.wearCount)
+                }
+              />
+            ) : (
+              <>
+                <IconButton
+                  color="error"
+                  size="small"
+                  onClick={() => handleReduceCount()}
+                >
+                  <RemoveIcon />
+                </IconButton>
+                <span className={styles.counter}>
+                  {modifiedClothingItem?.wearCount || 0}
+                </span>
+                <IconButton
+                  color="success"
+                  size="small"
+                  onClick={() => handleAddCount()}
+                >
+                  <AddIcon />
+                </IconButton>
+              </>
+            )}
           </div>
         </TableCell>
         <TableCell sx={{ padding: 0 }}>
@@ -419,7 +449,7 @@ export default function ClothingTableRow({
               </>
             ) : (
               <>
-                <Tooltip title="Recycle" className={styles.recycle_hover}>
+                <Tooltip title="Disposal tool" className={styles.recycle_hover}>
                   <IconButton onClick={handleRecycleItem}>
                     <SvgIcon component={RecyclingIcon} viewBox="3 2 42 42" />
                   </IconButton>
