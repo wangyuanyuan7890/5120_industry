@@ -28,31 +28,28 @@ export default function ClothingTracker() {
           title="How to use the clothing tracker"
           description="Track an outfit or your entire wardrobe and get instant feedback based on your entries."
         >
-          <ul>
-            <li>Create a new clothing record</li>
-            <li>
-              Enter a name for your clothing item, the type, a list of materials
-              and the amount times that clothing has been worn
-            </li>
-            <li>
-              Then click the view summary button to see how eco-friendly you
-              are!
-            </li>
-          </ul>
-          {clothingItems.length > 0 && (
-            <div className={styles.action_group}>
-              <LinkButton
-                text="View summary"
-                href="/clothingtracker/summary"
-                icon={<DescriptionIcon />}
-              />
-              <LinkButton
-                text="Disposal tool"
-                href="/clothingtracker/disposal"
-                icon={<DeleteIcon />}
-              />
-            </div>
-          )}
+          <div className={styles.hero_divider}>
+            <ul>
+              <li>Create a new clothing record</li>
+              <li>
+                Enter a name for your clothing item, the type, a list of
+                materials and the amount times that clothing has been worn
+              </li>
+              <li>
+                Then click the view summary button to see how eco-friendly you
+                are!
+              </li>
+            </ul>
+            {clothingItems.length > 0 && (
+              <div className={styles.action_group}>
+                <LinkButton
+                  text="View summary"
+                  href="/clothingtracker/summary"
+                  icon={<DescriptionIcon />}
+                />
+              </div>
+            )}
+          </div>
         </Hero>
       </Container>
       <Container maxWidth="lg">

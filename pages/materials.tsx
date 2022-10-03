@@ -1,9 +1,10 @@
 import Hero from "@/components/Hero"
+import InfoGroup from "@/components/materials/InfoGroup"
 import MaterialItem from "@/components/materials/MaterialItem"
 import MaterialSummary from "@/components/materials/MaterialSummary"
 import Page from "@/components/Page"
 import styles from "@/styles/pages/Materials.module.scss"
-import { Chip, Container } from "@mui/material"
+import { Box, Chip, Container } from "@mui/material"
 import { useEffect, useState } from "react"
 
 // Material page that allows you to select materials and receive results
@@ -60,6 +61,9 @@ export default function Materials() {
           title="Material Checker"
           description="Unsure of the sustainability or biodegradability of your clothing? Just check the clothing tag and select the materials below!"
         />
+        <Box sx={{ marginBottom: "2em" }}>
+          <InfoGroup />
+        </Box>
         <span className={styles.material_title}>Select clothing materials</span>
         <div className={styles.material_search_wrapper}>
           {foundMaterials.map((material) => {

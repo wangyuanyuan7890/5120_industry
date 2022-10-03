@@ -1,5 +1,7 @@
 import {
+  Alert,
   Button,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -40,6 +42,13 @@ export default function ClothingTable({
   const [isAddingItem, setIsAddingItem] = useState<boolean>(false)
   const [materials, setMaterials] = useState<Material[]>([])
   const [openClearAllModal, setOpenClearAllModal] = useState<boolean>(false)
+  const [openUpdateError, setOpenUpdateError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleShowError = (message: string | null) => {
+    setErrorMessage(message)
+    setOpenUpdateError(true)
+  }
 
   // fetches clothing from local storage and also queries material API for data
   useEffect(() => {
@@ -136,72 +145,91 @@ export default function ClothingTable({
     )
   } else {
     return (
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {headCells.map((x) => (
-                <TableCell
-                  key={x.id}
-                  sx={{
-                    width: `${x.width}%`,
-                    maxWidth: `${x.width}%`,
-                    textAlign: `${x.align || "left"}`,
-                  }}
-                >
-                  {x.label}
+      <>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                {headCells.map((x) => (
+                  <TableCell
+                    key={x.id}
+                    sx={{
+                      width: `${x.width}%`,
+                      maxWidth: `${x.width}%`,
+                      textAlign: `${x.align || "left"}`,
+                    }}
+                  >
+                    {x.label}
+                  </TableCell>
+                ))}
+                <TableCell sx={{ width: "12.5%" }}>
+                  <div className={styles.toolbar}>
+                    <Button
+                      variant="text"
+                      color="success"
+                      onClick={() => setOpenClearAllModal(true)}
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      disabled={isAddingItem}
+                      variant="contained"
+                      onClick={handleAdd}
+                      color="success"
+                    >
+                      Add
+                    </Button>
+                  </div>
+                  <ConfirmModal
+                    open={openClearAllModal}
+                    setOpen={setOpenClearAllModal}
+                    onConfirm={handleClearAllModalConfirm}
+                    text="Are you sure you want to clear all clothing items?"
+                  />
                 </TableCell>
-              ))}
-              <TableCell sx={{ width: "12.5%" }}>
-                <div className={styles.toolbar}>
-                  <Button
-                    variant="text"
-                    color="success"
-                    onClick={() => setOpenClearAllModal(true)}
-                  >
-                    Clear
-                  </Button>
-                  <Button
-                    disabled={isAddingItem}
-                    variant="contained"
-                    onClick={handleAdd}
-                    color="success"
-                  >
-                    Add
-                  </Button>
-                </div>
-                <ConfirmModal
-                  open={openClearAllModal}
-                  setOpen={setOpenClearAllModal}
-                  onConfirm={handleClearAllModalConfirm}
-                  text="Are you sure you want to clear all clothing items?"
-                />
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {isAddingItem && (
-              <ClothingTableRow
-                setIsAddingItem={setIsAddingItem}
-                updateClothingItem={handleSetClothingItem}
-                deleteClothingItem={handleDeleteClothingItem}
-                materials={materials}
-              />
-            )}
-            {clothingItems.length > 0 &&
-              getReversedClothingItems().map((x, index) => (
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {isAddingItem && (
                 <ClothingTableRow
-                  key={x.id}
-                  index={index}
-                  clothingItem={x}
+                  setIsAddingItem={setIsAddingItem}
                   updateClothingItem={handleSetClothingItem}
                   deleteClothingItem={handleDeleteClothingItem}
                   materials={materials}
+                  handleShowError={handleShowError}
                 />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )}
+              {clothingItems.length > 0 &&
+                getReversedClothingItems().map((x, index) => (
+                  <ClothingTableRow
+                    key={x.id}
+                    index={index}
+                    clothingItem={x}
+                    updateClothingItem={handleSetClothingItem}
+                    deleteClothingItem={handleDeleteClothingItem}
+                    materials={materials}
+                    handleShowError={handleShowError}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={openUpdateError}
+          autoHideDuration={5000}
+          onClose={() => setOpenUpdateError(false)}
+        >
+          <Alert onClose={() => setOpenUpdateError(false)} severity="error">
+            {errorMessage
+              ? errorMessage
+              : "There was an issue while updating that record"}
+          </Alert>
+        </Snackbar>
+      </>
     )
   }
 }

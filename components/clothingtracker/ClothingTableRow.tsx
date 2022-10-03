@@ -7,14 +7,18 @@ import {
   FormControl,
   IconButton,
   InputLabel,
+  ListItemIcon,
   ListItemText,
+  Menu,
   MenuItem,
   OutlinedInput,
   Select,
   Snackbar,
+  SvgIcon,
   TableCell,
   TableRow,
   TextField,
+  Tooltip,
 } from "@mui/material"
 import { v4 as uuidv4 } from "uuid"
 import styles from "@/styles/components/clothingtracker/ClothingTableRow.module.scss"
@@ -25,7 +29,10 @@ import DoneIcon from "@mui/icons-material/Done"
 import ClearIcon from "@mui/icons-material/Clear"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ConfirmModal from "../ConfirmModal"
+import RecyclingIcon from "@/public/clothingtracker/recycling.svg"
+import { useRouter } from "next/router"
 
 type Props = {
   index?: number
@@ -34,6 +41,7 @@ type Props = {
   deleteClothingItem: Function
   setIsAddingItem?: Function
   materials: Material[]
+  handleShowError: Function
 }
 
 interface ClothingType {
@@ -70,15 +78,25 @@ export default function ClothingTableRow({
   updateClothingItem,
   deleteClothingItem,
   materials,
+  handleShowError,
 }: Props) {
+  const router = useRouter()
   const [modifiedClothingItem, setModifiedClothingItem] = useState(
     clothingItem ? { ...clothingItem } : { ...defaultItem }
   )
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
-  const [openUpdateError, setOpenUpdateError] = useState<boolean>(false)
   const [dirtyName, setDirtyName] = useState<boolean>(false)
   const [dirtyType, setDirtyType] = useState<boolean>(false)
   const [dirtyMaterial, setDirtyMaterial] = useState<boolean>(false)
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null)
+  const menuOpen = Boolean(menuAnchor)
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setMenuAnchor(event.currentTarget)
+  }
+  const handleMenuClose = () => {
+    setMenuAnchor(null)
+  }
 
   const handleEditName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item: ClothingItem = { ...modifiedClothingItem }
@@ -107,10 +125,19 @@ export default function ClothingTableRow({
     setDirtyMaterial(true)
   }
 
+  const handleEditWearCount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const item: ClothingItem = { ...modifiedClothingItem }
+    if (e.target.value === "") {
+      item.wearCount = 0
+    } else {
+      item.wearCount = parseInt(e.target.value)
+    }
+    setModifiedClothingItem(item)
+    setDirtyType(true)
+  }
+
   const handleAddCount = () => {
     const item: ClothingItem = { ...modifiedClothingItem }
-    if (modifiedClothingItem.isEditing) {
-    }
     item.wearCount = item.wearCount + 1
     setModifiedClothingItem(item)
     if (!modifiedClothingItem.isEditing && index !== undefined) {
@@ -135,6 +162,7 @@ export default function ClothingTableRow({
   }
 
   const handleConfirm = () => {
+    setMenuAnchor(null)
     let item: ClothingItem = { ...modifiedClothingItem }
     if (
       modifiedClothingItem.isEditing &&
@@ -143,7 +171,11 @@ export default function ClothingTableRow({
         invalidMaterialSelection(item.selectedMaterialIds))
     ) {
       // show popup error
-      setOpenUpdateError(true)
+      if (item.name.length > 30) {
+        handleShowError("Name must be less than 30 characters")
+      } else {
+        handleShowError(null)
+      }
       setDirtyState(true)
       return
     } else {
@@ -160,6 +192,7 @@ export default function ClothingTableRow({
   }
 
   const handleCancel = () => {
+    setMenuAnchor(null)
     const item: ClothingItem = { ...clothingItem }
     if (index === undefined) {
       setIsAddingItem(false)
@@ -203,6 +236,7 @@ export default function ClothingTableRow({
   // checks for invalid names
   const invalidName = (name: string) => {
     if (!name || name === "") return true
+    if (name.length > 30) return true
     return false
   }
 
@@ -216,6 +250,21 @@ export default function ClothingTableRow({
   const invalidMaterialSelection = (materialIds: number[]) => {
     if (!materialIds || !(materialIds.length > 0)) return true
     return false
+  }
+
+  const invalidWearCount = (count: number) => {
+    if (count < 0) return true
+    return false
+  }
+
+  const handleRecycleItem = () => {
+    const item: ClothingItem = { ...clothingItem }
+    router.push({
+      pathname: "/clothingtracker/disposal",
+      query: {
+        id: item.id,
+      },
+    })
   }
 
   return (
@@ -354,23 +403,41 @@ export default function ClothingTableRow({
         </TableCell>
         <TableCell sx={{ padding: 0 }}>
           <div className={styles.counter_container}>
-            <IconButton
-              color="error"
-              size="small"
-              onClick={() => handleReduceCount()}
-            >
-              <RemoveIcon />
-            </IconButton>
-            <span className={styles.counter}>
-              {modifiedClothingItem?.wearCount || 0}
-            </span>
-            <IconButton
-              color="success"
-              size="small"
-              onClick={() => handleAddCount()}
-            >
-              <AddIcon />
-            </IconButton>
+            {modifiedClothingItem.isEditing ? (
+              <TextField
+                label="Wears"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleEditWearCount}
+                value={modifiedClothingItem?.wearCount || ""}
+                sx={{ width: "100%" }}
+                error={
+                  dirtyType && invalidWearCount(modifiedClothingItem.wearCount)
+                }
+              />
+            ) : (
+              <>
+                <IconButton
+                  color="error"
+                  size="small"
+                  onClick={() => handleReduceCount()}
+                >
+                  <RemoveIcon />
+                </IconButton>
+                <span className={styles.counter}>
+                  {modifiedClothingItem?.wearCount || 0}
+                </span>
+                <IconButton
+                  color="success"
+                  size="small"
+                  onClick={() => handleAddCount()}
+                >
+                  <AddIcon />
+                </IconButton>
+              </>
+            )}
           </div>
         </TableCell>
         <TableCell sx={{ padding: 0 }}>
@@ -386,15 +453,34 @@ export default function ClothingTableRow({
               </>
             ) : (
               <>
-                <IconButton color="primary" onClick={() => handleEdit()}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  sx={{ color: "black" }}
-                  onClick={() => setOpenDeleteModal(true)}
+                <Tooltip title="Disposal tool" className={styles.recycle_hover}>
+                  <IconButton onClick={handleRecycleItem}>
+                    <SvgIcon component={RecyclingIcon} viewBox="3 2 42 42" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Options">
+                  <IconButton onClick={handleMenuClick}>
+                    <MoreVertIcon />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  open={menuOpen}
+                  anchorEl={menuAnchor}
+                  onClose={handleMenuClose}
                 >
-                  <DeleteIcon />
-                </IconButton>
+                  <MenuItem onClick={() => handleEdit()}>
+                    <ListItemIcon>
+                      <EditIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Edit</ListItemText>
+                  </MenuItem>
+                  <MenuItem onClick={() => setOpenDeleteModal(true)}>
+                    <ListItemIcon>
+                      <DeleteIcon fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Delete</ListItemText>
+                  </MenuItem>
+                </Menu>
                 <ConfirmModal
                   open={openDeleteModal}
                   setOpen={setOpenDeleteModal}
@@ -406,19 +492,6 @@ export default function ClothingTableRow({
           </div>
         </TableCell>
       </TableRow>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        open={openUpdateError}
-        autoHideDuration={5000}
-        onClose={() => setOpenUpdateError(false)}
-      >
-        <Alert onClose={() => setOpenUpdateError(false)} severity="error">
-          There was an issue while updating that record
-        </Alert>
-      </Snackbar>
     </>
   )
 }

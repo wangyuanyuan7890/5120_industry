@@ -10,18 +10,19 @@ export default function Hero({
   breadcrumbs = null,
   children = null,
 }) {
-  console.log(breadcrumbs)
   return (
     <div className={styles.hero}>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <Breadcrumbs>
-          {breadcrumbs.map((x: any) =>
+          {breadcrumbs.map((x: any, index: number) =>
             x.href ? (
-              <Link href={x.href}>
+              <Link key={index} href={x.href}>
                 <a className={styles.link}>{x.label}</a>
               </Link>
             ) : (
-              <Typography color="gray">{x.label}</Typography>
+              <Typography key={index} color="gray">
+                {x.label}
+              </Typography>
             )
           )}
         </Breadcrumbs>
