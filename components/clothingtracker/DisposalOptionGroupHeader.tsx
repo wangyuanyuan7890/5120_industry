@@ -6,7 +6,7 @@ export default function DisposalOptionGroupHeader({ wearCount, limit, type }) {
   return (
     <div>
       <span className={styles.text}>
-        You've worn this clothing item{" "}
+        You&apos;ve worn this clothing item{" "}
         <span className={styles.bold}>{wearCount}</span> time
         {wearCount > 1 && "s"} and your usage is considered{" "}
         <span className={styles.bold}>{type}</span>
