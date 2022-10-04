@@ -10,11 +10,13 @@ import Feature from "@/components/home/Feature"
 
 import styles from "@/styles/pages/Home.module.scss"
 import FactGroup from "@/components/home/FactGroup"
+import ScrollToTop from "../components/ScrollToTop"
 
 // Home page design
 export default function Home() {
   return (
     <Page title="Home">
+      <ScrollToTop />
       <Container maxWidth="lg">
         <div className={styles.hero_wrapper}>
           <HomeHeroImage className={styles.hero_image} />

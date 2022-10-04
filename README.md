@@ -37,3 +37,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 `npm i -S @react-google-maps/api`
 `npm install uuid`
+`npm install @ap.cx/react-fullpage`
+`npm install react-icons --save`
