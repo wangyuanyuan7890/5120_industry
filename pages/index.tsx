@@ -34,12 +34,11 @@ export default function Home() {
               </span>
             </div>
             <span className={styles.description}>
-              Ecofash makes finding ethical and sustainable clothing easy. Out
-              shopping? Check if an item is sustainable and biodegradable with
-              our Material checker.
+              Ecofash makes identifyng ecofriendly clothing easy. Need somewhere
+              to keep track of your clothes? Check our Clothing tracker.
             </span>
             <div>
-              <LinkButton text="Material checker" href="materials" />
+              <LinkButton text="Clothing tracker" href="clothingtracker" />
             </div>
           </div>
         </div>

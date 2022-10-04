@@ -4,7 +4,7 @@ import MaterialItem from "@/components/materials/MaterialItem"
 import MaterialSummary from "@/components/materials/MaterialSummary"
 import Page from "@/components/Page"
 import styles from "@/styles/pages/Materials.module.scss"
-import { Box, Chip, Container } from "@mui/material"
+import { Box, Chip, Container, Link } from "@mui/material"
 import { useEffect, useState } from "react"
 
 // Material page that allows you to select materials and receive results
@@ -60,7 +60,20 @@ export default function Materials() {
         <Hero
           title="Material Checker"
           description="Unsure of the sustainability or biodegradability of your clothing? Just check the clothing tag and select the materials below!"
-        />
+        >
+          <div className={styles.links}>
+            <span className={styles.link_title}>
+              Want to keep track of your clothing? take a look at the following:
+            </span>
+            <ul>
+              <li className={styles.link_text}>
+                <Link href="/clothingtracker">
+                  <span className={styles.link_color}>Clothing tracker</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </Hero>
         <Box sx={{ marginBottom: "2em" }}>
           <InfoGroup />
         </Box>

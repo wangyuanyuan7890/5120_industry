@@ -27,11 +27,10 @@ type Props = {
 
 // column header values
 const headCells: any[] = [
-  { id: 1, label: "", width: 10, align: "center" },
-  { id: 2, label: "Name", width: 25 },
-  { id: 3, label: "Type", width: 20 },
-  { id: 4, label: "Materials", width: 20 },
-  { id: 5, label: "Wear count", width: 12.5, align: "center" },
+  { id: 1, label: "Name", width: 30 },
+  { id: 2, label: "Type", width: 25 },
+  { id: 3, label: "Materials", width: 20 },
+  { id: 4, label: "Wear count", width: 12.5, align: "center" },
 ]
 
 // handles all of the clothing records
@@ -98,9 +97,19 @@ export default function ClothingTable({
     setIsAddingItem(false)
   }
 
+  const checkDuplicateName = (id: string, name: string): boolean => {
+    const index = clothingItems.findIndex((x) => x.name === name && x.id !== id)
+    if (index === -1) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   // update clothing item
   const handleSetClothingItem = (clothingItem: ClothingItem) => {
     const items = [...clothingItems]
+
     const index = items.findIndex((x) => x.id === clothingItem.id)
     if (index === -1) {
       handleAddClothingItem(clothingItem)
@@ -197,6 +206,7 @@ export default function ClothingTable({
                   deleteClothingItem={handleDeleteClothingItem}
                   materials={materials}
                   handleShowError={handleShowError}
+                  checkDuplicateName={checkDuplicateName}
                 />
               )}
               {clothingItems.length > 0 &&
@@ -209,6 +219,7 @@ export default function ClothingTable({
                     deleteClothingItem={handleDeleteClothingItem}
                     materials={materials}
                     handleShowError={handleShowError}
+                    checkDuplicateName={checkDuplicateName}
                   />
                 ))}
             </TableBody>

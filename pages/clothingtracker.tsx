@@ -10,6 +10,7 @@ import LinkButton from "@/components/LinkButton"
 
 import DeleteIcon from "@mui/icons-material/Delete"
 import DescriptionIcon from "@mui/icons-material/Description"
+import Link from "next/link"
 
 // keeps track of clothing items
 export default function ClothingTracker() {
@@ -28,27 +29,42 @@ export default function ClothingTracker() {
           title="How to use the clothing tracker"
           description="Track an outfit or your entire wardrobe and get instant feedback based on your entries."
         >
-          <div className={styles.hero_divider}>
+          <>
+            <div className={styles.hero_divider}>
+              <ul>
+                <li>Create a new clothing record</li>
+                <li>
+                  Enter a name for your clothing item, the type, a list of
+                  materials and the amount times that clothing has been worn
+                </li>
+                <li>
+                  Then click the view summary button to see how eco-friendly you
+                  are!
+                </li>
+              </ul>
+              {clothingItems.length > 0 && (
+                <div className={styles.action_group}>
+                  <LinkButton
+                    text="View summary"
+                    href="/clothingtracker/summary"
+                    icon={<DescriptionIcon />}
+                  />
+                </div>
+              )}
+            </div>
+          </>
+          <div className={styles.links}>
+            <span className={styles.link_title}>
+              Want more information about your materials? check out the
+              following:
+            </span>
             <ul>
-              <li>Create a new clothing record</li>
-              <li>
-                Enter a name for your clothing item, the type, a list of
-                materials and the amount times that clothing has been worn
-              </li>
-              <li>
-                Then click the view summary button to see how eco-friendly you
-                are!
+              <li className={styles.link_text}>
+                <Link href="/materials">
+                  <span className={styles.link_color}>Material checker</span>
+                </Link>
               </li>
             </ul>
-            {clothingItems.length > 0 && (
-              <div className={styles.action_group}>
-                <LinkButton
-                  text="View summary"
-                  href="/clothingtracker/summary"
-                  icon={<DescriptionIcon />}
-                />
-              </div>
-            )}
           </div>
         </Hero>
       </Container>

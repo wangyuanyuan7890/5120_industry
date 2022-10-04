@@ -14,3 +14,11 @@
 .count_text {
   font-size: 1.25em;
 }
+
+.materials_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.1em;
+}

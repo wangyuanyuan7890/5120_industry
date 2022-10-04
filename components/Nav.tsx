@@ -6,14 +6,13 @@ import Link from "next/link"
 import { Button, IconButton, Tooltip } from "@mui/material"
 import { useRouter } from "next/router"
 import { DarkMode } from "@mui/icons-material/"
-import { useTheme } from "next-themes"
 
 // Page routes
 const routes = [
   { name: "Home", path: "/" },
-  { name: "Lifecycle", path: "/lifecycle" },
-  { name: "Materials", path: "/materials" },
   { name: "Clothing tracker", path: "/clothingtracker" },
+  { name: "Material checker", path: "/materials" },
+  { name: "Lifecycle", path: "/lifecycle" },
   { name: "Sustainable locations", path: "/sustainablelocations" },
   { name: "Trends", path: "/trends" },
 ]
@@ -21,16 +20,6 @@ const routes = [
 // Navbar that appears on all pages
 export default function Nav({ stickyNav }) {
   const router = useRouter()
-  const { theme, setTheme } = useTheme()
-
-  // Toggling theme
-  const handleToggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark")
-    } else {
-      setTheme("light")
-    }
-  }
 
   const getPageSection = (path: string) => {
     const paths = path.split("/")

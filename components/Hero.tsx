@@ -20,7 +20,7 @@ export default function Hero({
                 <a className={styles.link}>{x.label}</a>
               </Link>
             ) : (
-              <Typography key={index} color="gray">
+              <Typography key={index} color="gray" sx={{ fontSize: "1.25em" }}>
                 {x.label}
               </Typography>
             )

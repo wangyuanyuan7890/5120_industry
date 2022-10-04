@@ -42,22 +42,24 @@ type Props = {
   setIsAddingItem?: Function
   materials: Material[]
   handleShowError: Function
+  checkDuplicateName: Function
 }
 
 interface ClothingType {
   name: string
   value: string
+  color: string
 }
 
 export const clothingTypes: ClothingType[] = [
-  { name: "Headwear", value: "1" },
-  { name: "Shirt", value: "2" },
-  { name: "Jacket", value: "3" },
-  { name: "Jumper", value: "4" },
-  { name: "Pants", value: "5" },
-  { name: "Shorts", value: "6" },
-  { name: "Shoes", value: "7" },
-  { name: "Other", value: "8" },
+  { name: "Headwear", value: "1", color: "#ff0d00" },
+  { name: "Shirt", value: "2", color: "#ff9d00" },
+  { name: "Jacket", value: "3", color: "#51ff00" },
+  { name: "Jumper", value: "4", color: "#00ff8c" },
+  { name: "Pants", value: "5", color: "#00d9ff" },
+  { name: "Shorts", value: "6", color: "#0800ff" },
+  { name: "Shoes", value: "7", color: "#8000ff" },
+  { name: "Other", value: "8", color: "#2c2c2c" },
 ]
 
 const defaultItem = {
@@ -70,6 +72,9 @@ const defaultItem = {
   isEditing: true,
 }
 
+const minWearCount = 0
+const maxWearCount = 999
+
 // shows a clothing record in the clothing tracker
 export default function ClothingTableRow({
   index,
@@ -79,15 +84,18 @@ export default function ClothingTableRow({
   deleteClothingItem,
   materials,
   handleShowError,
+  checkDuplicateName,
 }: Props) {
   const router = useRouter()
   const [modifiedClothingItem, setModifiedClothingItem] = useState(
     clothingItem ? { ...clothingItem } : { ...defaultItem }
   )
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
+  const [errorName, setErrorName] = useState<boolean>(false)
   const [dirtyName, setDirtyName] = useState<boolean>(false)
   const [dirtyType, setDirtyType] = useState<boolean>(false)
   const [dirtyMaterial, setDirtyMaterial] = useState<boolean>(false)
+  const [dirtyWearCount, setDirtyWearCount] = useState<boolean>(false)
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null)
   const menuOpen = Boolean(menuAnchor)
 
@@ -103,6 +111,7 @@ export default function ClothingTableRow({
     item.name = e.target.value
     setModifiedClothingItem(item)
     setDirtyName(true)
+    setErrorName(false)
   }
 
   const handleEditType = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,13 +136,13 @@ export default function ClothingTableRow({
 
   const handleEditWearCount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const item: ClothingItem = { ...modifiedClothingItem }
-    if (e.target.value === "") {
-      item.wearCount = 0
-    } else {
-      item.wearCount = parseInt(e.target.value)
+    const regex = /^[0-9\b]+$/
+    const value = e.target.value
+    if (value == "" || regex.test(value)) {
+      item.wearCount = value === "" ? 0 : parseInt(value)
     }
     setModifiedClothingItem(item)
-    setDirtyType(true)
+    setDirtyWearCount(true)
   }
 
   const handleAddCount = () => {
@@ -159,16 +168,19 @@ export default function ClothingTableRow({
     setDirtyName(value)
     setDirtyType(value)
     setDirtyMaterial(value)
+    setDirtyWearCount(value)
   }
 
   const handleConfirm = () => {
     setMenuAnchor(null)
+    setErrorName(false)
     let item: ClothingItem = { ...modifiedClothingItem }
     if (
       modifiedClothingItem.isEditing &&
       (invalidName(item.name) ||
         invalidType(item.type) ||
-        invalidMaterialSelection(item.selectedMaterialIds))
+        invalidMaterialSelection(item.selectedMaterialIds) ||
+        invalidWearCount(item.wearCount))
     ) {
       // show popup error
       if (item.name.length > 30) {
@@ -179,6 +191,11 @@ export default function ClothingTableRow({
       setDirtyState(true)
       return
     } else {
+      if (checkDuplicateName(item.id, item.name)) {
+        setErrorName(true)
+        handleShowError("An item with that name already exists")
+        return
+      }
       if (index === undefined) {
         setIsAddingItem(false)
       }
@@ -192,6 +209,7 @@ export default function ClothingTableRow({
   }
 
   const handleCancel = () => {
+    setErrorName(false)
     setMenuAnchor(null)
     const item: ClothingItem = { ...clothingItem }
     if (index === undefined) {
@@ -216,11 +234,7 @@ export default function ClothingTableRow({
   const getMaterialNameFromId = (id: number) => {
     const foundMaterial = materials.find((x) => x.id === id)
     if (!foundMaterial) return ""
-    return formatName(foundMaterial.name)
-  }
-
-  const formatName = (name: string) => {
-    return name.charAt(0).toUpperCase() + name.slice(1)
+    return formatMaterialName(foundMaterial.name)
   }
 
   const getTypeNameFromId = (value: string) => {
@@ -253,7 +267,7 @@ export default function ClothingTableRow({
   }
 
   const invalidWearCount = (count: number) => {
-    if (count < 0) return true
+    if (count < minWearCount || count > maxWearCount) return true
     return false
   }
 
@@ -276,28 +290,13 @@ export default function ClothingTableRow({
             (modifiedClothingItem.isEditing && "#63000021"),
         }}
       >
-        <TableCell sx={{ textAlign: "center" }}>
-          <Chip
-            label={
-              index !== undefined
-                ? modifiedClothingItem.isEditing
-                  ? "Editing"
-                  : "Saved"
-                : "New"
-            }
-            color={
-              index !== undefined
-                ? modifiedClothingItem.isEditing
-                  ? "error"
-                  : "success"
-                : "info"
-            }
-          ></Chip>
-        </TableCell>
         <TableCell>
           {modifiedClothingItem.isEditing ? (
             <TextField
-              error={dirtyName && invalidName(modifiedClothingItem.name)}
+              error={
+                errorName ||
+                (dirtyName && invalidName(modifiedClothingItem.name))
+              }
               label="Name"
               value={modifiedClothingItem?.name || ""}
               onChange={handleEditName}
@@ -383,7 +382,7 @@ export default function ClothingTableRow({
                       }
                       color="success"
                     />
-                    <ListItemText primary={formatName(material.name)} />
+                    <ListItemText primary={formatMaterialName(material.name)} />
                   </MenuItem>
                 ))}
               </Select>
@@ -394,7 +393,7 @@ export default function ClothingTableRow({
                 <Chip
                   key={x.id}
                   size="small"
-                  label={formatName(x.name)}
+                  label={formatMaterialName(x.name)}
                   color="success"
                 />
               ))}
@@ -406,15 +405,13 @@ export default function ClothingTableRow({
             {modifiedClothingItem.isEditing ? (
               <TextField
                 label="Wears"
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                type="text"
                 onChange={handleEditWearCount}
-                value={modifiedClothingItem?.wearCount || ""}
+                value={modifiedClothingItem?.wearCount}
                 sx={{ width: "100%" }}
                 error={
-                  dirtyType && invalidWearCount(modifiedClothingItem.wearCount)
+                  dirtyWearCount &&
+                  invalidWearCount(modifiedClothingItem.wearCount)
                 }
               />
             ) : (
@@ -458,29 +455,16 @@ export default function ClothingTableRow({
                     <SvgIcon component={RecyclingIcon} viewBox="3 2 42 42" />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Options">
-                  <IconButton onClick={handleMenuClick}>
-                    <MoreVertIcon />
+                <Tooltip title="Edit" className={styles.edit_hover}>
+                  <IconButton onClick={handleEdit}>
+                    <EditIcon fontSize="small" />
                   </IconButton>
                 </Tooltip>
-                <Menu
-                  open={menuOpen}
-                  anchorEl={menuAnchor}
-                  onClose={handleMenuClose}
-                >
-                  <MenuItem onClick={() => handleEdit()}>
-                    <ListItemIcon>
-                      <EditIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText>Edit</ListItemText>
-                  </MenuItem>
-                  <MenuItem onClick={() => setOpenDeleteModal(true)}>
-                    <ListItemIcon>
-                      <DeleteIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText>Delete</ListItemText>
-                  </MenuItem>
-                </Menu>
+                <Tooltip title="Delete" className={styles.delete_hover}>
+                  <IconButton onClick={() => setOpenDeleteModal(true)}>
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
                 <ConfirmModal
                   open={openDeleteModal}
                   setOpen={setOpenDeleteModal}
@@ -494,4 +478,8 @@ export default function ClothingTableRow({
       </TableRow>
     </>
   )
+}
+
+export const formatMaterialName = (name: string) => {
+  return name.charAt(0).toUpperCase() + name.slice(1)
 }

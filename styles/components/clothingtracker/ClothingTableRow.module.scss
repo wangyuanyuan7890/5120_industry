@@ -44,3 +44,19 @@
     transition: color 0.2s ease;
   }
 }
+
+.edit_hover {
+  transition: color 0.2s ease;
+  &:hover {
+    color: #006ab1;
+    transition: color 0.2s ease;
+  }
+}
+
+.delete_hover {
+  transition: color 0.2s ease;
+  &:hover {
+    color: #b10000;
+    transition: color 0.2s ease;
+  }
+}

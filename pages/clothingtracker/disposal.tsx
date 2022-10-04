@@ -2,6 +2,7 @@ import Hero from "@/components/Hero"
 import Page from "@/components/Page"
 import { fetchClothingItems } from "@/util/clothingtracker"
 import {
+  Chip,
   Container,
   Table,
   TableBody,
@@ -20,6 +21,7 @@ import {
 } from "@/components/clothingtracker/SummaryTable"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
+import { formatMaterialName } from "@/components/clothingtracker/ClothingTableRow"
 
 const breadcrumbs = [
   { label: "Tracker", href: "/clothingtracker" },
@@ -28,11 +30,12 @@ const breadcrumbs = [
 
 // column header values
 const headCells: any[] = [
-  { id: 1, label: "Name", width: 45 },
-  { id: 2, label: "Type", width: 20 },
-  { id: 3, label: "Wear count", width: 20, align: "center" },
-  { id: 4, label: "Biodegradable", width: 10, align: "center" },
-  { id: 5, label: "Sustainable", width: 10, align: "center" },
+  { id: 1, label: "Name", width: 30 },
+  { id: 2, label: "Type", width: 15 },
+  { id: 3, label: "Materials", width: 20 },
+  { id: 4, label: "Wear count", width: 15, align: "center" },
+  { id: 5, label: "Biodegradable", width: 10, align: "center" },
+  { id: 6, label: "Sustainable", width: 10, align: "center" },
 ]
 
 export default function Disposal() {
@@ -93,6 +96,18 @@ export default function Disposal() {
                   </TableCell>
                   <TableCell>
                     <span className={styles.text}>{clothingItem.type}</span>
+                  </TableCell>
+                  <TableCell>
+                    <div className={styles.materials_container}>
+                      {clothingItem.materials.map((x: Material) => (
+                        <Chip
+                          key={x.id}
+                          size="small"
+                          label={formatMaterialName(x.name)}
+                          color="success"
+                        />
+                      ))}
+                    </div>
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
                     <span className={styles.count_text}>

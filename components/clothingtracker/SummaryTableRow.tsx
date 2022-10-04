@@ -1,15 +1,20 @@
-import { TableRow, TableCell, Typography } from "@mui/material"
+import { TableRow, TableCell, Typography, Chip, Box } from "@mui/material"
 import React from "react"
-import { clothingTypes } from "./ClothingTableRow"
+import { clothingTypes, formatMaterialName } from "./ClothingTableRow"
 
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
 import { isBiodegradable, isSustainable } from "./SummaryTable"
+import styles from "@/styles/components/clothingtracker/SummaryTableRow.module.scss"
 
 // summary table row for details about each clothing item
 export default function SummaryTableRow({ clothingItem }) {
   const getTypeNameById = (value: string) => {
     return clothingTypes.find((x) => x.value === value).name
+  }
+
+  const getTypeColor = (value: string): string => {
+    return clothingTypes.find((x) => x.value === value).color
   }
 
   return (
@@ -20,9 +25,30 @@ export default function SummaryTableRow({ clothingItem }) {
         </Typography>
       </TableCell>
       <TableCell>
-        <Typography sx={{ wordBreak: "break-all" }}>
-          {getTypeNameById(clothingItem.type)}
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: "0.5em" }}>
+          <Box
+            sx={{
+              height: 16,
+              width: 16,
+              background: getTypeColor(clothingItem.type),
+            }}
+          ></Box>
+          <Typography sx={{ wordBreak: "break-all" }}>
+            {getTypeNameById(clothingItem.type)}
+          </Typography>
+        </Box>
+      </TableCell>
+      <TableCell>
+        <div className={styles.materials_container}>
+          {clothingItem.materials.map((x: Material) => (
+            <Chip
+              key={x.id}
+              size="small"
+              label={formatMaterialName(x.name)}
+              color="success"
+            />
+          ))}
+        </div>
       </TableCell>
       <TableCell sx={{ textAlign: "center" }}>
         <Typography sx={{ fontSize: "1.25em" }}>
