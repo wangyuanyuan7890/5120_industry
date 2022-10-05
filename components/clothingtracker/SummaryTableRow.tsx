@@ -30,7 +30,9 @@ export default function SummaryTableRow({ clothingItem }) {
             sx={{
               height: 16,
               width: 16,
-              background: getTypeColor(clothingItem.type),
+              background: getTypeColor(clothingItem.type) + "60",
+              border: `1px solid ${getTypeColor(clothingItem.type)}`,
+              borderRadius: "50%",
             }}
           ></Box>
           <Typography sx={{ wordBreak: "break-all" }}>
