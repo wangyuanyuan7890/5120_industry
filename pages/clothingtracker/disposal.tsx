@@ -21,7 +21,10 @@ import {
 } from "@/components/clothingtracker/SummaryTable"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import HighlightOffIcon from "@mui/icons-material/HighlightOff"
-import { formatMaterialName } from "@/components/clothingtracker/ClothingTableRow"
+import {
+  clothingTypes,
+  formatMaterialName,
+} from "@/components/clothingtracker/ClothingTableRow"
 
 const breadcrumbs = [
   { label: "Tracker", href: "/clothingtracker" },
@@ -60,6 +63,12 @@ export default function Disposal() {
     setClothingItem(item)
   }, [router])
 
+  const getTypeNameFromId = (value: string) => {
+    const foundType = clothingTypes.find((x) => x.value === value)
+    if (!foundType) return ""
+    return foundType.name
+  }
+
   return (
     <Page title="Clothing Disposal Tool">
       <Container maxWidth="lg">
@@ -92,10 +101,14 @@ export default function Disposal() {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <span className={styles.text}>{clothingItem.name}</span>
+                    <span className={styles.text}>
+                      {formatMaterialName(clothingItem.name)}
+                    </span>
                   </TableCell>
                   <TableCell>
-                    <span className={styles.text}>{clothingItem.type}</span>
+                    <span className={styles.text}>
+                      {getTypeNameFromId(clothingItem.type)}
+                    </span>
                   </TableCell>
                   <TableCell>
                     <div className={styles.materials_container}>

@@ -59,7 +59,7 @@ export default function Materials() {
       <Container maxWidth="lg">
         <Hero
           title="Material Checker"
-          description="Unsure of the sustainability or biodegradability of your clothing? Just check the clothing tag and select the materials below!"
+          description="Unsure of the biodegradability or sustainability of your clothing? Just check the clothing tag and select the materials below!"
         >
           <div className={styles.links}>
             <span className={styles.link_title}>
