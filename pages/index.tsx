@@ -56,14 +56,7 @@ export default function Home() {
               onCreated={(state) => state.events.connect(target.current)}
             >
               <Scene />
-              <OrbitControls
-                enableZoom={false}
-                enablePan={false}
-                minAzimuthAngle={Math.PI * 0.4}
-                maxAzimuthAngle={Math.PI * 0.4}
-                minPolarAngle={0}
-                maxPolarAngle={Math.PI * 0.3}
-              />
+              <OrbitControls enableZoom={false} enablePan={false} />
             </Canvas>
           </Suspense>
         </div>
