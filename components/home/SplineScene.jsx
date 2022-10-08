@@ -1,22 +1,12 @@
 import useSpline from "@splinetool/r3f-spline"
 import { PerspectiveCamera } from "@react-three/drei"
 import { useRouter } from "next/router"
-import { useState } from "react"
 
-const items = {
-  tracker: "/clothingtracker",
-  materialRack: "/materials",
-  lifecycle: "/lifecycle",
-  map: "/sustainablelocations",
-  story: "/trends",
-}
-
-export default function Scene({ ...props }) {
+export default function Scene({ items, hoveredItem, setHoveredItem }) {
   const router = useRouter()
-  const [hoveredItem, setHoveredItem] = useState(null)
 
-  const handleNav = (location) => {
-    router.push(location)
+  const handleNav = (item) => {
+    router.push(item.link)
   }
 
   const handleHoveredItem = (item) => {
@@ -24,7 +14,11 @@ export default function Scene({ ...props }) {
   }
 
   const handleMatChange = (item, defaultMat) => {
-    return item === hoveredItem ? materials["selected"] : defaultMat
+    return hoveredItem
+      ? item.name === hoveredItem.name
+        ? materials["selected"]
+        : defaultMat
+      : defaultMat
   }
 
   const { nodes, materials } = useSpline(
@@ -33,7 +27,7 @@ export default function Scene({ ...props }) {
   return (
     <>
       <color attach="background" args={["#fefefe"]} />
-      <group {...props} dispose={null}>
+      <group dispose={null}>
         <PerspectiveCamera
           name="Camera"
           makeDefault={true}
@@ -43,7 +37,7 @@ export default function Scene({ ...props }) {
           up={[0, 1, 0]}
           position={[14071.81, -767.33, -3450.16]}
           rotation={[3.14, 1.34, -3.14]}
-          zoom={1}
+          zoom={1.5}
         />
         <group name="Group">
           <mesh
