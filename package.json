@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ap.cx/react-fullpage": "^0.3.0",
-    "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/icons-material": "^5.10.2",
@@ -25,17 +24,13 @@
     "@splinetool/runtime": "^0.9.109",
     "chart.js": "^3.9.1",
     "next": "12.2.5",
-    "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
-<<<<<<< HEAD
     "sass": "^1.54.5",
     "three": "^0.144.0",
-=======
     "react-icons": "^4.4.0",
     "react-spring": "^9.5.5",
->>>>>>> 25087da7dc6a82551673ce0f427c921a2aa63173
     "uuid": "^9.0.0"
   },
   "devDependencies": {

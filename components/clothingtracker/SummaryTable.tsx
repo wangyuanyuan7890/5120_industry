@@ -26,7 +26,7 @@ const headerCells = [
     id: 1,
     label: "Name",
     index: "name",
-    width: "45%",
+    width: "30%",
     center: false,
     type: "string",
   },
@@ -40,6 +40,14 @@ const headerCells = [
   },
   {
     id: 3,
+    label: "Materials",
+    index: "materials",
+    width: "20%",
+    center: false,
+    type: null,
+  },
+  {
+    id: 4,
     label: "Wear count",
     index: "wearCount",
     width: "15%",
@@ -47,7 +55,7 @@ const headerCells = [
     type: "number",
   },
   {
-    id: 4,
+    id: 5,
     label: "Biodegradable",
     index: "biodegradable",
     width: "10%",
@@ -55,7 +63,7 @@ const headerCells = [
     type: "boolean",
   },
   {
-    id: 5,
+    id: 6,
     label: "Sustainable",
     index: "sustainable",
     width: "10%",
@@ -135,13 +143,19 @@ export default function SummaryTable({ clothingItems }) {
                 sx={{ width: x.width, textAlign: x.center && "center" }}
                 sortDirection={orderBy === x.id ? orderDirection : false}
               >
-                <TableSortLabel
-                  active={orderBy === x.id}
-                  direction={orderBy === x.id ? orderDirection : "asc"}
-                  onClick={() => handleSort(x.id)}
-                >
-                  {x.label}
-                </TableSortLabel>
+                <>
+                  {x.type ? (
+                    <TableSortLabel
+                      active={orderBy === x.id}
+                      direction={orderBy === x.id ? orderDirection : "asc"}
+                      onClick={() => handleSort(x.id)}
+                    >
+                      {x.label}
+                    </TableSortLabel>
+                  ) : (
+                    <span>{x.label}</span>
+                  )}
+                </>
               </TableCell>
             ))}
           </TableRow>

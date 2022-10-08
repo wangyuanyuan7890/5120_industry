@@ -5,20 +5,28 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
 import { Pie } from "react-chartjs-2"
 import { Typography } from "@mui/material"
 import { isBiodegradable, isSustainable } from "./SummaryTable"
+import { clothingTypes } from "./ClothingTableRow"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 // shows the charts for summary page which break down the tracked clothing
 export default function SummaryChartGroup({ clothingItems }) {
+  // will check if any items have been worn
+  const hasAnyItemsWorn = () => {
+    return clothingItems.filter((x) => x.wearCount > 0).length >= 1
+  }
+
   // generates data set for wear count
   const prepareWearCountData = () => {
     const labels: string[] = clothingItems.map((x: ClothingItem) => x.name)
-    const datasetData: number[] = clothingItems.map(
-      (x: ClothingItem) => x.wearCount
-    )
-    const { backgroundColors, borderColors } = generateColors(
-      clothingItems.length
-    )
+    const datasetData: number[] = [
+      ...clothingItems.sort((a, b) => {
+        if (a.type < b.type) return -1
+        if (a.type > b.type) return 1
+        return 0
+      }),
+    ].map((x: ClothingItem) => x.wearCount)
+    const { backgroundColors, borderColors } = generateColors(clothingItems)
     const data = {
       labels,
       datasets: [
@@ -88,21 +96,16 @@ export default function SummaryChartGroup({ clothingItems }) {
   }
 
   // generates random color set for data
-  const generateColors = (length: number) => {
+  const generateColors = (clothingItems: ClothingItem[]) => {
     const backgroundColors: string[] = []
     const borderColors: string[] = []
-    for (let index = 0; index < length; index++) {
-      const r = Math.floor(Math.random() * 255)
-      const g = Math.floor(Math.random() * 255)
-      const b = Math.floor(Math.random() * 255)
-      const backgroundOpacity = 0.4
-      const borderOpacity = 1
-      backgroundColors.push(
-        "rgba(" + r + "," + g + "," + b + "," + backgroundOpacity + ")"
+    for (let index = 0; index < clothingItems.length; index++) {
+      const type = clothingTypes.find(
+        (x) => x.value === clothingItems[index].type
       )
-      borderColors.push(
-        "rgba(" + r + "," + g + "," + b + "," + borderOpacity + ")"
-      )
+      const backgroundOpacity = "60"
+      backgroundColors.push(`${type.color}${backgroundOpacity}`)
+      borderColors.push(type.color)
     }
     return { backgroundColors, borderColors }
   }
@@ -113,7 +116,13 @@ export default function SummaryChartGroup({ clothingItems }) {
         <Typography variant="h6" textAlign="center">
           Wear count
         </Typography>
-        <Pie data={prepareWearCountData()} options={noLegendOptions} />
+        {hasAnyItemsWorn() ? (
+          <Pie data={prepareWearCountData()} options={noLegendOptions} />
+        ) : (
+          <Typography variant="body1" textAlign="center" color="error">
+            No clothing has been worn
+          </Typography>
+        )}
       </div>
       <div className={styles.chart_container}>
         <Typography variant="h6" textAlign="center">

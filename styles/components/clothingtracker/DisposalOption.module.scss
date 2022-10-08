@@ -1,0 +1,12 @@
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  .title {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+  .description {
+    font-size: 1.1em;
+  }
+}

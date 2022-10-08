@@ -1,5 +1,7 @@
 import {
+  Alert,
   Button,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -25,11 +27,10 @@ type Props = {
 
 // column header values
 const headCells: any[] = [
-  { id: 1, label: "", width: 10, align: "center" },
-  { id: 2, label: "Name", width: 25 },
-  { id: 3, label: "Type", width: 20 },
-  { id: 4, label: "Materials", width: 20 },
-  { id: 5, label: "Wear count", width: 12.5, align: "center" },
+  { id: 1, label: "Name", width: 30 },
+  { id: 2, label: "Type", width: 25 },
+  { id: 3, label: "Materials", width: 20 },
+  { id: 4, label: "Wear count", width: 12.5, align: "center" },
 ]
 
 // handles all of the clothing records
@@ -40,6 +41,13 @@ export default function ClothingTable({
   const [isAddingItem, setIsAddingItem] = useState<boolean>(false)
   const [materials, setMaterials] = useState<Material[]>([])
   const [openClearAllModal, setOpenClearAllModal] = useState<boolean>(false)
+  const [openUpdateError, setOpenUpdateError] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleShowError = (message: string | null) => {
+    setErrorMessage(message)
+    setOpenUpdateError(true)
+  }
 
   // fetches clothing from local storage and also queries material API for data
   useEffect(() => {
@@ -89,9 +97,19 @@ export default function ClothingTable({
     setIsAddingItem(false)
   }
 
+  const checkDuplicateName = (id: string, name: string): boolean => {
+    const index = clothingItems.findIndex((x) => x.name === name && x.id !== id)
+    if (index === -1) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   // update clothing item
   const handleSetClothingItem = (clothingItem: ClothingItem) => {
     const items = [...clothingItems]
+
     const index = items.findIndex((x) => x.id === clothingItem.id)
     if (index === -1) {
       handleAddClothingItem(clothingItem)
@@ -136,72 +154,93 @@ export default function ClothingTable({
     )
   } else {
     return (
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {headCells.map((x) => (
-                <TableCell
-                  key={x.id}
-                  sx={{
-                    width: `${x.width}%`,
-                    maxWidth: `${x.width}%`,
-                    textAlign: `${x.align || "left"}`,
-                  }}
-                >
-                  {x.label}
+      <>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                {headCells.map((x) => (
+                  <TableCell
+                    key={x.id}
+                    sx={{
+                      width: `${x.width}%`,
+                      maxWidth: `${x.width}%`,
+                      textAlign: `${x.align || "left"}`,
+                    }}
+                  >
+                    {x.label}
+                  </TableCell>
+                ))}
+                <TableCell sx={{ width: "12.5%" }}>
+                  <div className={styles.toolbar}>
+                    <Button
+                      variant="text"
+                      color="success"
+                      onClick={() => setOpenClearAllModal(true)}
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      disabled={isAddingItem}
+                      variant="contained"
+                      onClick={handleAdd}
+                      color="success"
+                    >
+                      Add
+                    </Button>
+                  </div>
+                  <ConfirmModal
+                    open={openClearAllModal}
+                    setOpen={setOpenClearAllModal}
+                    onConfirm={handleClearAllModalConfirm}
+                    text="Are you sure you want to clear all clothing items?"
+                  />
                 </TableCell>
-              ))}
-              <TableCell sx={{ width: "12.5%" }}>
-                <div className={styles.toolbar}>
-                  <Button
-                    variant="text"
-                    color="success"
-                    onClick={() => setOpenClearAllModal(true)}
-                  >
-                    Clear
-                  </Button>
-                  <Button
-                    disabled={isAddingItem}
-                    variant="contained"
-                    onClick={handleAdd}
-                    color="success"
-                  >
-                    Add
-                  </Button>
-                </div>
-                <ConfirmModal
-                  open={openClearAllModal}
-                  setOpen={setOpenClearAllModal}
-                  onConfirm={handleClearAllModalConfirm}
-                  text="Are you sure you want to clear all clothing items?"
-                />
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {isAddingItem && (
-              <ClothingTableRow
-                setIsAddingItem={setIsAddingItem}
-                updateClothingItem={handleSetClothingItem}
-                deleteClothingItem={handleDeleteClothingItem}
-                materials={materials}
-              />
-            )}
-            {clothingItems.length > 0 &&
-              getReversedClothingItems().map((x, index) => (
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {isAddingItem && (
                 <ClothingTableRow
-                  key={x.id}
-                  index={index}
-                  clothingItem={x}
+                  setIsAddingItem={setIsAddingItem}
                   updateClothingItem={handleSetClothingItem}
                   deleteClothingItem={handleDeleteClothingItem}
                   materials={materials}
+                  handleShowError={handleShowError}
+                  checkDuplicateName={checkDuplicateName}
                 />
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )}
+              {clothingItems.length > 0 &&
+                getReversedClothingItems().map((x, index) => (
+                  <ClothingTableRow
+                    key={x.id}
+                    index={index}
+                    clothingItem={x}
+                    updateClothingItem={handleSetClothingItem}
+                    deleteClothingItem={handleDeleteClothingItem}
+                    materials={materials}
+                    handleShowError={handleShowError}
+                    checkDuplicateName={checkDuplicateName}
+                  />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={openUpdateError}
+          autoHideDuration={5000}
+          onClose={() => setOpenUpdateError(false)}
+        >
+          <Alert onClose={() => setOpenUpdateError(false)} severity="error">
+            {errorMessage
+              ? errorMessage
+              : "There was an issue while updating that record"}
+          </Alert>
+        </Snackbar>
+      </>
     )
   }
 }

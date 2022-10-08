@@ -19,12 +19,12 @@
 }
 
 .subtitle {
-  font-size: 1.25em;
+  font-size: 1.1em;
   margin-bottom: 0.5em;
 }
 
 .description {
-  font-size: 1.25em;
+  font-size: 1.1em;
   margin-bottom: 0.5em;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .link_text {
-  font-size: 1.25em;
+  font-size: 1.1em;
 }
 
 .link_color {
@@ -71,5 +71,19 @@
   color: variables.$primary-background-color;
   &:hover {
     color: variables.$primary-background-color-soft;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .main_content {
+      width: 100%;
+    }
+    .image_content {
+      width: 100%;
+    }
   }
 }
