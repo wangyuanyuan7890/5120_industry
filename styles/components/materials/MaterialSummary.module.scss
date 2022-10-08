@@ -57,3 +57,15 @@
   flex-direction: column;
   gap: 0.5em;
 }
+
+@media only screen and (max-width: 768px) {
+  .percentage_group {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+  }
+  .percentage_container {
+    width: 100%;
+  }
+}

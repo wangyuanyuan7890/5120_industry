@@ -56,3 +56,9 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .item_wrapper {
+    flex-direction: column;
+  }
+}

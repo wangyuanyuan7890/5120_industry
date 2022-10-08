@@ -128,12 +128,12 @@ export default function Home() {
             </Typography>
           </Box>
           <Box>
-            <Image
+            {/* <Image
               src={WhyUseImage}
               className="image"
               sizes="100vw"
               style={{ borderRadius: "0.5em" }}
-            />
+            /> */}
           </Box>
         </Container>
         <Container maxWidth="lg">

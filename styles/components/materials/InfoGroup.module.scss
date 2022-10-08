@@ -40,3 +40,10 @@
 .image_text {
   font-size: 1em;
 }
+
+@media only screen and (max-width: 768px) {
+  .info_group {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

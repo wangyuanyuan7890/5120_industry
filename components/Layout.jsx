@@ -28,7 +28,7 @@ export default function Layout({ children }) {
         stickyNav && styles.nav_sticky_padding
       }`}
     >
-      <Nav stickyNav={stickyNav} />
+      <Nav stickyNav={stickyNav} setStickyNav={setStickyNav} />
       <div className={styles.container_wrapper}>{children}</div>
       <Footer />
     </div>
