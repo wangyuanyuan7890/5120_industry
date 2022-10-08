@@ -2,5 +2,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 1em;
+  row-gap: 1em;
   margin-bottom: 1em;
+}
+
+.chart_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  .chart_group_wrapper {
+    grid-template-columns: 1fr;
+  }
 }

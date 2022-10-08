@@ -117,7 +117,11 @@ export default function SummaryChartGroup({ clothingItems }) {
           Wear count
         </Typography>
         {hasAnyItemsWorn() ? (
-          <Pie data={prepareWearCountData()} options={noLegendOptions} />
+          <Pie
+            data={prepareWearCountData()}
+            options={noLegendOptions}
+            className={styles.chart}
+          />
         ) : (
           <Typography variant="body1" textAlign="center" color="error">
             No clothing has been worn
@@ -128,13 +132,13 @@ export default function SummaryChartGroup({ clothingItems }) {
         <Typography variant="h6" textAlign="center">
           Overall biodegradability %
         </Typography>
-        <Pie data={prepareBiodegradabilityData()} />
+        <Pie data={prepareBiodegradabilityData()} className={styles.chart} />
       </div>
       <div className={styles.chart_container}>
         <Typography variant="h6" textAlign="center">
           Overall sustainability %
         </Typography>
-        <Pie data={prepareSustainabilityData()} />
+        <Pie data={prepareSustainabilityData()} className={styles.chart} />
       </div>
     </div>
   )

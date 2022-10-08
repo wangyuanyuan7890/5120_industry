@@ -133,6 +133,7 @@ const FullPageScroll = () => {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    padding: "1em",
   }
 
   // slider for section 2
