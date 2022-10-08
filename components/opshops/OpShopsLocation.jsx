@@ -25,7 +25,13 @@ import Autocomplete from "@mui/material/Autocomplete"
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank"
 import CheckBoxIcon from "@mui/icons-material/CheckBox"
 import mapStyles from "./mapStyles"
-import { Alert, Snackbar, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import {
+  Alert,
+  Snackbar,
+  ToggleButton,
+  ToggleButtonGroup,
+  useMediaQuery,
+} from "@mui/material"
 import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
 
 // icons for the search bar
@@ -99,6 +105,7 @@ export default function OpShopsLocation() {
   const handleClose = () => {
     setOpenSnack(false)
   }
+  const isMobile = useMediaQuery("(max-width:768px)")
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -293,10 +300,10 @@ export default function OpShopsLocation() {
         </Alert>
       </Snackbar>
       <div className={styles.charities}>
-        <h2 className={styles.searchLocation}>Search Location</h2>
+        <span className={styles.searchLocation}>Search Location</span>
         <Autocomplete
           multiple
-          limitTags={3}
+          limitTags={1}
           id="checkboxes-tags-demo"
           onChange={handleName}
           options={final_options_mov().sort(
@@ -327,11 +334,10 @@ export default function OpShopsLocation() {
           )}
         />
 
-        <h2 className={styles.filterLocation}>Filter</h2>
+        <span className={styles.filterLocation}>Filter</span>
         <ToggleButtonGroup
           value={formats}
-          style={{ width: 200 }}
-          orientation="vertical"
+          orientation={isMobile ? "vertical" : "horizontal"}
           onChange={handleFormat}
           aria-label="location filtering"
         >

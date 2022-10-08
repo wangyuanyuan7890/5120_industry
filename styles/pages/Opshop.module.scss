@@ -4,36 +4,38 @@
 }
 
 .map {
-  width: 80%;
-  height: 85vh;
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 200px;
+  max-height: 800px;
 }
 
 .container {
   position: relative;
   display: flex;
+  flex-direction: column;
 }
 
 .charities {
-  display: flexbox;
-  justify-content: space-between;
-  width: 20%;
-  height: 85vh;
+  display: flex;
+  align-items: center;
   padding: 1rem;
   background: #f5f5f5;
   color: #fff;
+  gap: 0.5em;
 }
 
 .charities input {
   border: none;
 }
 
+.filterLocation,
 .searchLocation {
-  color: darkgray;
-}
-
-.filterLocation {
-  padding-top: 1rem;
-  color: darkgray;
+  font-size: 1.2em;
+  color: black;
+  text-align: center;
+  font-weight: 500;
 }
 
 .filterIcon {
@@ -42,7 +44,6 @@
 
 .filterLabels {
   color: black;
-  padding-left: 0.5rem;
 }
 
 .search {
@@ -178,6 +179,14 @@
 }
 
 .toggle_button_group {
-  justify-content: left;
-  align-items: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+@media only screen and (max-width: 768px) {
+  .charities {
+    flex-direction: column;
+  }
 }
