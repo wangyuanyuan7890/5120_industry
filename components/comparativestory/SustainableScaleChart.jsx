@@ -1,31 +1,18 @@
-import { WearScaleData } from "../../data/WearScale"
-import styles from "@/styles/components/WearScale.module.scss"
-import { background } from "@chakra-ui/react"
-import { keyframes } from "@chakra-ui/react"
+import { SustainableScaleData } from "../../data/SustainableScale"
+import styles from "@/styles/components/SustainableScale.module.scss"
 
-export default function WearScaleChart(props) {
-  // console.log(props.data)
+export default function SustainableScaleChart(props) {
+  console.log(props.data)
+  const valueVic =
+    SustainableScaleData.find((x) => x.who === "Average Victorian").count * 100
 
-  const valueVic = WearScaleData.find(
-    (x) => x.who === "Average Victorian"
-  ).count
-
-  const valueSus = WearScaleData.find((x) => x.who === "Sustainable Goal").count
-
-  var progress = keyframes`
-    0% {
-    height: 0;
-    opacity: 1;
-    }
-    100% {
-        opacity: 1;
-    }
-    `
+  const valueSus =
+    SustainableScaleData.find((x) => x.who === "Sustainable Goal").count * 100
 
   return (
     <div className={styles.container}>
       <div className={styles.box}>
-        <span className={styles.box_title}>Wear Count</span>
+        <span className={styles.box_title}>Percentage</span>
         <div
           style={{
             height: "100%",
@@ -44,7 +31,6 @@ export default function WearScaleChart(props) {
               width: "100%",
               borderRadius: "6px",
               background: "#006400",
-              animation: `@keyframes ${progress} 1s ease-in-out forwards`,
               opacity: "1",
             }}
           >
@@ -53,7 +39,7 @@ export default function WearScaleChart(props) {
                 position: "absolute",
                 width: "200px",
                 right: "50px",
-                height: `${props.data / 1.09}mm`,
+                height: `${props.data * 0.83}mm`,
                 fontSize: "15px",
                 fontWeight: "500",
                 color: "#000000",
@@ -62,14 +48,14 @@ export default function WearScaleChart(props) {
                 transform: "scale(-1)",
               }}
             >
-              ◄ Your wear count is {props.data} times
+              ◄ Your sustainability {props.data}%
             </span>
             <span
               style={{
                 position: "absolute",
-                width: "250px",
-                right: "-220px",
-                height: `${valueVic / 1.09}mm`,
+                width: "200px",
+                right: "-170px",
+                height: `${valueVic * 0.83}mm`,
                 fontSize: "15px",
                 fontWeight: "500",
                 color: "#000000",
@@ -78,14 +64,14 @@ export default function WearScaleChart(props) {
                 transform: "scale(-1)",
               }}
             >
-              Average Victorian is {valueVic} times ➤
+              AVG Victorians {valueVic}% ➤
             </span>
             <span
               style={{
                 position: "absolute",
-                width: "250px",
-                right: "-220px",
-                height: `${valueSus / 1.09}mm`,
+                width: "200px",
+                right: "-170px",
+                height: `${valueSus * 0.83}mm`,
                 fontSize: "15px",
                 fontWeight: "500",
                 color: "#000000",
@@ -94,7 +80,7 @@ export default function WearScaleChart(props) {
                 transform: "scale(-1)",
               }}
             >
-              Sustainable goal is {valueSus} times ➤
+              Sustainable goal {valueSus}% ➤
             </span>
           </span>
         </div>

@@ -14,7 +14,7 @@ import styles from "@/styles/components/comparativestory/FullPageScroll.module.s
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace"
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink"
-import { Alert, Snackbar } from "@mui/material"
+import { Alert, Snackbar, SvgIcon } from "@mui/material"
 import bg from "@/public/Image.jpeg"
 import FactGroup1 from "./FactGroup1"
 import FactGroup2 from "./FactGroup2"
@@ -23,6 +23,9 @@ import FactGroup4 from "./FactGroup4"
 import FactGroup5 from "./FactGroup5"
 import WasteIcon from "@/public/comparativestory/annual_waste.svg"
 import WearScaleChart from "./WearScaleChart"
+import LineScaleChart from "./LineScaleChart"
+import SustainableScaleChart from "./SustainableScaleChart"
+import { RegressionCoefficients } from "../../data/RegressionCoefficients"
 
 const FullPageScroll = () => {
   var timeout
@@ -47,12 +50,66 @@ const FullPageScroll = () => {
   const [susPercentage, setSusPercentage] = useState(30)
   const [recycleValue, setRecycleValue] = useState(0)
 
+  // section pages
   const section1 = useRef(null)
   const section2 = useRef(null)
   const section3 = useRef(null)
   const section4 = useRef(null)
   const section5 = useRef(null)
   const section6 = useRef(null)
+
+  // features
+  const wears = RegressionCoefficients.find((x) => x.coefs === "wears").value
+  const cotton_ts = RegressionCoefficients.find(
+    (x) => x.coefs === "cotton_ts"
+  ).value
+  const renewal = RegressionCoefficients.find(
+    (x) => x.coefs === "renewal"
+  ).value
+  const sustainable = RegressionCoefficients.find(
+    (x) => x.coefs === "sustainable"
+  ).value
+  const recycled = RegressionCoefficients.find(
+    (x) => x.coefs === "recycled"
+  ).value
+  const intercept = RegressionCoefficients.find(
+    (x) => x.coefs === "intercept"
+  ).value
+
+  // Linear Regression equation
+  function Regression(
+    wearCount,
+    purchaseCount,
+    renewCount,
+    susPercentage,
+    recycleValue
+  ) {
+    const waste = Math.round(
+      Math.ceil(
+        Math.floor(
+          intercept -
+            wears * wearCount +
+            cotton_ts * purchaseCount -
+            renewal * Math.floor(renewCount) -
+            sustainable * (susPercentage / 100) -
+            recycled * recycleValue
+        )
+      )
+    )
+
+    return waste < 0 ? 0 : waste
+    // return waste
+  }
+
+  const ecofash_waste = Regression(
+    wearCount,
+    purchaseCount,
+    renewCount,
+    susPercentage,
+    recycleValue
+  )
+
+  // console.log(ecofash_waste)
 
   function scrollTo(section) {
     section.current.scrollIntoView({ behaviour: "smooth" })
@@ -156,6 +213,10 @@ const FullPageScroll = () => {
       },
     },
   })
+
+  // const scaleSVGIcon = styled(SvgIcon)({
+  //   transform: `scale(${ecofash_waste} / 0.5)`,
+  // })
 
   function preventHorizontalKeyboardNavigation(event) {
     // console.log(event)
@@ -384,6 +445,29 @@ const FullPageScroll = () => {
                   Invalid input!
                 </Alert>
               </Snackbar>
+              <h3>
+                The Fast Fashion industry has led to these overstuffed closets
+                and overflowing landfills.
+              </h3>
+              <div className={styles.filler_text_section_3}>
+                <p>
+                  Ever think about the material that makes up the clothes you're
+                  wearing?
+                </p>
+                <p>
+                  A growing proportion of Victorian Emissions are due to
+                  clothing production. The development of the Fast Fashion
+                  industry has disconnection consumers from this issue. A
+                  majority of clothing materials utilise unsustainable water and
+                  energy in production whilst having ethical concerns regarding
+                  environment, animals and labor.
+                </p>
+                <p>
+                  The popular material of Cotton is slowly moving towards
+                  sustainable recycled or sustainable development to reduce the
+                  drastic water consumption.
+                </p>
+              </div>
               <h1>
                 How many unsustainable cotton T-shirt did you buy this year?
               </h1>
@@ -410,7 +494,7 @@ const FullPageScroll = () => {
                       // type="number"
                       error={purchaseCount.length === 0 ? true : false}
                       inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                      value={purchaseCount}
+                      value={purchaseCount || 0}
                       onChange={handleChange}
                       InputLabelProps={{
                         shrink: true,
@@ -436,6 +520,29 @@ const FullPageScroll = () => {
                   onClick={handleClick2}
                   className={styles.back_icon}
                 />
+              </div>
+              <h3>
+                The Fast Fashion industry has led to these overstuffed closets
+                and overflowing landfills.
+              </h3>
+              <div className={styles.filler_text_section_3}>
+                <p>
+                  Ever think about the material that makes up the clothes you're
+                  wearing?
+                </p>
+                <p>
+                  A growing proportion of Victorian Emissions are due to
+                  clothing production. The development of the Fast Fashion
+                  industry has disconnection consumers from this issue. A
+                  majority of clothing materials utilise unsustainable water and
+                  energy in production whilst having ethical concerns regarding
+                  environment, animals and labor.
+                </p>
+                <p>
+                  The popular material of Cotton is slowly moving towards
+                  sustainable recycled or sustainable development to reduce the
+                  drastic water consumption.
+                </p>
               </div>
               <h1>
                 How many unsustainable cotton T-shirt did you buy this year?
@@ -471,31 +578,27 @@ const FullPageScroll = () => {
         <div ref={section4}>
           {!isShown3 && (
             <FullpageSection style={SectionStyle1}>
-              <div className={styles.section_text}>
-                <h1>Choosing not to Renew is a privilege</h1>
+              <h3>Choosing not to Renew is a privilege</h3>
+              <div className={styles.filler_text_section_4}>
                 <p>
                   Renewing compromises of the donating and/or repairing of
-                  clothing. <br /> Many low-income countries still have a
-                  relatively high rate of clothing renewal with a lesser access
-                  to "Fast Fashion". <br /> In such low-income countries
-                  clothing renewal is a necessity, as it should be.
+                  clothing. Many low-income countries still have a relatively
+                  high rate of clothing renewal with a lesser access to "Fast
+                  Fashion". In such low-income countries clothing renewal is a
+                  necessity, as it should be.
                 </p>
                 <p>
-                  When Victoria's Clothing Emissions were lowest this Centuary,{" "}
-                  <br />
+                  When Victoria's Clothing Emissions were lowest this Centuary,
                   Victorians were regularly repairing and donating clothing
                   items.
                 </p>
               </div>
               <h1>
-                How many items have you <b>repaired</b> or <b>donated</b> this
-                month?
+                How many items have you <b>repaired</b> or <b>donated</b> over
+                the last 3 months?
               </h1>
-              <div className={styles.sub_section_div1}>
-                <p>
-                  Select the estimate number of your average monthly renewal
-                  count
-                </p>
+              <div className={styles.section_4_lower}>
+                <p>Select your 3 monthly renewal count estimate</p>
                 <Box
                   component="form"
                   sx={{
@@ -510,7 +613,7 @@ const FullPageScroll = () => {
                     // type="number"
                     error={renewCount.length === 0 ? true : false}
                     inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                    value={renewCount}
+                    value={renewCount || 0}
                     onChange={handleChange1}
                     InputLabelProps={{
                       shrink: true,
@@ -536,18 +639,17 @@ const FullPageScroll = () => {
                   className={styles.back_icon}
                 />
               </div>
-              <div className={styles.section_text}>
-                <h1>Choosing not to Renew is a privilege</h1>
+              <h3>Choosing not to Renew is a privilege</h3>
+              <div className={styles.filler_text_section_4}>
                 <p>
                   Renewing compromises of the donating and/or repairing of
-                  clothing. <br /> Many low-income countries still have a
-                  relatively high rate of clothing renewal with a lesser access
-                  to "Fast Fashion". <br /> In such low-income countries
-                  clothing renewal is a necessity, as it should be.
+                  clothing. Many low-income countries still have a relatively
+                  high rate of clothing renewal with a lesser access to "Fast
+                  Fashion". In such low-income countries clothing renewal is a
+                  necessity, as it should be.
                 </p>
                 <p>
-                  When Victoria's Clothing Emissions were lowest this Centuary,{" "}
-                  <br />
+                  When Victoria's Clothing Emissions were lowest this Centuary,
                   Victorians were regularly repairing and donating clothing
                   items.
                 </p>
@@ -562,13 +664,28 @@ const FullPageScroll = () => {
                 </div>
                 <div className={styles.fact_group_3_text}>
                   <p>
-                    When Victorian Fashion emissions were lowest this centuary
-                    renewal activities were far more common (03-04)
+                    This century, when Victorian Fashion emissions were lowest
+                    renewal activities were far more common (green).
                   </p>
                   <p>
-                    Explore the sustainable renewal trends against yours and the
-                    average Victorians.
+                    The current average Victorian renewal trends (red) are far
+                    less than this low emission period.
                   </p>
+                </div>
+                <div className={styles.section_4_lower_hidden}>
+                  <div>
+                    <LineScaleChart />
+                  </div>
+                  {renewCount > 10 && (
+                    <div>
+                      <p>
+                        <i>
+                          You are off renewal activity is the scale. Great
+                          sustainable activity.
+                        </i>
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </FullpageSection>
@@ -577,10 +694,30 @@ const FullPageScroll = () => {
         <div ref={section5}>
           {!isShown4 && (
             <FullpageSection style={SectionStyle1}>
+              <h3>
+                There is no such thing as a 100% sustainable fabric, but some
+                are much better than others.
+              </h3>
+              <div className={styles.filler_text_section_5}>
+                <p>
+                  A sustainable wardrobe is one that helps to reduce the impact
+                  that your clothes have on the planet.
+                </p>
+                <p>
+                  A majority of clothing emissions is due to the unsustainable
+                  materials. A couple of the major determining factors when
+                  labelling sustainable materials are the amount of resources
+                  used to produce the material and the lifecycle analysis of the
+                  product.
+                </p>
+                <p>
+                  Dressing sustainably can be affordable and offer you all the
+                  choice of clothes that you want.
+                </p>
+              </div>
               <h1>What percentage of your wardrobe is sustainable?</h1>
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
-                  <Box sx={{ m: 3 }} />
                   <Typography gutterBottom>Percentage</Typography>
                   <WearCountSlider5
                     valueLabelDisplay="on"
@@ -590,7 +727,6 @@ const FullPageScroll = () => {
                     onChange={handleSliderChange2}
                     onKeyDown={preventHorizontalKeyboardNavigation}
                   />
-                  {/* <Box sx={{ m: 3 }} /> */}
                 </div>
                 <div className={styles.sub_section_div4}>
                   <p>
@@ -615,19 +751,39 @@ const FullPageScroll = () => {
                   className={styles.back_icon}
                 />
               </div>
+              <h3>
+                There is no such thing as a 100% sustainable fabric, but some
+                are much better than others.
+              </h3>
+              <div className={styles.filler_text_section_5}>
+                <p>
+                  A sustainable wardrobe is one that helps to reduce the impact
+                  that your clothes have on the planet.
+                </p>
+                <p>
+                  A majority of clothing emissions is due to the unsustainable
+                  materials. A couple of the major determining factors when
+                  labelling sustainable materials are the amount of resources
+                  used to produce the material and the lifecycle analysis of the
+                  product.
+                </p>
+                <p>
+                  Dressing sustainably can be affordable and offer you all the
+                  choice of clothes that you want.
+                </p>
+              </div>
               <h1>What percentage of your wardrobe is sustainable?</h1>
-              <div className={styles.section_4_hidden_container}>
-                <div className={styles.section_4_hidden_1}>
+              <div className={styles.section_5_hidden_container}>
+                <div>
+                  <SustainableScaleChart data={susPercentage} />
+                </div>
+                <div className={styles.section_5_hidden_text}>
                   <p>
                     <b>Suggestion:</b> <br /> If you are far less than a
-                    sustainable amount,
-                    <br /> use the{" "}
-                    <a
-                      href="http://localhost:3000/materials" // change to live server url upon deployment
-                      className={styles.material_checker_text}
-                    >
-                      <b>Material Checker</b>
-                    </a>{" "}
+                    sustainable amount, use the{" "}
+                    <a>
+                      <b>Material Checker </b>
+                    </a>
                     to support you!
                   </p>
                 </div>
@@ -641,6 +797,25 @@ const FullPageScroll = () => {
         <div ref={section6}>
           {!isShown5 && !isShown6 && (
             <FullpageSection style={SectionStyle1}>
+              <h3>Recycling Clothing can give clothing another life</h3>
+              <div className={styles.filler_text_section_6}>
+                <p>
+                  Just 12 per cent of discarded textiles is recycled, an
+                  estimated 800 million kilograms of it winds up in landfill.
+                </p>
+                <p>
+                  Often, our first thought of recycling clothing is to donate to
+                  charities and foundations. However, only about 0.1 per cent of
+                  recycled clothing collected by charities and take-back
+                  programmes is used to make new textile fibers.
+                </p>
+                <p>
+                  Where possible, always try to give unwanted clothes which have
+                  reached the end of their life to clothes banks where materials
+                  can either be donated or recycled into fabrics or other useful
+                  products.
+                </p>
+              </div>
               <div className={styles.section_text}>
                 <h1>
                   Have you had any of your clothes <b>Recycled</b> ?
@@ -679,6 +854,25 @@ const FullPageScroll = () => {
                   className={styles.back_icon}
                 />
               </div>
+              <h3>Recycling Clothing can give clothing another life</h3>
+              <div className={styles.filler_text_section_6}>
+                <p>
+                  Just 12 per cent of discarded textiles is recycled, an
+                  estimated 800 million kilograms of it winds up in landfill.
+                </p>
+                <p>
+                  Often, our first thought of recycling clothing is to donate to
+                  charities and foundations. However, only about 0.1 per cent of
+                  recycled clothing collected by charities and take-back
+                  programmes is used to make new textile fibers.
+                </p>
+                <p>
+                  Where possible, always try to give unwanted clothes which have
+                  reached the end of their life to clothes banks where materials
+                  can either be donated or recycled into fabrics or other useful
+                  products.
+                </p>
+              </div>
               <h1>
                 Have you had any of your clothes <b>Recycled</b>?
               </h1>
@@ -710,16 +904,27 @@ const FullPageScroll = () => {
               </div>
               <div className={styles.section_6_container}>
                 <div className={styles.section_6_icon_container}>
-                  <h1>EcoFash Expected Waste</h1>
+                  <h1>Your EcoFash Expected Waste</h1>
                   <div className={styles.section_6_icon}>
-                    <WasteIcon />
+                    <WasteIcon transform="scale(0.8)" />
                   </div>
+                  <h1>
+                    {Regression(
+                      wearCount,
+                      purchaseCount,
+                      renewCount,
+                      susPercentage,
+                      recycleValue
+                    )}
+                    KG
+                  </h1>
                 </div>
                 <div className={styles.section_6_icon_container}>
                   <h1>Average Victorian Annual Waste</h1>
                   <div className={styles.section_6_icon}>
-                    <WasteIcon />
+                    <WasteIcon transform="scale(0.8)" />
                   </div>
+                  <h1>27KG</h1>
                 </div>
               </div>
               <div>
