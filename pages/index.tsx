@@ -10,6 +10,7 @@ import { Suspense, useEffect, useRef, useState } from "react"
 import Scene from "@/components/home/SplineScene"
 import { OrbitControls, useProgress } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
+import ScrollToTop from "../components/ScrollToTop"
 
 // Home page design
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <Page title="Home">
+      <ScrollToTop />
       <Container maxWidth="lg">
         <div className={styles.hero_wrapper}>
           <HomeHeroImage className={styles.hero_image} />

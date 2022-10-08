@@ -114,6 +114,12 @@ export default function OpShopsLocation() {
     // "recycling",
   ])
 
+  // const [checkBoxSelected, setCheckBoxSelected] = useState(false)
+
+  // const handleChange = (event) => {
+  //   setCheckBoxSelected(event.target.checked)
+  // }
+
   const [name, setName] = useState([])
 
   // state use to filter by type of locations selected
@@ -159,22 +165,37 @@ export default function OpShopsLocation() {
   const [selectedShopDetails, setSelectedShopDetails] = useState({})
 
   const finalFilteredMarkers = () => {
-    // check if any shop type is selected, if none; return all shops
-    if (formats.length <= 0) return foundShops
-    // performs the filter by shop type looking into user selected value(s)
-    const filteredByType = foundShops.filter(
-      (w) => w.shop.types === formats.find((x) => w.shop.types === x)
-    )
-    if (filteredByType.length <= 0) return [] // if no filtered values then do nothing
+    // console.log(name)
+    // console.log(formats)
+    // console.log(foundShops.length)
+    if (formats.length < 0 && name.length < 0) return foundShops
+    if (name.length > 0)
+      return foundShops.filter(
+        (a) => a.shop.name === name.find((b) => a.shop.name === b)
+      )
+    if (formats.length > 0)
+      return foundShops.filter(
+        (c) => c.shop.types === formats.find((d) => c.shop.types === d)
+      )
+    if (formats.length > 0 && name.length > 0)
+      return foundShops.filter(
+        (e) =>
+          e.shop.name === name.find((f) => e.shop.name === f) &&
+          e.shop.types === formats.find((g) => e.shop.types === g)
+      )
 
-    // check if any shop name is selected, if none; then return the filtered shops filtered by type
-    if (name.length <= 0) return filteredByType
-    // performs the filter by shop name from the multi-select search drop down list
-    const filteredByNames = filteredByType.filter(
-      (y) => y.shop.name === name.find((z) => y.shop.name === z)
-    )
-    if (filteredByNames.length <= 0) return []
-    return filteredByNames
+    // if (formats.length <= 0) return foundShops
+    // foundShops = foundShops.filter(
+    //   (w) => w.shop.types === formats.find((x) => w.shop.types === x)
+    // )
+    // if (foundShops.length <= 0) return []
+
+    // if (name.length <= 0) return foundShops
+    // foundShops = foundShops.filter(
+    //   (y) => y.shop.name === name.find((z) => y.shop.name === z)
+    // )
+    // if (foundShops.length <= 0) return []
+    return foundShops
   }
 
   // create a function that will always retain the same value unless props being passed in
@@ -227,15 +248,8 @@ export default function OpShopsLocation() {
     []
   )
 
-  const listFoundShops =
-    formats.length >= 0
-      ? foundShops.filter(
-          (x) => x.shop.types === formats.find((y) => x.shop.types === y)
-        )
-      : foundShops
-
   // group the selection dropdown list data and display distinct selection value
-  const filtered_options = listFoundShops.filter(
+  const filtered_options = foundShops.filter(
     (value, index, self) =>
       self.findIndex((v) => v.shop.name === value.shop.name) === index
   )
@@ -250,10 +264,21 @@ export default function OpShopsLocation() {
     }
   })
 
-  // const clusterOptions = {
-  //   imagePath:
-  //     "https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m",
-  // }
+  function final_options_mov() {
+    // console.log(formats)
+    return formats.length > 0
+      ? options_mov.filter(
+          (x) => x.shop.types === formats.find((y) => x.shop.types === y)
+        )
+      : options_mov
+  }
+
+  // console.log(final_options_mov.length)
+
+  // function to control checkbox boolean value in toggle group button
+  function checkIfExists(shopType) {
+    return formats.filter((x) => x === shopType).length >= 1
+  }
 
   return (
     <div className={styles.container}>
@@ -268,13 +293,13 @@ export default function OpShopsLocation() {
         </Alert>
       </Snackbar>
       <div className={styles.charities}>
-        <h2 className={styles.searchLocation}>Search Location:</h2>
+        <h2 className={styles.searchLocation}>Search Location</h2>
         <Autocomplete
           multiple
           limitTags={3}
           id="checkboxes-tags-demo"
           onChange={handleName}
-          options={options_mov.sort(
+          options={final_options_mov().sort(
             (a, b) => -b.firstLetter.localeCompare(a.firstLetter)
           )}
           groupBy={(option) => option.firstLetter} // group list by first letter
@@ -288,17 +313,21 @@ export default function OpShopsLocation() {
                 style={{ marginRight: 8 }}
                 checked={selected}
               />
-              {option.shop["name"]}
+              {option.shop["name"]} {GetIconLabel(option.shop["types"])}
             </li>
           )}
           style={{ width: 200 }}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           renderInput={(params) => (
-            <TextField {...params} label="Search" placeholder="Locations" />
+            <TextField
+              {...params}
+              label="Search"
+              placeholder="Name of locations"
+            />
           )}
         />
 
-        <h2 className={styles.filterLocation}>Filter:</h2>
+        <h2 className={styles.filterLocation}>Filter</h2>
         <ToggleButtonGroup
           value={formats}
           style={{ width: 200 }}
@@ -306,24 +335,60 @@ export default function OpShopsLocation() {
           onChange={handleFormat}
           aria-label="location filtering"
         >
-          <ToggleButton value="opshop" aria-label="op shops">
+          <ToggleButton
+            value="opshop"
+            aria-label="op shop locations"
+            className={styles.toggle_button_group}
+          >
+            <Checkbox
+              disabled
+              checked={checkIfExists("opshop")}
+              inputProps={{ "aria-label": "controlled" }}
+            />
+            <p className={styles.filterLabels}>Op Shop Locations</p>
             <AddShoppingCart className={styles.filterIcon} />
-            <p className={styles.filterLabels}>Op Shops</p>
           </ToggleButton>
 
-          <ToggleButton value="repair" aria-label="repair locations">
-            <Handyman className={styles.filterIcon} />
+          <ToggleButton
+            value="repair"
+            aria-label="repair locations"
+            className={styles.toggle_button_group}
+          >
+            <Checkbox
+              disabled
+              checked={checkIfExists("repair")}
+              inputProps={{ "aria-label": "controlled" }}
+            />
             <p className={styles.filterLabels}>Repair Locations</p>
+            <Handyman className={styles.filterIcon} />
           </ToggleButton>
 
-          <ToggleButton value="donation" aria-label="donation points">
-            <DeleteOutline className={styles.filterIcon} />
+          <ToggleButton
+            value="donation"
+            aria-label="donation points"
+            className={styles.toggle_button_group}
+          >
+            <Checkbox
+              disabled
+              checked={checkIfExists("donation")}
+              inputProps={{ "aria-label": "controlled" }}
+            />
             <p className={styles.filterLabels}>Donation Points</p>
+            <DeleteOutline className={styles.filterIcon} />
           </ToggleButton>
 
-          <ToggleButton value="recycling" aria-label="recycling points">
-            <LoopIcon className={styles.filterIcon} />
+          <ToggleButton
+            value="recycling"
+            aria-label="recycling points"
+            className={styles.toggle_button_group}
+          >
+            <Checkbox
+              disabled
+              checked={checkIfExists("recycling")}
+              inputProps={{ "aria-label": "controlled" }}
+            />
             <p className={styles.filterLabels}>Recycling Points</p>
+            <LoopIcon className={styles.filterIcon} />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
@@ -371,30 +436,6 @@ export default function OpShopsLocation() {
             }
           </MarkerClusterer>
 
-          {/* {finalFilteredMarkers().map((shop) => (
-            <Marker
-              key={shop.id}
-              // category={shop.shop.name}
-              animation={
-                selectedMarker
-                  ? shop.id === selectedMarker.id
-                    ? "1"
-                    : "0"
-                  : "0"
-              }
-              position={{ lat: shop.latitude, lng: shop.longitude }}
-              icon={{
-                url: "/charity/charity.svg",
-                scaledSize: new window.google.maps.Size(30, 30),
-              }}
-              onClick={() => {
-                setSelectedMarker(shop)
-                setSelectedShop(shop)
-                setSelectedShopDetails(shop.shop)
-              }}
-            />
-          ))} */}
-
           {selectedMarker && (
             <InfoWindowF
               position={{
@@ -409,15 +450,25 @@ export default function OpShopsLocation() {
               }}
             >
               <div>
-                <h3>{selectedMarker.shop.name}</h3>
-                <p>{selectedMarker.address}</p>
-                <Button
+                <h3>
+                  {selectedMarker.shop.name} - {selectedMarker.shop.types}
+                </h3>
+                <p>
+                  <b>Address: </b> {selectedMarker.address}
+                </p>
+                <p>
+                  <b>Suburb: </b> {selectedMarker.suburb}
+                </p>
+                <p>
+                  <b>Description: </b> {selectedMarker.shop.description}
+                </p>
+                {/* <Button
                   className={styles.popUpButton}
                   variant="outlined"
                   onClick={handleClickOpen}
                 >
                   View More
-                </Button>
+                </Button> */}
               </div>
             </InfoWindowF>
           )}
@@ -494,5 +545,17 @@ function GetIcon(shopType) {
   return {
     url: "/charity/" + shopType + ".svg",
     scaledSize: new window.google.maps.Size(30, 30),
+  }
+}
+
+function GetIconLabel(shopType) {
+  if (shopType === "opshop") {
+    return <AddShoppingCart className={styles.filterIcon} />
+  } else if (shopType === "repair") {
+    return <Handyman className={styles.filterIcon} />
+  } else if (shopType === "donation") {
+    return <DeleteOutline className={styles.filterIcon} />
+  } else if (shopType === "recycling") {
+    return <LoopIcon className={styles.filterIcon} />
   }
 }

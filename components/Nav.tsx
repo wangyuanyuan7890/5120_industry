@@ -16,6 +16,7 @@ const routes = [
   { name: "Clothing tracker", path: "/clothingtracker" },
   { name: "Sustainable locations", path: "/sustainablelocations" },
   { name: "Trends", path: "/trends" },
+  { name: "Comparative Story", path: "/comparativestory"},
 ]
 
 // Navbar that appears on all pages
