@@ -32,7 +32,7 @@ const items = {
   story: {
     name: "Comparative story",
     description: "See how your clothing impact compares to statistical data.",
-    link: "/trends",
+    link: "/comparativestory",
   },
 }
 

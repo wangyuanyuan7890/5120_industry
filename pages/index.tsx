@@ -199,7 +199,7 @@ export default function Home() {
             title="Comparative Story"
             description="Think your clothing is more sustainable than the average Victorian? Compare your behaviours and find out."
             image={ComparativeStoryIcon}
-            link="/trends"
+            link="/comparativestory"
           />
         </Container>
       </Box>
