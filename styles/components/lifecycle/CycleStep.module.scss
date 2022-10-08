@@ -73,3 +73,17 @@
     color: variables.$primary-background-color-soft;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .main_content {
+      width: 100%;
+    }
+    .image_content {
+      width: 100%;
+    }
+  }
+}

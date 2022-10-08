@@ -1,10 +1,8 @@
 import Page from "@/components/Page"
 import { Container } from "@mui/system"
-import HomeHeroImage from "@/public/home_hero.svg"
 import LinkButton from "@/components/LinkButton"
 import Feature from "@/components/home/Feature"
 
-import styles from "@/styles/pages/Home.module.scss"
 import FactGroup from "@/components/home/FactGroup"
 import SplineContainer from "@/components/home/SplineContainer"
 import { useProgress } from "@react-three/drei"
@@ -15,8 +13,10 @@ import MaterialCheckerIcon from "@/public/home/features/mchecker.svg"
 import LifecycleIcon from "@/public/home/features/lifecycle.svg"
 import SustainableLocationsIcon from "@/public/home/features/slocation.svg"
 import ComparativeStoryIcon from "@/public/home/features/cstory.svg"
+import BgDecorator from "@/public/home/bg_decorator.svg"
+import BgDecorator2 from "@/public/home/bg_decorator2.svg"
 import WhyUseImage from "@/public/home/whyuse.png"
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, useMediaQuery } from "@mui/material"
 import Image from "next/image"
 
 // Home page design
@@ -24,42 +24,84 @@ export default function Home() {
   const target = useRef()
   const { active, loaded, total } = useProgress()
   const isLoaded = !active && total > 0 && loaded === total
+  const isMobile = useMediaQuery("(max-width:768px)")
 
   return (
     <Page title="Home">
-      <Container
-        maxWidth="lg"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          padding: "8em 0",
-        }}
-      >
-        <Typography variant="h2" color="#0ac05e" fontWeight={700}>
-          Sustainable shopping
-        </Typography>
-        <Typography
-          variant="h3"
-          fontWeight={500}
-          sx={{ marginBottom: "0.5em" }}
+      <Box sx={{ position: "relative" }}>
+        {!isMobile && (
+          <>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "2em",
+                zIndex: -1,
+                opacity: 0.9,
+                transform: "translate(0, -50%)",
+              }}
+            >
+              <BgDecorator />
+            </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                right: "2em",
+                zIndex: -1,
+                opacity: 0.9,
+                transform: "translate(0, -50%);",
+              }}
+            >
+              <BgDecorator2 />
+            </Box>
+          </>
+        )}
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: "6em 0 8em 0",
+          }}
         >
-          has never been more important
-        </Typography>
-        <Typography variant="h6" sx={{ marginBottom: "0.5em" }}>
-          Ecofash empowers all Victorians to dress sustainably in order reduce
-          their emissions.
-        </Typography>
-        <LinkButton text="Clothing tracker" href="/clothingtracker" />
-      </Container>
+          <Typography
+            variant="h2"
+            color="#0ac05e"
+            fontWeight={700}
+            textAlign="center"
+          >
+            Sustainable Shopping
+          </Typography>
+          <Typography
+            variant="h3"
+            fontWeight={500}
+            sx={{ marginBottom: "0.5em" }}
+            textAlign="center"
+          >
+            has never been more important
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ marginBottom: "0.5em" }}
+            textAlign="center"
+          >
+            Dress sustainability and start using your clothing in a more
+            eco-friendly way by using our clothing tracker.
+          </Typography>
+          <LinkButton text="Clothing tracker" href="/clothingtracker" />
+        </Container>
+      </Box>
       <Box sx={{ backgroundColor: "#012c19", padding: "3em 0" }}>
         <Container
           maxWidth="lg"
           sx={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: !isMobile ? "1fr 1fr" : "1fr",
             columnGap: "2em",
+            rowGap: "2em",
             marginBottom: "2em",
           }}
         >
@@ -80,8 +122,9 @@ export default function Home() {
               sx={{ fontSize: "1.2em" }}
             >
               Ecofash empowers all Victorians to dress sustainably and reduce
-              their emissions. Whether purchasing or disposing of clothing, we
-              try our best to help you make sustainable clothing discisions.
+              their clothing emissions. Whether purchasing or disposing of
+              clothing, we try our best to help you make the sustainable
+              clothing discisions in order to help take care of our environment.
             </Typography>
           </Box>
           <Box>
@@ -103,7 +146,6 @@ export default function Home() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          minHeight: "600px",
           padding: "3em 0",
           gap: "1em",
         }}
@@ -123,7 +165,7 @@ export default function Home() {
           maxWidth="lg"
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: !isMobile ? "repeat(3, 1fr)" : "1fr",
             columnGap: "1em",
             rowGap: "1em",
           }}

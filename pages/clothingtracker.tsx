@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react"
+import Hero from "@/components/Hero"
 import Page from "@/components/Page"
 import { Container } from "@mui/system"
-import Hero from "@/components/Hero"
+import { useEffect, useState } from "react"
 
-import styles from "@/styles/pages/Clothingtracker.module.scss"
-import { fetchClothingItems } from "@/util/clothingtracker"
 import ClothingTable from "@/components/clothingtracker/ClothingTable"
 import LinkButton from "@/components/LinkButton"
+import styles from "@/styles/pages/Clothingtracker.module.scss"
+import { fetchClothingItems } from "@/util/clothingtracker"
 
-import DeleteIcon from "@mui/icons-material/Delete"
 import DescriptionIcon from "@mui/icons-material/Description"
 import Link from "next/link"
 

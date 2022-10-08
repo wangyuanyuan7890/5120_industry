@@ -1,16 +1,16 @@
+import Hero from "@/components/Hero"
 import Page from "@/components/Page"
 import { Container } from "@mui/system"
-import Hero from "@/components/Hero"
 
-import styles from "@/styles/pages/Lifecycle.module.scss"
 import CycleStep from "@/components/lifecycle/CycleStep"
-import { Component, useState } from "react"
-import { Step, StepButton, StepLabel, Stepper, Tab, Tabs } from "@mui/material"
+import styles from "@/styles/pages/Lifecycle.module.scss"
+import { Step, StepButton, Stepper } from "@mui/material"
+import { useState } from "react"
 
-import ReduceImage from "@/public/lifecycle/clothing_lifecycle_reduce.svg"
-import ReuseImage from "@/public/lifecycle/clothing_lifecycle_reuse.svg"
-import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
 import RecycleImage from "@/public/lifecycle/clothing_lifecycle_recycle.svg"
+import ReduceImage from "@/public/lifecycle/clothing_lifecycle_reduce.svg"
+import RepairImage from "@/public/lifecycle/clothing_lifecycle_repair.svg"
+import ReuseImage from "@/public/lifecycle/clothing_lifecycle_reuse.svg"
 
 export interface Step {
   title: string

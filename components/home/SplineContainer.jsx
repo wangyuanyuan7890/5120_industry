@@ -1,5 +1,5 @@
 import Scene from "@/components/home/SplineScene"
-import { Box, CircularProgress, Typography } from "@mui/material"
+import { Box, CircularProgress, Typography, useMediaQuery } from "@mui/material"
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Suspense, useState } from "react"
@@ -38,6 +38,8 @@ const items = {
 
 export default function SplineContainer({ target }) {
   const [hoveredItem, setHoveredItem] = useState(null)
+  const isMobile = useMediaQuery("(max-width:768px)")
+
   return (
     <Suspense
       fallback={
@@ -60,7 +62,7 @@ export default function SplineContainer({ target }) {
         sx={{
           position: "relative",
           display: "flex",
-          height: "600px",
+          height: !isMobile ? "600px" : "300px",
         }}
       >
         {hoveredItem && (
