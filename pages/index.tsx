@@ -18,6 +18,7 @@ import BgDecorator2 from "@/public/home/bg_decorator2.svg"
 import WhyUseImage from "@/public/home/whyuse.png"
 import { Box, Typography, useMediaQuery } from "@mui/material"
 import Image from "next/image"
+import PageScrollToTop from "@/components/PageScrollToTop"
 
 // Home page design
 export default function Home() {
@@ -202,6 +203,7 @@ export default function Home() {
           />
         </Container>
       </Box>
+      <PageScrollToTop />
     </Page>
   )
 }

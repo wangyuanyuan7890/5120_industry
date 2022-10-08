@@ -1,0 +1,11 @@
+.fact_group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2em;
+    margin-bottom: 2em;
+  }
+  
+  .fact_icon {
+    width: auto;
+    height: auto;
+  }
