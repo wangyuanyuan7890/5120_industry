@@ -213,8 +213,7 @@
 }
 
 .section_6_icon {
-  height: auto;
-  width: auto;
+  height: 250px;
 }
 
 .filler_text_section_2 {
@@ -272,6 +271,11 @@
 .icon_container_inner {
   height: auto;
   width: auto;
+}
+
+.waste_number_container {
+  display: flex;
+  flex-direction: row;
 }
 
 

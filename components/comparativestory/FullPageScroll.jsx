@@ -26,6 +26,7 @@ import WearScaleChart from "./WearScaleChart"
 import LineScaleChart from "./LineScaleChart"
 import SustainableScaleChart from "./SustainableScaleChart"
 import { RegressionCoefficients } from "../../data/RegressionCoefficients"
+import { useSpring, animated } from "react-spring"
 
 const FullPageScroll = () => {
   var timeout
@@ -217,6 +218,16 @@ const FullPageScroll = () => {
   // const scaleSVGIcon = styled(SvgIcon)({
   //   transform: `scale(${ecofash_waste} / 0.5)`,
   // })
+
+  function Number({ n }) {
+    const { number } = useSpring({
+      from: { number: 0 },
+      number: n,
+      delay: 200,
+      config: { mass: 1, tension: 20, friction: 10 },
+    })
+    return <animated.div>{number.to((n) => n.toFixed(0))}</animated.div>
+  }
 
   function preventHorizontalKeyboardNavigation(event) {
     // console.log(event)
@@ -908,23 +919,37 @@ const FullPageScroll = () => {
                   <div className={styles.section_6_icon}>
                     <WasteIcon transform="scale(0.8)" />
                   </div>
-                  <h1>
-                    {Regression(
-                      wearCount,
-                      purchaseCount,
-                      renewCount,
-                      susPercentage,
-                      recycleValue
-                    )}
-                    KG
-                  </h1>
+                  <div className={styles.waste_number_container}>
+                    <h1
+                      style={{ fontSize: 50 }}
+                      className={styles.waste_number_container}
+                    >
+                      <Number
+                        n={Regression(
+                          wearCount,
+                          purchaseCount,
+                          renewCount,
+                          susPercentage,
+                          recycleValue
+                        )}
+                      />{" "}
+                      KG
+                    </h1>
+                  </div>
                 </div>
                 <div className={styles.section_6_icon_container}>
                   <h1>Average Victorian Annual Waste</h1>
                   <div className={styles.section_6_icon}>
                     <WasteIcon transform="scale(0.8)" />
                   </div>
-                  <h1>27KG</h1>
+                  <div className={styles.waste_number_container}>
+                    <h1
+                      style={{ fontSize: 50 }}
+                      className={styles.waste_number_container}
+                    >
+                      <Number n={27} /> KG
+                    </h1>
+                  </div>
                 </div>
               </div>
               <div>
