@@ -48,7 +48,7 @@ export default function SplineContainer({ target }) {
             alignItems: "center",
             flexDirection: "column",
             gap: "0.5em",
-            height: "100%",
+            flex: 1,
           }}
         >
           <CircularProgress color="success" size={60} thickness={4} />
@@ -56,10 +56,18 @@ export default function SplineContainer({ target }) {
         </Box>
       }
     >
-      <div className={styles.scene_container}>
+      <Box
+        sx={{
+          position: "relative",
+          display: "flex",
+          height: "600px",
+        }}
+      >
         {hoveredItem && (
           <div className={styles.overlay}>
-            <Typography variant="h6">{hoveredItem.name}</Typography>
+            <Typography variant="h6" sx={{ color: "#0ac05e" }}>
+              {hoveredItem.name}
+            </Typography>
             <Typography variant="body1" sx={{ fontSize: "1.1em" }}>
               {hoveredItem.description}
             </Typography>
@@ -70,6 +78,7 @@ export default function SplineContainer({ target }) {
           flat
           linear
           onCreated={(state) => state.events.connect(target.current)}
+          className={styles.canvas}
         >
           <Scene
             items={items}
@@ -85,7 +94,7 @@ export default function SplineContainer({ target }) {
             maxAzimuthAngle={Math.PI - 0.5}
           />
         </Canvas>
-      </div>
+      </Box>
     </Suspense>
   )
 }

@@ -35,7 +35,7 @@ export default function SustainableLocations() {
       <Page title="Sustainable Locations">
         <Container maxWidth="lg">
           <Hero
-            title="Explore Locations"
+            title="Sustainable Locations"
             description="Explore the map below to find op shops, recycling, repairing and donating opportunities through locations near you."
           />
         </Container>
