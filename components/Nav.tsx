@@ -6,7 +6,7 @@ import { Box, Button, SvgIcon, useMediaQuery } from "@mui/material"
 import { Container } from "@mui/system"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // Page routes
 const routes = [
@@ -23,6 +23,17 @@ export default function Nav({ stickyNav, setStickyNav }) {
   const router = useRouter()
   const isMobile = useMediaQuery("(max-width:768px)")
   const [expandedMenu, setExpandedMenu] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener("resize", handleDetectExpandedMenu, false)
+    return () => window.removeEventListener("resize", handleDetectExpandedMenu)
+  }, [])
+
+  const handleDetectExpandedMenu = () => {
+    if (window.innerWidth > 768) {
+      setExpandedMenu(false)
+    }
+  }
 
   const getPageSection = (path: string) => {
     const paths = path.split("/")
