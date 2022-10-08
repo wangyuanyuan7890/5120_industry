@@ -17,3 +17,13 @@
   color: white;
   text-align: center;
 }
+
+.spline_container {
+  height: "800px";
+}
+
+@media only screen and (max-width: 768px) {
+  .spline_container {
+    height: "600px";
+  }
+}

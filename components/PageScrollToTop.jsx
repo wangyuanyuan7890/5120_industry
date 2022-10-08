@@ -7,7 +7,6 @@ export default function PageScrollToTop() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      console.log(window.screenY)
       if (window.scrollY > 1) {
         setShowScrollTopButton(true)
       } else {

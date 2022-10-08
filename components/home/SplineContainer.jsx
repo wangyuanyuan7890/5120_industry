@@ -41,62 +41,43 @@ export default function SplineContainer({ target }) {
   const isMobile = useMediaQuery("(max-width:768px)")
 
   return (
-    <Suspense
-      fallback={
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: "0.5em",
-            flex: 1,
-          }}
-        >
-          <CircularProgress color="success" size={60} thickness={4} />
-          <Typography variant="h6">Loading scene...</Typography>
-        </Box>
-      }
+    <Box
+      sx={{
+        position: "relative",
+        display: "flex",
+        height: !isMobile ? "600px" : "400px",
+      }}
     >
-      <Box
-        sx={{
-          position: "relative",
-          display: "flex",
-          height: !isMobile ? "600px" : "300px",
-        }}
+      {hoveredItem && (
+        <div className={styles.overlay}>
+          <Typography variant="h6" sx={{ color: "#0ac05e" }}>
+            {hoveredItem.name}
+          </Typography>
+          <Typography variant="body1" sx={{ fontSize: "1.1em" }}>
+            {hoveredItem.description}
+          </Typography>
+        </div>
+      )}
+      <Canvas
+        shadows
+        flat
+        linear
+        onCreated={(state) => state.events.connect(target.current)}
       >
-        {hoveredItem && (
-          <div className={styles.overlay}>
-            <Typography variant="h6" sx={{ color: "#0ac05e" }}>
-              {hoveredItem.name}
-            </Typography>
-            <Typography variant="body1" sx={{ fontSize: "1.1em" }}>
-              {hoveredItem.description}
-            </Typography>
-          </div>
-        )}
-        <Canvas
-          shadows
-          flat
-          linear
-          onCreated={(state) => state.events.connect(target.current)}
-          className={styles.canvas}
-        >
-          <Scene
-            items={items}
-            hoveredItem={hoveredItem}
-            setHoveredItem={setHoveredItem}
-          />
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            minPolarAngle={Math.PI / 2 - 0.4}
-            maxPolarAngle={Math.PI / 2 + 0.5}
-            minAzimuthAngle={Math.PI / 2 + 0.1}
-            maxAzimuthAngle={Math.PI - 0.5}
-          />
-        </Canvas>
-      </Box>
-    </Suspense>
+        <Scene
+          items={items}
+          hoveredItem={hoveredItem}
+          setHoveredItem={setHoveredItem}
+        />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          minPolarAngle={Math.PI / 2 - 0.4}
+          maxPolarAngle={Math.PI / 2 + 0.5}
+          minAzimuthAngle={Math.PI / 2 + 0.1}
+          maxAzimuthAngle={Math.PI - 0.5}
+        />
+      </Canvas>
+    </Box>
   )
 }
