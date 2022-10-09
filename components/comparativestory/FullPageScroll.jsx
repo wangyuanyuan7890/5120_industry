@@ -28,6 +28,7 @@ import SustainableScaleChart from "./SustainableScaleChart"
 import { RegressionCoefficients } from "../../data/RegressionCoefficients"
 import { useSpring, animated } from "react-spring"
 import { color } from "@chakra-ui/react"
+import Link from "next/link"
 
 const FullPageScroll = () => {
   var timeout
@@ -87,15 +88,17 @@ const FullPageScroll = () => {
     recycleValue
   ) {
     const waste = Math.round(
-      Math.ceil(
-        Math.floor(
+      Math.max(
+        Math.min(
           intercept -
             wears * wearCount +
             cotton_ts * purchaseCount -
-            renewal * Math.floor(renewCount) -
+            renewal * Math.min(renewCount, 10) -
             sustainable * (susPercentage / 100) -
-            recycled * recycleValue
-        )
+            recycled * recycleValue,
+          68
+        ),
+        0
       )
     )
 
@@ -217,10 +220,6 @@ const FullPageScroll = () => {
     },
   })
 
-  // const scaleSVGIcon = styled(SvgIcon)({
-  //   transform: `scale(${ecofash_waste} / 0.5)`,
-  // })
-
   function Number({ n }) {
     const { number } = useSpring({
       from: { number: 0 },
@@ -232,7 +231,6 @@ const FullPageScroll = () => {
   }
 
   function preventHorizontalKeyboardNavigation(event) {
-    // console.log(event)
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault()
     }
@@ -240,7 +238,7 @@ const FullPageScroll = () => {
 
   // function to keep input data formatted and restricted to only numbers
   function handleChange(e) {
-    const re = /^[0-9\b]{1,2}$/
+    const re = /^[0-9\b]{1,3}$/
     if (e.target.value === "" || re.test(e.target.value)) {
       e.target.value = e.target.value.replace(/^0+(?=\d)/, "")
       setPurchaseCount(e.target.value)
@@ -259,8 +257,6 @@ const FullPageScroll = () => {
   const handleSliderChange1 = (event, newValue) => {
     timeout && clearTimeout(timeout)
     timeout = setTimeout(() => {
-      // console.log("change")
-      // console.log(newValue)
       setWearCount(newValue)
     }, 1000)
   }
@@ -268,7 +264,6 @@ const FullPageScroll = () => {
   const handleSliderChange2 = (event, newValue) => {
     timeout1 && clearTimeout(timeout1)
     timeout1 = setTimeout(() => {
-      // console.log(newValue)
       setSusPercentage(newValue)
     }, 1000)
   }
@@ -970,13 +965,11 @@ const FullPageScroll = () => {
                   Try wear each item at least <b>30 times</b>! Use the Wear
                   Tracker to support you!
                 </p>
-                <Button
-                  variant="contained"
-                  color="success"
-                  href="http://localhost:3000/clothingtracker" // change to live server url upon deployment
-                >
-                  WEAR TRACKER
-                </Button>
+                <Link href="/clothingtracker">
+                  <Button variant="contained" color="success">
+                    CLOTHING TRACKER
+                  </Button>
+                </Link>
               </div>
             </FullpageSection>
           )}
