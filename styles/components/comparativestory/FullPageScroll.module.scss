@@ -30,15 +30,6 @@
 
 .section_text{
     justify-content: left;
-    // margin-bottom: 5vh;
-}
-
-.button_section_3{
-    margin-right: 0.5rem;
-}
-
-.button_section_4{
-    margin-left: 0.5rem;
 }
 
 .button_group{
@@ -46,15 +37,6 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-}
-
-.no_button{
-    background-color: darkorange;
-}
-
-.no_button:hover{
-    background-color: darkorange;
-        transition: 0.7s;
 }
 
 .downarrow {
@@ -84,14 +66,6 @@
   font-size: 200%;
 }
 
-.back_button{
-  width: 60%;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: flex-start;
-}
-
 .back_button2{
   width: 77%;
   position: absolute;
@@ -99,15 +73,6 @@
   flex-direction: row;
   justify-content: left;
   align-items: flex-start;
-}
-
-.back_icon{
-  background-color: darkgreen;
-  color: white;
-  height: 35px;
-  width: 45px;
-  border-radius: 20%;
-  cursor: pointer;
 }
 
 .local_drink_container{

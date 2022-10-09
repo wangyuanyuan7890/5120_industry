@@ -27,7 +27,7 @@ import LineScaleChart from "./LineScaleChart"
 import SustainableScaleChart from "./SustainableScaleChart"
 import { RegressionCoefficients } from "../../data/RegressionCoefficients"
 import { useSpring, animated } from "react-spring"
-import { color } from "@chakra-ui/react"
+import { color, transition } from "@chakra-ui/react"
 import Link from "next/link"
 
 const FullPageScroll = () => {
@@ -278,6 +278,7 @@ const FullPageScroll = () => {
       setOpenSnack(true)
     }
     setIsShown2((current) => !current)
+    setOpenSnack(false)
   }
 
   const handleClick3 = (event) => {
@@ -406,7 +407,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick1}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <h3>Reusing is essential to minimising fashion footprint.</h3>
@@ -444,11 +452,12 @@ const FullPageScroll = () => {
                 open={openSnack}
                 autoHideDuration={5000}
                 onClose={handleClose}
+                sx={{ width: "100%", zIndex: "-1" }}
               >
                 <Alert
                   onClose={handleClose}
                   severity="info"
-                  sx={{ width: "100%" }}
+                  sx={{ width: "100%", zIndex: "-1" }}
                 >
                   Invalid input!
                 </Alert>
@@ -512,7 +521,7 @@ const FullPageScroll = () => {
                   <Button
                     variant="contained"
                     color="success"
-                    className={styles.button_section_3}
+                    sx={{ marginRight: "0.5rem" }}
                     onClick={handleClick2}
                   >
                     CONFIRM
@@ -526,7 +535,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick2}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <h3>
@@ -637,7 +653,7 @@ const FullPageScroll = () => {
                 <Button
                   variant="contained"
                   color="success"
-                  className={styles.button_section_4}
+                  sx={{ marginLeft: "0.5rem" }}
                   onClick={handleClick3}
                 >
                   CONFIRM
@@ -650,7 +666,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick3}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <h3>Choosing not to Renew is a privilege</h3>
@@ -762,7 +785,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick4}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <h3>
@@ -851,7 +881,13 @@ const FullPageScroll = () => {
                 </Button>
                 <Button
                   variant="contained"
-                  className={styles.no_button}
+                  sx={{
+                    backgroundColor: "orange",
+                    "&:hover": {
+                      backgroundColor: "darkorange",
+                      transition: "0.7s",
+                    },
+                  }}
                   value={0}
                   onClick={(e) => handleClick5(e, 0)}
                 >
@@ -865,7 +901,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick5}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <h3>Recycling Clothing can give clothing another life</h3>
@@ -913,7 +956,14 @@ const FullPageScroll = () => {
               <div className={styles.back_button2}>
                 <KeyboardBackspaceIcon
                   onClick={handleClick5}
-                  className={styles.back_icon}
+                  sx={{
+                    backgroundColor: "darkgreen",
+                    color: "white",
+                    height: "35px",
+                    width: "45px",
+                    borderRadius: "20%",
+                    cursor: "pointer",
+                  }}
                 />
               </div>
               <div className={styles.section_6_container}>
