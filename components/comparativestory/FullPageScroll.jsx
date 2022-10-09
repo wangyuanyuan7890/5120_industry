@@ -47,7 +47,7 @@ const FullPageScroll = () => {
   // user input
   const [wearCount, setWearCount] = useState(20)
   const [purchaseCount, setPurchaseCount] = useState(10)
-  const [renewCount, setRenewCount] = useState(3)
+  const [renewCount, setRenewCount] = useState(2)
   const [susPercentage, setSusPercentage] = useState(30)
   const [recycleValue, setRecycleValue] = useState(0)
 
@@ -239,7 +239,7 @@ const FullPageScroll = () => {
 
   // function to keep input data formatted and restricted to only numbers
   function handleChange(e) {
-    const re = /^[0-9\b]+$/
+    const re = /^[0-9\b]{1,2}$/
     if (e.target.value === "" || re.test(e.target.value)) {
       e.target.value = e.target.value.replace(/^0+(?=\d)/, "")
       setPurchaseCount(e.target.value)
@@ -248,7 +248,7 @@ const FullPageScroll = () => {
 
   // fuction to handle second user input field
   function handleChange1(e) {
-    const re = /^[0-9\b]+$/
+    const re = /^[0-9\b]{1,2}$/
     if (e.target.value === "" || re.test(e.target.value)) {
       e.target.value = e.target.value.replace(/^0+(?=\d)/, "")
       setRenewCount(e.target.value)
@@ -685,15 +685,15 @@ const FullPageScroll = () => {
                   </p>
                 </div>
                 <div className={styles.section_4_lower_hidden}>
-                  <div>
-                    <LineScaleChart />
+                  <div className={styles.section_4_lower_chart}>
+                    <LineScaleChart data={renewCount} />
                   </div>
                   {renewCount > 10 && (
                     <div>
-                      <p>
+                      <p style={{ fontSize: "12px" }}>
                         <i>
-                          You are off renewal activity is the scale. Great
-                          sustainable activity.
+                          You are off renewal activity scale. Great sustainable
+                          activity, keep it up!
                         </i>
                       </p>
                     </div>
@@ -916,9 +916,11 @@ const FullPageScroll = () => {
               </div>
               <div className={styles.section_6_container}>
                 <div className={styles.section_6_icon_container}>
-                  <h1>Your EcoFash Expected Waste</h1>
+                  <h1 style={{ marginBottom: 50 }}>
+                    Your EcoFash Expected Waste
+                  </h1>
                   <div className={styles.section_6_icon}>
-                    <WasteIcon transform="scale(0.8)" />
+                    <WasteIcon transform={`scale(${ecofash_waste / 27 / 2})`} />
                   </div>
                   <div className={styles.waste_number_container}>
                     <h1
@@ -939,9 +941,11 @@ const FullPageScroll = () => {
                   </div>
                 </div>
                 <div className={styles.section_6_icon_container}>
-                  <h1>Average Victorian Annual Waste</h1>
-                  <div className={styles.section_6_icon}>
-                    <WasteIcon transform="scale(0.8)" />
+                  <h1 style={{ marginBottom: 50 }}>
+                    Average Victorian Annual Waste
+                  </h1>
+                  <div className={styles.section_6_icon_2}>
+                    <WasteIcon transform={`scale(0.5)`} />
                   </div>
                   <div className={styles.waste_number_container}>
                     <h1

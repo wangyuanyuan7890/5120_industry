@@ -133,7 +133,6 @@ export default function OpShopsLocation() {
   const [filteredShops, setFilteredShops] = useState([])
 
   const handleFormat = (event, newFormats) => {
-    // console.log(newFormats)
     if (newFormats !== null) {
       setFormats(newFormats)
     }
@@ -141,7 +140,6 @@ export default function OpShopsLocation() {
 
   const handleName = (event, array) => {
     const flatArray = array.map((x) => x.shop.name)
-    // console.log(flatArray)
     if (flatArray !== null) {
       setName(flatArray)
     }
@@ -154,13 +152,10 @@ export default function OpShopsLocation() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data)
         const { shopLocations } = data
         if (shopLocations) {
           const finalShopLocations = shopLocations
-          // console.log(finalShopLocations)
           setFoundShops(finalShopLocations)
-          // console.log(foundShops)
         }
       })
       .catch((_err) => {})
@@ -172,9 +167,6 @@ export default function OpShopsLocation() {
   const [selectedShopDetails, setSelectedShopDetails] = useState({})
 
   const finalFilteredMarkers = () => {
-    // console.log(name)
-    // console.log(formats)
-    // console.log(foundShops.length)
     if (formats.length < 0 && name.length < 0) return foundShops
     if (name.length > 0)
       return foundShops.filter(
@@ -262,7 +254,6 @@ export default function OpShopsLocation() {
   )
 
   const options_mov = filtered_options.map((option) => {
-    // console.log(option)
     const firstLetter = option.shop["name"][0].toUpperCase()
     // const firstLetter = option.title[0].toUpperCase()
     return {
@@ -272,15 +263,12 @@ export default function OpShopsLocation() {
   })
 
   function final_options_mov() {
-    // console.log(formats)
     return formats.length > 0
       ? options_mov.filter(
           (x) => x.shop.types === formats.find((y) => x.shop.types === y)
         )
       : options_mov
   }
-
-  // console.log(final_options_mov.length)
 
   // function to control checkbox boolean value in toggle group button
   function checkIfExists(shopType) {
