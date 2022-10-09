@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import ExpandLessIcon from "@mui/icons-material/ExpandLess"
-import styles from "@/styles/components/PageScrollToTop.module.scss"
 
 export default function PageScrollToTop() {
   const [showScrollTopButton, setShowScrollTopButton] = useState(false)
@@ -26,8 +25,20 @@ export default function PageScrollToTop() {
     <>
       {showScrollTopButton && (
         <ExpandLessIcon
-          className={styles.top_btn_position}
           onClick={scrollTop}
+          sx={{
+            position: "fixed",
+            bottom: "2em",
+            right: "2em",
+            height: "50px",
+            width: "50px",
+            border: "1px solid #000",
+            borderRadius: "50%",
+            backgroundColor: "#0ac05e",
+            color: "black",
+            cursor: "pointer",
+            padding: "0.5em",
+          }}
         />
       )}
     </>

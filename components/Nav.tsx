@@ -26,11 +26,21 @@ export default function Nav({ stickyNav, setStickyNav }) {
 
   useEffect(() => {
     window.addEventListener("resize", handleDetectExpandedMenu, false)
-    return () => window.removeEventListener("resize", handleDetectExpandedMenu)
+    window.addEventListener("scroll", handleRemoveMenu)
+    return () => {
+      window.removeEventListener("resize", handleDetectExpandedMenu)
+      window.removeEventListener("scroll", handleRemoveMenu)
+    }
   }, [])
 
   const handleDetectExpandedMenu = () => {
     if (window.innerWidth > 768) {
+      setExpandedMenu(false)
+    }
+  }
+
+  const handleRemoveMenu = () => {
+    if (window.scrollY < 1) {
       setExpandedMenu(false)
     }
   }

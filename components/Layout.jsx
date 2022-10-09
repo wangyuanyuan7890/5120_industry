@@ -6,12 +6,13 @@ import Footer from "./Footer"
 
 // Layout for all pages that will incorporate the navbar, content and footers
 export default function Layout({ children }) {
-  const [stickyNav, setStickyNav] = useState(false)
+  const [stickyNav, setStickyNav] = useState(true)
 
   // Setup scroll effect to detect when the page scrolls
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNav)
-  })
+    return () => window.removeEventListener("scroll", handleStickyNav)
+  }, [])
 
   // Changes styles of the navbar when page is scrolled
   const handleStickyNav = () => {
