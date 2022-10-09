@@ -27,6 +27,7 @@ import LineScaleChart from "./LineScaleChart"
 import SustainableScaleChart from "./SustainableScaleChart"
 import { RegressionCoefficients } from "../../data/RegressionCoefficients"
 import { useSpring, animated } from "react-spring"
+import { color } from "@chakra-ui/react"
 
 const FullPageScroll = () => {
   var timeout
@@ -344,7 +345,7 @@ const FullPageScroll = () => {
               </li>
               <br />
               <li>
-                <b>The Data:</b> The numbers we're quoting here come from
+                <b>The Data:</b> The numbers we&apos;re quoting here come from
                 Australian Government waste <br /> and production reports and
                 ABS population statistics.
               </li>
@@ -369,7 +370,7 @@ const FullPageScroll = () => {
                 <p>
                   On top of the abundant production emissions, when clothes end
                   up in landfills they create even more greenhouse gases
-                  poluting the Earth's fragile atmostphere. Sustainable
+                  poluting the Earth&apos;s fragile atmostphere. Sustainable
                   reduction habits include rewearing items to reduce all forms
                   of emissions.
                 </p>
@@ -418,7 +419,7 @@ const FullPageScroll = () => {
                 <p>
                   On top of the abundant production emissions, when clothes end
                   up in landfills they create even more greenhouse gases
-                  poluting the Earth's fragile atmostphere. Sustainable
+                  poluting the Earth&apos;s fragile atmostphere. Sustainable
                   reduction habits include rewearing items to reduce all forms
                   of emissions.
                 </p>
@@ -463,8 +464,8 @@ const FullPageScroll = () => {
               </h3>
               <div className={styles.filler_text_section_3}>
                 <p>
-                  Ever think about the material that makes up the clothes you're
-                  wearing?
+                  Ever think about the material that makes up the clothes
+                  you&apos;re wearing?
                 </p>
                 <p>
                   A growing proportion of Victorian Emissions are due to
@@ -486,8 +487,8 @@ const FullPageScroll = () => {
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
                   <p>
-                    Most T-shirts are cotton, estimate how many that weren't{" "}
-                    <br />
+                    Most T-shirts are cotton, estimate how many that
+                    weren&apos;t <br />
                     marked sustainable you purchased?
                   </p>
                 </div>
@@ -539,8 +540,8 @@ const FullPageScroll = () => {
               </h3>
               <div className={styles.filler_text_section_3}>
                 <p>
-                  Ever think about the material that makes up the clothes you're
-                  wearing?
+                  Ever think about the material that makes up the clothes
+                  you&apos;re wearing?
                 </p>
                 <p>
                   A growing proportion of Victorian Emissions are due to
@@ -564,14 +565,20 @@ const FullPageScroll = () => {
                   <p>
                     In production those T-shirts require{" "}
                     <b className={styles.litres_text}>{purchaseCount * 2700}</b>{" "}
-                    Litres! <br /> That's enough water for the average Victorian
-                    to drink for:{" "}
+                    Litres! <br /> That&apos;s enough water for the average
+                    Victorian to drink for:{" "}
                   </p>
                   <div className={styles.local_drink_container}>
                     <div className={styles.local_drink_icon_group}>
-                      <LocalDrinkIcon className={styles.local_drink_icon} />
-                      <LocalDrinkIcon className={styles.local_drink_icon} />
-                      <LocalDrinkIcon className={styles.local_drink_icon} />
+                      <LocalDrinkIcon
+                        sx={{ fontSize: "80px", color: "green" }}
+                      />
+                      <LocalDrinkIcon
+                        sx={{ fontSize: "80px", color: "green" }}
+                      />
+                      <LocalDrinkIcon
+                        sx={{ fontSize: "80px", color: "green" }}
+                      />
                     </div>
                     <p>
                       <b className={styles.year_text}>
@@ -595,14 +602,14 @@ const FullPageScroll = () => {
                 <p>
                   Renewing compromises of the donating and/or repairing of
                   clothing. Many low-income countries still have a relatively
-                  high rate of clothing renewal with a lesser access to "Fast
-                  Fashion". In such low-income countries clothing renewal is a
-                  necessity, as it should be.
+                  high rate of clothing renewal with a lesser access to
+                  &quot;Fast Fashion&quot;. In such low-income countries
+                  clothing renewal is a necessity, as it should be.
                 </p>
                 <p>
-                  When Victoria's Clothing Emissions were lowest this Centuary,
-                  Victorians were regularly repairing and donating clothing
-                  items.
+                  When Victoria&apos;s Clothing Emissions were lowest this
+                  Centuary, Victorians were regularly repairing and donating
+                  clothing items.
                 </p>
               </div>
               <h1>
@@ -656,14 +663,14 @@ const FullPageScroll = () => {
                 <p>
                   Renewing compromises of the donating and/or repairing of
                   clothing. Many low-income countries still have a relatively
-                  high rate of clothing renewal with a lesser access to "Fast
-                  Fashion". In such low-income countries clothing renewal is a
-                  necessity, as it should be.
+                  high rate of clothing renewal with a lesser access to
+                  &quot;Fast Fashion&quot;. In such low-income countries
+                  clothing renewal is a necessity, as it should be.
                 </p>
                 <p>
-                  When Victoria's Clothing Emissions were lowest this Centuary,
-                  Victorians were regularly repairing and donating clothing
-                  items.
+                  When Victoria&apos;s Clothing Emissions were lowest this
+                  Centuary, Victorians were regularly repairing and donating
+                  clothing items.
                 </p>
               </div>
               <h1>
