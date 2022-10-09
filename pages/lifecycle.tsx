@@ -28,7 +28,7 @@ const steps: Step[] = [
     subtitle: "Do something drastic, don't wear microplastic!",
     description:
       "When buying clothing, emissions through production should be a major factor. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
-    links: [{ label: "Trends", href: "trends" }],
+    links: [{ label: "Comparative story", href: "comparativestory" }],
     image: <ReduceImage className={styles.clothing_lifecycle} />,
   },
   {

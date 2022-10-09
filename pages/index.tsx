@@ -149,11 +149,16 @@ export default function Home() {
           display: "flex",
           flexDirection: "column",
           padding: "3em 0",
-          gap: "1em",
         }}
       >
         <Typography variant="h4" sx={{ textAlign: "center" }}>
           Interactive experience
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ textAlign: "center", marginBottom: "1em" }}
+        >
+          Drag to move scene
         </Typography>
         <SplineContainer target={target} />
       </Container>
