@@ -116,18 +116,9 @@ const FullPageScroll = () => {
 
   // console.log(ecofash_waste)
 
-  function scrollTo(section) {
-    section.current.scrollIntoView({ behaviour: "smooth" })
-  }
-
-  // prop to style the full page sections
-  const SectionStyle = {
-    height: "100vh",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }
+  // function scrollTo(section) {
+  //   section.current.scrollIntoView({ behaviour: "smooth" })
+  // }
 
   // prop to style first section of full page scroll
   const SectionStyle1 = {
@@ -313,15 +304,7 @@ const FullPageScroll = () => {
       <FullpageNavigation />
       <FullPageSections>
         <div ref={section1}>
-          <FullpageSection
-            style={{
-              ...SectionStyle1,
-              backgroundImage: `url(${bg})`,
-              backgroundSize: "cover",
-            }}
-            scrollTo={scrollTo}
-            goToSectionRef={section2}
-          >
+          <FullpageSection style={SectionStyle1}>
             <h1>Are you more sustainable than the Average Victorian?</h1>
             <p>
               Test your sustainability habits to compare your waste to the
@@ -346,21 +329,11 @@ const FullPageScroll = () => {
                 ABS population statistics.
               </li>
             </ul>
-            {/* <div className={styles.arrow_div}>
-              <KeyboardDoubleArrowDownIcon
-                className={styles.downarrow}
-                onClick={executeScroll}
-              ></KeyboardDoubleArrowDownIcon>
-            </div> */}
           </FullpageSection>
         </div>
         <div ref={section2}>
           {!isShown && (
-            <FullpageSection
-              style={SectionStyle1}
-              scrollTo={scrollTo}
-              goToSectionRef={section3}
-            >
+            <FullpageSection style={SectionStyle1}>
               <h3>Reusing is essential to minimising fashion footprint.</h3>
               <div className={styles.filler_text_section_2}>
                 <p>
@@ -447,7 +420,7 @@ const FullPageScroll = () => {
         <div ref={section3}>
           {!isShown2 && (
             <FullpageSection style={SectionStyle1}>
-              <Snackbar
+              {/* <Snackbar
                 anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                 open={openSnack}
                 autoHideDuration={5000}
@@ -461,7 +434,7 @@ const FullPageScroll = () => {
                 >
                   Invalid input!
                 </Alert>
-              </Snackbar>
+              </Snackbar> */}
               <h3>
                 The Fast Fashion industry has led to these overstuffed closets
                 and overflowing landfills.
@@ -713,12 +686,22 @@ const FullPageScroll = () => {
                   <div className={styles.section_4_lower_chart}>
                     <LineScaleChart data={renewCount} />
                   </div>
-                  {renewCount > 10 && (
+                  {renewCount >= 10 && (
                     <div>
                       <p style={{ fontSize: "12px" }}>
                         <i>
                           You are off renewal activity scale. Great sustainable
                           activity, keep it up!
+                        </i>
+                      </p>
+                    </div>
+                  )}
+                  {renewCount < 1 && (
+                    <div>
+                      <p style={{ fontSize: "12px" }}>
+                        <i>
+                          You are way lower than the average renewal activity
+                          scale. Please act now!
                         </i>
                       </p>
                     </div>
