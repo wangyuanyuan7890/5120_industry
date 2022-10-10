@@ -44,7 +44,7 @@ const steps: Step[] = [
     subtitle: "Repair or donate, if in doubt don't throw it out!",
     description:
       "Repairing, rehoming, and salvaging clothing is something previous generations knew all too well, when the fashion industries emissions were far lower. This step is where lowering your fashion emissions gets creative. Renewing presents an opportunity to personalise a garment and further the experience of your clothing.",
-    links: [{ label: "Sustainable locations", href: "map" }],
+    links: [{ label: "Sustainable locations", href: "sustainablelocations" }],
     image: <RepairImage className={styles.clothing_lifecycle} />,
   },
   {
