@@ -8,8 +8,9 @@ import styles from "@/styles/components/home/SplineContainer.module.scss"
 
 const items = {
   tracker: {
-    name: "Clothing tracker",
-    description: "Keep track of your clothing and see how sustainable you are.",
+    name: "Sustainable wardrobe",
+    description:
+      "See the impact your wardrobe has on the environment and how to properly dispose of your clothing.",
     link: "/clothingtracker",
   },
   materialRack: {
