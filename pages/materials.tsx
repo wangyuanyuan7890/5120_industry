@@ -59,21 +59,8 @@ export default function Materials() {
       <Container maxWidth="lg">
         <Hero
           title="Material Checker"
-          description="Unsure of the biodegradability or sustainability of your clothing? Just check the clothing tag and select the materials below!"
-        >
-          <div className={styles.links}>
-            <span className={styles.link_title}>
-              Want to keep track of your clothing? take a look at the following:
-            </span>
-            <ul>
-              <li className={styles.link_text}>
-                <Link href="/clothingtracker">
-                  <span className={styles.link_color}>Clothing tracker</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </Hero>
+          description="See more details about materials your clothing may be made from just check the tag and you're ready to go."
+        />
         <Box sx={{ marginBottom: "2em" }}>
           <InfoGroup />
         </Box>
@@ -113,6 +100,21 @@ export default function Materials() {
             </div>
           </>
         )}
+      </Container>
+      <Container maxWidth="lg" sx={{ marginTop: "1em" }}>
+        <div className={styles.links}>
+          <span className={styles.link_title}>
+            Look at the following if you want to see how sustainable your
+            wardrobe is
+          </span>
+          <ul>
+            <li className={styles.link_text}>
+              <Link href="/clothingtracker">
+                <span className={styles.link_color}>Sustainable wardrobe</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     </Page>
   )

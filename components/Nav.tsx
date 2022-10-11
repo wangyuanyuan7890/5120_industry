@@ -2,7 +2,7 @@ import EcoFashLogo from "@/public/ecofash_logo.svg"
 import styles from "@/styles/components/Nav.module.scss"
 import CloseIcon from "@mui/icons-material/Close"
 import MenuIcon from "@mui/icons-material/Menu"
-import { Box, Button, SvgIcon, useMediaQuery } from "@mui/material"
+import { Box, Button, SvgIcon, Typography, useMediaQuery } from "@mui/material"
 import { Container } from "@mui/system"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 // Page routes
 const routes = [
   { name: "Home", path: "/" },
-  { name: "Clothing tracker", path: "/clothingtracker" },
+  { name: "Sustainable wardrobe", path: "/clothingtracker" },
   { name: "Material checker", path: "/materials" },
   { name: "Lifecycle", path: "/lifecycle" },
   { name: "Sustainable locations", path: "/sustainablelocations" },
@@ -115,9 +115,20 @@ export default function Nav({ stickyNav, setStickyNav }) {
             }}
           >
             <Link href="/" passHref>
-              <a>
+              <Box
+                sx={{ display: "flex", gap: "0.75em", alignItems: "center" }}
+              >
                 <EcoFashLogo className={styles.small_logo} />
-              </a>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: "bold",
+                    color: stickyNav ? "white" : "black",
+                  }}
+                >
+                  Ecofash
+                </Typography>
+              </Box>
             </Link>
             {!expandedMenu ? (
               <MenuIcon

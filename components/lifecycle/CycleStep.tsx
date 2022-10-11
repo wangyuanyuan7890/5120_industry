@@ -29,7 +29,7 @@ export default function CycleStep({
           {children}
           <div className={styles.links}>
             <span className={styles.link_title}>
-              You may also be interested in:
+              You may also be interested in
             </span>
             <ul>
               {links.map((x, index) => (

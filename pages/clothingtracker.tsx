@@ -9,7 +9,6 @@ import styles from "@/styles/pages/Clothingtracker.module.scss"
 import { fetchClothingItems } from "@/util/clothingtracker"
 
 import DescriptionIcon from "@mui/icons-material/Description"
-import Link from "next/link"
 
 // keeps track of clothing items
 export default function ClothingTracker() {
@@ -22,29 +21,43 @@ export default function ClothingTracker() {
   }, [])
 
   return (
-    <Page title="Clothing Tracker">
+    <Page title="Sustainable Wardrobe">
       <Container maxWidth="lg">
         <Hero
-          title="How to use the clothing tracker"
-          description="Track an outfit or your entire wardrobe and get instant feedback based on your entries."
+          title="How eco-friendly is your wardrobe?"
+          description="Keep track of your clothing items to see how sustainable your wardrobe is and how to properly dispose of your clothing items."
         >
           <>
             <div className={styles.hero_divider}>
               <ul>
-                <li>Create a new clothing record</li>
                 <li>
-                  Enter a name for your clothing item, the type, a list of
-                  materials and the amount times that clothing has been worn
+                  <span style={{ fontWeight: "bold" }}>Add</span> a new clothing
+                  item
                 </li>
                 <li>
-                  Then click the view summary button to see how eco-friendly you
-                  are!
+                  Enter a <span style={{ fontWeight: "bold" }}>name</span> for
+                  your clothing item, the{" "}
+                  <span style={{ fontWeight: "bold" }}>type</span>, a list of{" "}
+                  <span style={{ fontWeight: "bold" }}>materials</span> and the
+                  rough <span style={{ fontWeight: "bold" }}>wear count</span>{" "}
+                  for the lifetime of that clothing item
+                </li>
+                <li>
+                  If you want to dispose of an item click the{" "}
+                  <span style={{ fontWeight: "bold" }}>recycling</span> icon to
+                  see our disposal tool and get advice on how to get rid of that
+                  item
+                </li>
+                <li>
+                  Then click the{" "}
+                  <span style={{ fontWeight: "bold" }}>your impact</span> button
+                  to view how eco-friendly you are
                 </li>
               </ul>
               {clothingItems.length > 0 && (
                 <div className={styles.action_group}>
                   <LinkButton
-                    text="View summary"
+                    text="Your impact"
                     href="/clothingtracker/summary"
                     icon={<DescriptionIcon />}
                   />
@@ -52,19 +65,6 @@ export default function ClothingTracker() {
               )}
             </div>
           </>
-          <div className={styles.links}>
-            <span className={styles.link_title}>
-              Want more information about your materials? check out the
-              following:
-            </span>
-            <ul>
-              <li className={styles.link_text}>
-                <Link href="/materials">
-                  <span className={styles.link_color}>Material checker</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
         </Hero>
       </Container>
       <Container maxWidth="lg">
@@ -73,6 +73,23 @@ export default function ClothingTracker() {
           setClothingItems={setClothingItems}
         />
       </Container>
+      {clothingItems.length > 0 && (
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "1em",
+          }}
+        >
+          <LinkButton
+            text="Your impact"
+            href="/clothingtracker/summary"
+            icon={<DescriptionIcon />}
+          />
+        </Container>
+      )}
     </Page>
   )
 }

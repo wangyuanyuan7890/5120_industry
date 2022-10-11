@@ -25,7 +25,7 @@ export interface Step {
 const steps: Step[] = [
   {
     title: "Reduce",
-    subtitle: "Do something drastic, don't wear microplastic!",
+    subtitle: "Do something drastic, don't wear microplastic.",
     description:
       "When buying clothing, emissions through production should be a major factor. Sustainable materials have a positive impact on the local and/or global community, ultimately reducing net emissions and waste through all aspects of the garments journey.",
     links: [{ label: "Comparative story", href: "comparativestory" }],
@@ -41,7 +41,7 @@ const steps: Step[] = [
   },
   {
     title: "Renew",
-    subtitle: "Repair or donate, if in doubt don't throw it out!",
+    subtitle: "Repair or donate, if in doubt don't throw it out.",
     description:
       "Repairing, rehoming, and salvaging clothing is something previous generations knew all too well, when the fashion industries emissions were far lower. This step is where lowering your fashion emissions gets creative. Renewing presents an opportunity to personalise a garment and further the experience of your clothing.",
     links: [{ label: "Sustainable locations", href: "sustainablelocations" }],
@@ -49,7 +49,7 @@ const steps: Step[] = [
   },
   {
     title: "Recycle",
-    subtitle: "Recycle today for a better tomorrow!",
+    subtitle: "Recycle today for a better tomorrow.",
     description:
       "The majority of materials in landfill each year could be recycled! More and more commercial companies are dedicated to the repair, recycling and reselling of clothing, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. Victoria also hosts countless textile recycling opportunities.",
     links: [{ label: "Material checker", href: "materials" }],

@@ -11,6 +11,8 @@ import LinkButton from "@/components/LinkButton"
 
 import ClothingImage from "@/public/clothingtracker/clothing.svg"
 
+import Link from "next/link"
+
 const breadcrumbs = [
   { label: "Tracker", href: "/clothingtracker" },
   { label: "Summary" },
@@ -48,6 +50,20 @@ export default function Summary() {
             <SummaryTable clothingItems={clothingItems} />
           </>
         )}
+      </Container>
+      <Container maxWidth="lg" sx={{ marginTop: "1em" }}>
+        <div className={styles.links}>
+          <span className={styles.link_title}>
+            See the following for more information about your materials
+          </span>
+          <ul>
+            <li className={styles.link_text}>
+              <Link href="/materials">
+                <span className={styles.link_color}>Material checker</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     </Page>
   )

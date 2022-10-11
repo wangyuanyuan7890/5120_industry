@@ -114,7 +114,7 @@ export default function DisposalOptionGroup({ clothingItem }) {
       <div className={styles.links}>
         <span className={styles.link_title}>
           See the following for a map showing op shops, repair, donation and
-          recycling locations:
+          recycling locations
         </span>
         <ul>
           <li className={styles.link_text}>

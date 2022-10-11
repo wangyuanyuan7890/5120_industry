@@ -19,6 +19,7 @@ import WhyUseImage from "@/public/home/whyuse.png"
 import { Box, Typography, useMediaQuery } from "@mui/material"
 import Image from "next/image"
 import PageScrollToTop from "@/components/PageScrollToTop"
+import ThreeDRotationIcon from "@mui/icons-material/ThreeDRotation"
 
 // Home page design
 export default function Home() {
@@ -65,34 +66,29 @@ export default function Home() {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            padding: "6em 0 8em 0",
+            padding: "7em 0 10em 0",
           }}
         >
-          <Typography
-            variant="h2"
-            color="#0ac05e"
-            fontWeight={700}
-            textAlign="center"
-          >
-            Sustainable Shopping
+          <Typography variant="h2" fontWeight={500} textAlign="center">
+            What is your
           </Typography>
           <Typography
-            variant="h3"
             fontWeight={500}
+            variant="h2"
+            color="#0ac05e"
             sx={{ marginBottom: "0.5em" }}
-            textAlign="center"
           >
-            has never been more important
+            Clothing Footprint?
           </Typography>
           <Typography
             variant="h6"
             sx={{ marginBottom: "0.5em" }}
             textAlign="center"
           >
-            Dress sustainability and start using your clothing in a more
-            eco-friendly way by using our clothing tracker.
+            Walk the sustainable catwalk and see how eco-friendly you are
+            compared to the average Victorian.
           </Typography>
-          <LinkButton text="Clothing tracker" href="/clothingtracker" />
+          <LinkButton text="Compare now" href="/comparativestory" />
         </Container>
       </Box>
       <Box sx={{ backgroundColor: "#012c19", padding: "3em 0" }}>
@@ -152,13 +148,13 @@ export default function Home() {
         }}
       >
         <Typography variant="h4" sx={{ textAlign: "center" }}>
-          Interactive experience
+          Interactive bedroom <ThreeDRotationIcon fontSize="medium" />
         </Typography>
         <Typography
           variant="body1"
           sx={{ textAlign: "center", marginBottom: "1em" }}
         >
-          Drag to move scene
+          Drag to rotate scene
         </Typography>
         <SplineContainer target={target} />
       </Container>
@@ -178,8 +174,8 @@ export default function Home() {
           }}
         >
           <Feature
-            title="Clothing Tracker"
-            description="Have you worn your clothing enough? Use our tracker to see how sustainable you are."
+            title="Sustainable Wardrobe"
+            description="See the impact your wardrobe has on the environment and how to properly dispose of your clothing."
             image={ClothingTrackerIcon}
             link="/clothingtracker"
           />
@@ -197,13 +193,13 @@ export default function Home() {
           />
           <Feature
             title="Sustainable Locations"
-            description="Want to shop affordably, donate old clothing, repair old clothing? Explore these opportunities close to you."
+            description="Find affordable shopping and donate or repair old clothing by exploring our sustainable locations map."
             image={SustainableLocationsIcon}
             link="/sustainablelocations"
           />
           <Feature
             title="Comparative Story"
-            description="Think your clothing is more sustainable than the average Victorian? Compare your behaviours and find out."
+            description="Compare your behaviours and find out how eco-friendly you are compared to the average Victorian."
             image={ComparativeStoryIcon}
             link="/comparativestory"
           />
