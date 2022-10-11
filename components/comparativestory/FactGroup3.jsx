@@ -1,5 +1,5 @@
 import styles from "@/styles/components/comparativestory/FactSingle.module.scss"
-import Fact from "../home/Fact"
+import Fact from "../comparativestory/Fact_Small"
 import CharityShirtIcon from "@/public/comparativestory/charity_clothing_fact.svg"
 
 export default function FactGroup3() {

@@ -603,34 +603,44 @@ const FullPageScroll = () => {
         <div ref={section4}>
           {!isShown3 && (
             <FullpageSection style={SectionStyle1}>
-              <h3>Choosing not to Renew is a privilege</h3>
+              <h3 className={styles.h3}>
+                Choosing not to Renew is a privilege
+              </h3>
               <div className={styles.filler_text_section_4}>
-                <p>
+                <p className={styles.p}>
                   Renewing compromises of the donating and/or repairing of
                   clothing. Many low-income countries still have a relatively
                   high rate of clothing renewal with a lesser access to
                   &quot;Fast Fashion&quot;. In such low-income countries
                   clothing renewal is a necessity, as it should be.
                 </p>
-                <p>
+                <p className={styles.p}>
                   When Victoria&apos;s Clothing Emissions were lowest this
                   Centuary, Victorians were regularly repairing and donating
                   clothing items.
                 </p>
               </div>
-              <h1>
+              <h1 className={styles.h1}>
                 How many items have you <b>repaired</b> or <b>donated</b> over
                 the last 3 months?
               </h1>
               <div className={styles.section_4_lower}>
-                <p>Select your 3 monthly renewal count estimate</p>
+                <p className={styles.p}>
+                  Select your 3 monthly renewal count estimate
+                </p>
                 <Box
                   component="form"
                   sx={{
-                    "& .MuiTextField-root": { m: 1, width: "25ch" },
+                    "& .MuiTextField-root": {
+                      m: 1,
+                      width: "20ch",
+                      transform: "scale(0.8)",
+                      marginLeft: "-10px",
+                    },
                   }}
                   noValidate
                   autoComplete="off"
+                  className={styles.textfield}
                 >
                   <TextField
                     id="renew-number"
@@ -648,8 +658,14 @@ const FullPageScroll = () => {
                 <Button
                   variant="contained"
                   color="success"
-                  sx={{ marginLeft: "0.5rem" }}
+                  sx={{
+                    marginLeft: "0.5rem",
+                    width: "75px",
+                    height: "35px",
+                    fontSize: "11px",
+                  }}
                   onClick={handleClick3}
+                  className={styles.confirm}
                 >
                   CONFIRM
                 </Button>
@@ -664,45 +680,51 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
                 />
               </div>
-              <h3>Choosing not to Renew is a privilege</h3>
+              <h3 className={styles.h3}>
+                Choosing not to Renew is a privilege
+              </h3>
               <div className={styles.filler_text_section_4}>
-                <p>
+                <p className={styles.p}>
                   Renewing compromises of the donating and/or repairing of
                   clothing. Many low-income countries still have a relatively
                   high rate of clothing renewal with a lesser access to
                   &quot;Fast Fashion&quot;. In such low-income countries
                   clothing renewal is a necessity, as it should be.
                 </p>
-                <p>
+                <p className={styles.p}>
                   When Victoria&apos;s Clothing Emissions were lowest this
                   Centuary, Victorians were regularly repairing and donating
                   clothing items.
                 </p>
               </div>
-              <h1>
-                How many items have you <b>repaired</b> or <b>donated</b> this
-                month?
-              </h1>
+              <div className={styles.section_4_title}>
+                <h1 className={styles.h1}>
+                  How many items have you <b>repaired</b> or <b>donated</b> this
+                  month?
+                </h1>
+              </div>
               <div className={styles.fact_group_3}>
-                <div className={styles.fact_card_single2}>
-                  <FactGroup3 />
-                </div>
-                <div className={styles.fact_group_3_text}>
-                  <p>
-                    This century, when Victorian Fashion emissions were lowest
-                    renewal activities were far more common (green).
-                  </p>
-                  <p>
-                    The current average Victorian renewal trends (red) are far
-                    less than this low emission period.
-                  </p>
+                <div className={styles.fact_group_3_container}>
+                  <div className={styles.fact_card_single2}>
+                    <FactGroup3 />
+                  </div>
+                  <div className={styles.fact_group_3_text}>
+                    <p className={styles.p2}>
+                      This century, when Victorian Fashion emissions were lowest
+                      renewal activities were far more common (green).
+                    </p>
+                    <p className={styles.p2}>
+                      The current average Victorian renewal trends (red) are far
+                      less than this low emission period.
+                    </p>
+                  </div>
                 </div>
                 <div className={styles.section_4_lower_hidden}>
                   <div className={styles.section_4_lower_chart}>
