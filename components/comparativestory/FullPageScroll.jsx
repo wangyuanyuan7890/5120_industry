@@ -571,7 +571,7 @@ const FullPageScroll = () => {
                   <p className={styles.p}>
                     In production those T-shirts require{" "}
                     <b className={styles.litres_text}>{purchaseCount * 2700}</b>{" "}
-                    Litres! <br /> That&apos;s enough water for the average
+                    Litres. <br /> That&apos;s enough water for the average
                     Victorian to drink for:{" "}
                   </p>
                   <div className={styles.local_drink_container}>
@@ -588,7 +588,7 @@ const FullPageScroll = () => {
                     </div>
                     <p className={styles.p}>
                       <b className={styles.year_text}>
-                        {purchaseCount * 2.5} Years!
+                        {purchaseCount * 2.5} Years
                       </b>
                     </p>
                   </div>
@@ -833,7 +833,7 @@ const FullPageScroll = () => {
                     <a>
                       <b>Material Checker </b>
                     </a>
-                    to support you!
+                    to support you.
                   </p>
                 </div>
                 <div className={styles.fact_card_single3}>
@@ -867,7 +867,7 @@ const FullPageScroll = () => {
               </div>
               <div className={styles.section_text}>
                 <h1>
-                  Have you had any of your clothes <b>Recycled</b> ?
+                  Have you had any of your clothes <b>Recycled</b>?
                 </h1>
                 <p>
                   There are Clothing Recycling opportunities for many popular
@@ -1018,7 +1018,7 @@ const FullPageScroll = () => {
                 <h2>Want to reduce your Ecofash waste?</h2>
                 <p>
                   Try wear each item at least <b>30 times</b>! Use the Wear
-                  Tracker to support you!
+                  Tracker to support you.
                 </p>
                 <Link href="/clothingtracker">
                   <Button variant="contained" color="success">
