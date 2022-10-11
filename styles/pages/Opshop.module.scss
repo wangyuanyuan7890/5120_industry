@@ -20,6 +20,7 @@
 .charities {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem;
   background: #f5f5f5;
   color: #fff;
@@ -32,7 +33,7 @@
 
 .filterLocation,
 .searchLocation {
-  font-size: 1.2em;
+  font-size: 1em;
   color: black;
   text-align: center;
   font-weight: 500;
@@ -44,6 +45,7 @@
 
 .filterLabels {
   color: black;
+  font-size: 11px;
 }
 
 .search {
@@ -182,10 +184,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.1em;
 }
 
 @media only screen and (max-width: 768px) {
+  .charities {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 866px) {
   .charities {
     flex-direction: column;
   }

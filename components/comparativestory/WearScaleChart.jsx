@@ -28,10 +28,9 @@ export default function WearScaleChart(props) {
         <span className={styles.box_title}>Wear Count</span>
         <div
           style={{
-            height: "100%",
-            width: "30px",
+            height: "250px",
+            width: "25px",
             borderRadius: "6px",
-            marginTop: "6px",
             background: "#D3D3D3",
             transform: "scale(-1)",
           }}
@@ -52,14 +51,15 @@ export default function WearScaleChart(props) {
               style={{
                 position: "absolute",
                 width: "200px",
-                right: "50px",
-                height: `${props.data / 1.09}mm`,
-                fontSize: "15px",
+                right: "40px",
+                height: `${(props.data / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               ◄ Your wear count is {props.data} times
@@ -67,15 +67,16 @@ export default function WearScaleChart(props) {
             <span
               style={{
                 position: "absolute",
-                width: "250px",
-                right: "-220px",
-                height: `${valueVic / 1.09}mm`,
-                fontSize: "15px",
+                width: "200px",
+                right: "-165px",
+                height: `${(valueVic / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               Average Victorian is {valueVic} times ➤
@@ -83,15 +84,16 @@ export default function WearScaleChart(props) {
             <span
               style={{
                 position: "absolute",
-                width: "250px",
-                right: "-220px",
-                height: `${valueSus / 1.09}mm`,
-                fontSize: "15px",
+                width: "200px",
+                right: "-165px",
+                height: `${(valueSus / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               Sustainable goal is {valueSus} times ➤

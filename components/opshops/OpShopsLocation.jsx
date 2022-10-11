@@ -33,6 +33,7 @@ import {
   useMediaQuery,
 } from "@mui/material"
 import { AddShoppingCart, DeleteOutline, Handyman } from "@mui/icons-material"
+import { Box } from "@mui/system"
 
 // icons for the search bar
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />
@@ -308,10 +309,11 @@ export default function OpShopsLocation() {
                 style={{ marginRight: 8 }}
                 checked={selected}
               />
-              {option.shop["name"]} {GetIconLabel(option.shop["types"])}
+              {GetIconLabel(option.shop["types"])}
+              {option.shop["name"]}
             </li>
           )}
-          style={{ width: 200 }}
+          style={{ width: 400 }}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           renderInput={(params) => (
             <TextField
@@ -332,57 +334,151 @@ export default function OpShopsLocation() {
           <ToggleButton
             value="opshop"
             aria-label="op shop locations"
-            className={styles.toggle_button_group}
+            sx={{
+              display: "flex",
+              gap: "0.1em",
+              paddingLeft: "0",
+              // width: "160px",
+            }}
           >
-            <Checkbox
-              disabled
-              checked={checkIfExists("opshop")}
-              inputProps={{ "aria-label": "controlled" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingRight: "0",
+              }}
+            >
+              <Checkbox
+                size="small"
+                disabled
+                checked={checkIfExists("opshop")}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Box>
+            <AddShoppingCart
+              sx={{ fontSize: "1.3em" }}
+              className={styles.filterIcon}
             />
-            <p className={styles.filterLabels}>Op Shop Locations</p>
-            <AddShoppingCart className={styles.filterIcon} />
+            <Typography sx={{ fontWeight: "bold", fontSize: "0.85em" }}>
+              Op Shops
+            </Typography>
           </ToggleButton>
 
           <ToggleButton
             value="repair"
             aria-label="repair locations"
-            className={styles.toggle_button_group}
+            sx={{
+              display: "flex",
+              gap: "0.1em",
+              paddingLeft: "0",
+              // width: "150px",
+            }}
           >
-            <Checkbox
-              disabled
-              checked={checkIfExists("repair")}
-              inputProps={{ "aria-label": "controlled" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingRight: "0",
+              }}
+            >
+              <Checkbox
+                size="small"
+                disabled
+                checked={checkIfExists("repair")}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Box>
+            <Handyman
+              sx={{ fontSize: "1.3em" }}
+              className={styles.filterIcon}
             />
-            <p className={styles.filterLabels}>Repair Locations</p>
-            <Handyman className={styles.filterIcon} />
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                fontSize: "0.85em",
+              }}
+            >
+              Repair Points
+            </Typography>
           </ToggleButton>
 
           <ToggleButton
             value="donation"
             aria-label="donation points"
-            className={styles.toggle_button_group}
+            sx={{
+              display: "flex",
+              gap: "0.1em",
+              paddingLeft: "0",
+              width: "170px",
+            }}
           >
-            <Checkbox
-              disabled
-              checked={checkIfExists("donation")}
-              inputProps={{ "aria-label": "controlled" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingRight: "0",
+              }}
+            >
+              <Checkbox
+                size="small"
+                disabled
+                checked={checkIfExists("donation")}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Box>
+            <DeleteOutline
+              sx={{ fontSize: "1.3em" }}
+              className={styles.filterIcon}
             />
-            <p className={styles.filterLabels}>Donation Points</p>
-            <DeleteOutline className={styles.filterIcon} />
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                fontSize: "0.85em",
+              }}
+            >
+              Donation Points
+            </Typography>
           </ToggleButton>
 
           <ToggleButton
             value="recycling"
             aria-label="recycling points"
-            className={styles.toggle_button_group}
+            sx={{
+              display: "flex",
+              gap: "0.1em",
+              paddingLeft: "0",
+              width: "170px",
+            }}
           >
-            <Checkbox
-              disabled
-              checked={checkIfExists("recycling")}
-              inputProps={{ "aria-label": "controlled" }}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingRight: "0",
+              }}
+            >
+              <Checkbox
+                size="small"
+                disabled
+                checked={checkIfExists("recycling")}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </Box>
+            <LoopIcon
+              sx={{ fontSize: "1.3em" }}
+              className={styles.filterIcon}
             />
-            <p className={styles.filterLabels}>Recycling Points</p>
-            <LoopIcon className={styles.filterIcon} />
+            <Typography sx={{ fontWeight: "bold", fontSize: "0.85em" }}>
+              Recycling Points
+            </Typography>
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
@@ -544,12 +640,19 @@ function GetIcon(shopType) {
 
 function GetIconLabel(shopType) {
   if (shopType === "opshop") {
-    return <AddShoppingCart className={styles.filterIcon} />
+    return (
+      <AddShoppingCart
+        sx={{ fontSize: "1.3em" }}
+        className={styles.filterIcon}
+      />
+    )
   } else if (shopType === "repair") {
-    return <Handyman className={styles.filterIcon} />
+    return <Handyman sx={{ fontSize: "1.3em" }} className={styles.filterIcon} />
   } else if (shopType === "donation") {
-    return <DeleteOutline className={styles.filterIcon} />
+    return (
+      <DeleteOutline sx={{ fontSize: "1.3em" }} className={styles.filterIcon} />
+    )
   } else if (shopType === "recycling") {
-    return <LoopIcon className={styles.filterIcon} />
+    return <LoopIcon sx={{ fontSize: "1.3em" }} className={styles.filterIcon} />
   }
 }

@@ -1,5 +1,5 @@
 import styles from "@/styles/components/comparativestory/FactSingle.module.scss"
-import Fact from "../home/Fact"
+import Fact from "../comparativestory/Fact_Medium"
 import WaterIcon from "@/public/comparativestory/water_pollution_fact.svg"
 
 export default function FactGroup2() {

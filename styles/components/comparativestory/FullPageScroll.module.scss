@@ -100,7 +100,6 @@
 }
 
 .fact_card{
-  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +107,7 @@
 }
 
 .fact_card_single{
-  width: 35%;
+  transform: scale(0.9);
 }
 
 .fact_group_3{
@@ -206,7 +205,7 @@
 }
 
 .section_2_lower {
-  height: 370px;
+  // height: 370px;
   display: flex;
   flex-direction: row;
 }
@@ -267,6 +266,300 @@
 .waste_number_container {
   display: flex;
   flex-direction: row;
+}
+
+.wearScaleChart {
+  padding-left: 200px;
+}
+
+.h1 {
+  font-size: 18px;
+}
+
+.p {
+  font-size: 14px;
+}
+
+.h3 {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 1053px) {
+  .back_button2 {
+    position: static;
+    align-items: center;
+    justify-content: center;
+  }
+  .filler_text_section_2 {
+    width: 100%;
+  }
+  .filler_text_section_3{
+    width: 100%;
+  }
+  .filler_text_section_4{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .h1{
+    font-size: 14px;
+  }
+  .p {
+    font-size: 10px;
+  }
+  .h3 {
+    font-size: 12px;
+  }
+  .fact_card{
+    transform: scale(0.8);
+  }
+  .fact_card_single{
+    transform: scale(0.8);
+  }
+  .wearScaleChart {
+    transform: scale(0.8);
+    padding-left: 150px;
+  }
+  .sub_section_div3{
+    .textfield{
+      transform: scale(0.7);
+    }
+    .confirm{
+      height: 25px;
+      width: 55px;
+      font-size: 8px;
+      margin-right: 6em;
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .fact_card{
+    transform: scale(0.6);
+  }
+  .wearScaleChart {
+    transform: scale(0.6);
+    padding-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width : 700px) {
+  .h1{
+    font-size: 16px;
+  }
+  .p {
+    font-size: 12px;
+  }
+  .h3 {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width : 660px) {
+  .h1{
+    font-size: 12px;
+  }
+  .p {
+    font-size: 8px;
+  }
+  .h3 {
+    font-size: 10px;
+  }
+  .section_2_lower {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    margin: -50px;
+    .fact_card {
+      margin: -50px;
+    }
+  }
+  .lock_it_in {
+    transform: scale(0.6);
+  }
+  .sub_section_div2{
+    transform: scale(0.6);
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  .section_3_hidden{
+    display: flex;
+    flex-direction: column-reverse;
+    margin: -50px;
+    .local_drink_icon_group{
+      transform: scale(0.6);
+      margin-bottom: -20px;
+    }
+    .fact_card_single {
+      // margin: -20px;
+      transform: scale(0.6);
+      margin-bottom: -20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .section_div{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    .p{
+      margin-top: 5vh;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .sub_section_div2{
+    margin: -50px;
+  }
+  .section_3_hidden{
+    display: flex;
+    flex-direction: column-reverse;
+    margin: -50px;
+    .local_drink_icon_group{
+      transform: scale(0.5);
+      margin-top: -30px;
+      // margin-bottom: -50px;
+    }
+    .fact_card_single {
+      transform: scale(0.5);
+      margin-bottom: -30px;
+      // margin-top: -20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .section_3_hidden{
+    margin: -50px;
+    .fact_card_single {
+      transform: scale(0.5);
+    }
+    .local_drink_container {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-bottom: -20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .section1 {
+    .h1{
+      font-size: 16px;
+    }
+    .p{
+      font-size: 12px;
+    }
+  }
+  .section_div {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    margin: -50px;
+    .sub_section_div1{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      margin: -50px;
+    }
+    .sub_section_div2{
+      margin: -10px;
+    }
+  }
+  .sub_section_div3{
+    display: flex;
+    flex-direction: row;
+    .textfield{
+      padding-top: 5vh;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+    .confirm{
+      height: 25px;
+      width: 5px;
+      font-size: 6px;
+      margin-bottom: 5em;
+      margin-right: 15em;
+    }
+  }
+  .section_3_hidden{
+    margin: -50px;
+    .fact_card_single {
+      margin-bottom: -50px;
+      transform: scale(0.4);
+    }
+    .local_drink_container {
+      margin: -10px;
+      .local_drink_icon_group{
+        margin: -30px;
+        font-size: 50px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .section1 {
+    .h1{
+      font-size: 14px;
+    }
+    .p{
+      font-size: 10px;
+    }
+  }
+  .section_3_hidden{
+    margin-bottom: -50px;
+    margin-top: -50px;
+    .fact_card_single {
+      transform: scale(0.4);
+      margin-bottom: -50px;
+    }
+    .local_drink_container {
+      // margin-top: -20px;
+      .local_drink_icon_group{
+        margin-bottom: -30px;
+        margin-top: -30px;
+        font-size: 50px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .section1 {
+    .h1{
+      font-size: 12px;
+    }
+    .p{
+      font-size: 8px;
+    }
+  }
+  .section_3_hidden{
+    margin-top: -50px;
+    .fact_card_single{
+      margin-top: -30px;
+      transform: scale(0.4);
+    }
+    .local_drink_container {
+      .local_drink_icon_group{
+        margin-bottom: -30px;
+        font-size: 50px;
+      }
+    }
+  }
 }
 
 

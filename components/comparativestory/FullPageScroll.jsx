@@ -14,9 +14,10 @@ import styles from "@/styles/components/comparativestory/FullPageScroll.module.s
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown"
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace"
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink"
-import { Alert, Snackbar, SvgIcon } from "@mui/material"
+import { Alert, Snackbar, SvgIcon, useMediaQuery } from "@mui/material"
 import bg from "@/public/Image.jpeg"
 import FactGroup1 from "./FactGroup1"
+import FactGroup1_Medium from "./FactGroup1_Medium"
 import FactGroup2 from "./FactGroup2"
 import FactGroup3 from "./FactGroup3"
 import FactGroup4 from "./FactGroup4"
@@ -48,7 +49,7 @@ const FullPageScroll = () => {
 
   // user input
   const [wearCount, setWearCount] = useState(20)
-  const [purchaseCount, setPurchaseCount] = useState(10)
+  const [purchaseCount, setPurchaseCount] = useState(3)
   const [renewCount, setRenewCount] = useState(2)
   const [susPercentage, setSusPercentage] = useState(30)
   const [recycleValue, setRecycleValue] = useState(0)
@@ -128,7 +129,7 @@ const FullPageScroll = () => {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    padding: "2em",
+    padding: "5em",
   }
 
   // slider for section 2
@@ -299,34 +300,44 @@ const FullPageScroll = () => {
     setIsShown6((current) => !current)
   }
 
+  // const isMobile950 = useMediaQuery("(max-width:950px)")
+
   return (
     <Fullpage>
       <FullpageNavigation />
       <FullPageSections>
-        <div ref={section1}>
+        <div className={styles.section1} ref={section1}>
           <FullpageSection style={SectionStyle1}>
-            <h1>Are you more sustainable than the Average Victorian?</h1>
-            <p>
+            <h1 className={styles.h1}>
+              Are you more sustainable than the Average Victorian?
+            </h1>
+            <p className={styles.p}>
               Test your sustainability habits to compare your waste to the
               average Victorian
             </p>
-            <p>Before we start, there are a few things you should know:</p>
+            <p className={styles.p}>
+              Before we start, there are a few things you should know:
+            </p>
             <ul>
               <li>
-                <b>We will get a bit personal:</b> To tailor the experience to
-                you we are going to ask a few <br /> questions about your
-                clothing behaviours.
+                <p className={styles.p}>
+                  <b>We will get a bit personal:</b> To tailor the experience to
+                  you we are going to ask a few <br /> questions about your
+                  clothing behaviours.
+                </p>
               </li>
-              <br />
               <li>
-                <b>Storage:</b> We will not store any personally identifiable
-                information.
+                <p className={styles.p}>
+                  <b>Storage:</b> We will not store any personally identifiable
+                  information.
+                </p>
               </li>
-              <br />
               <li>
-                <b>The Data:</b> The numbers we&apos;re quoting here come from
-                Australian Government waste <br /> and production reports and
-                ABS population statistics.
+                <p className={styles.p}>
+                  <b>The Data:</b> The numbers we&apos;re quoting here come from
+                  Australian Government waste <br /> and production reports and
+                  ABS population statistics.
+                </p>
               </li>
             </ul>
           </FullpageSection>
@@ -334,40 +345,51 @@ const FullPageScroll = () => {
         <div ref={section2}>
           {!isShown && (
             <FullpageSection style={SectionStyle1}>
-              <h3>Reusing is essential to minimising fashion footprint.</h3>
+              <h3 className={styles.h3}>
+                Reusing is essential to minimising fashion footprint.
+              </h3>
               <div className={styles.filler_text_section_2}>
-                <p>
+                <p className={styles.p}>
                   On top of the abundant production emissions, when clothes end
                   up in landfills they create even more greenhouse gases
                   poluting the Earth&apos;s fragile atmostphere. Sustainable
                   reduction habits include rewearing items to reduce all forms
                   of emissions.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Reducing consumption by reusing old clothing means less
                   resources, both monetary and environment, are wasted in
                   growing fiber for new ones.
                 </p>
               </div>
-              <h1>On average how many times do you wear a pair of pants?</h1>
+              <h1 className={styles.h1}>
+                On average how many times do you wear a pair of pants in total?
+              </h1>
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
-                  <p>Use the slider to estimate your average wear count →</p>
+                  <p className={styles.p}>
+                    Use the slider to estimate your average wear count
+                  </p>
                   <Button
                     variant="contained"
                     color="success"
                     onClick={handleClick1}
+                    sx={{ width: "90px", height: "40px", fontSize: "11px" }}
+                    className={styles.lock_it_in}
                   >
                     LOCK IT IN
                   </Button>
                 </div>
                 <div className={styles.sub_section_div2}>
-                  <Typography gutterBottom>Wear Count</Typography>
+                  <Typography sx={{ fontSize: "0.8em" }} gutterBottom>
+                    Wear Count
+                  </Typography>
                   <WearCountSlider
                     valueLabelDisplay="on"
                     aria-label="wear count"
                     defaultValue={wearCount}
                     orientation="vertical"
+                    sx={{ height: "250px" }}
                     onChange={handleSliderChange1}
                     onKeyDown={preventHorizontalKeyboardNavigation}
                   />
@@ -383,34 +405,38 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
                 />
               </div>
-              <h3>Reusing is essential to minimising fashion footprint.</h3>
+              <h3 className={styles.h3}>
+                Reusing is essential to minimising fashion footprint.
+              </h3>
               <div className={styles.filler_text_section_2}>
-                <p>
+                <p className={styles.p}>
                   On top of the abundant production emissions, when clothes end
                   up in landfills they create even more greenhouse gases
                   poluting the Earth&apos;s fragile atmostphere. Sustainable
                   reduction habits include rewearing items to reduce all forms
                   of emissions.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Reducing consumption by reusing old clothing means less
                   resources, both monetary and environment, are wasted in
                   growing fiber for new ones.
                 </p>
               </div>
-              <h1>On average how many times do you wear a pair of pants?</h1>
+              <h1 className={styles.h1}>
+                On average how many times do you wear a pair of pants in total?
+              </h1>
               <div className={styles.section_2_lower}>
                 <div className={styles.fact_card}>
                   <FactGroup1 />
                 </div>
-                <div>
+                <div className={styles.wearScaleChart}>
                   <WearScaleChart data={wearCount} />
                 </div>
               </div>
@@ -420,31 +446,16 @@ const FullPageScroll = () => {
         <div ref={section3}>
           {!isShown2 && (
             <FullpageSection style={SectionStyle1}>
-              {/* <Snackbar
-                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                open={openSnack}
-                autoHideDuration={5000}
-                onClose={handleClose}
-                sx={{ width: "100%", zIndex: "-1" }}
-              >
-                <Alert
-                  onClose={handleClose}
-                  severity="info"
-                  sx={{ width: "100%", zIndex: "-1" }}
-                >
-                  Invalid input!
-                </Alert>
-              </Snackbar> */}
-              <h3>
+              <h3 className={styles.h3}>
                 The Fast Fashion industry has led to these overstuffed closets
                 and overflowing landfills.
               </h3>
               <div className={styles.filler_text_section_3}>
-                <p>
+                <p className={styles.p}>
                   Ever think about the material that makes up the clothes
                   you&apos;re wearing?
                 </p>
-                <p>
+                <p className={styles.p}>
                   A growing proportion of Victorian Emissions are due to
                   clothing production. The development of the Fast Fashion
                   industry has disconnection consumers from this issue. A
@@ -452,18 +463,18 @@ const FullPageScroll = () => {
                   energy in production whilst having ethical concerns regarding
                   environment, animals and labor.
                 </p>
-                <p>
+                <p className={styles.p}>
                   The popular material of Cotton is slowly moving towards
                   sustainable recycled or sustainable development to reduce the
                   drastic water consumption.
                 </p>
               </div>
-              <h1>
+              <h1 className={styles.h1}>
                 How many unsustainable cotton T-shirt did you buy this year?
               </h1>
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
-                  <p>
+                  <p className={styles.p}>
                     Most T-shirts are cotton, estimate how many that
                     weren&apos;t <br />
                     marked sustainable you purchased?
@@ -473,10 +484,15 @@ const FullPageScroll = () => {
                   <Box
                     component="form"
                     sx={{
-                      "& .MuiTextField-root": { m: 1, width: "25ch" },
+                      "& .MuiTextField-root": {
+                        m: 1,
+                        width: "20ch",
+                        transform: "scale(0.8)",
+                      },
                     }}
                     noValidate
                     autoComplete="off"
+                    className={styles.textfield}
                   >
                     <TextField
                       id="purchased-number"
@@ -494,8 +510,14 @@ const FullPageScroll = () => {
                   <Button
                     variant="contained"
                     color="success"
-                    sx={{ marginRight: "0.5rem" }}
+                    sx={{
+                      marginRight: "1.5rem",
+                      width: "75px",
+                      height: "35px",
+                      fontSize: "11px",
+                    }}
                     onClick={handleClick2}
+                    className={styles.confirm}
                   >
                     CONFIRM
                   </Button>
@@ -511,23 +533,23 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
                 />
               </div>
-              <h3>
+              <h3 className={styles.h3}>
                 The Fast Fashion industry has led to these overstuffed closets
                 and overflowing landfills.
               </h3>
               <div className={styles.filler_text_section_3}>
-                <p>
+                <p className={styles.p}>
                   Ever think about the material that makes up the clothes
                   you&apos;re wearing?
                 </p>
-                <p>
+                <p className={styles.p}>
                   A growing proportion of Victorian Emissions are due to
                   clothing production. The development of the Fast Fashion
                   industry has disconnection consumers from this issue. A
@@ -535,18 +557,18 @@ const FullPageScroll = () => {
                   energy in production whilst having ethical concerns regarding
                   environment, animals and labor.
                 </p>
-                <p>
+                <p className={styles.p}>
                   The popular material of Cotton is slowly moving towards
                   sustainable recycled or sustainable development to reduce the
                   drastic water consumption.
                 </p>
               </div>
-              <h1>
+              <h1 className={styles.h1}>
                 How many unsustainable cotton T-shirt did you buy this year?
               </h1>
               <div className={styles.section_3_hidden}>
                 <div>
-                  <p>
+                  <p className={styles.p}>
                     In production those T-shirts require{" "}
                     <b className={styles.litres_text}>{purchaseCount * 2700}</b>{" "}
                     Litres! <br /> That&apos;s enough water for the average
@@ -555,16 +577,16 @@ const FullPageScroll = () => {
                   <div className={styles.local_drink_container}>
                     <div className={styles.local_drink_icon_group}>
                       <LocalDrinkIcon
-                        sx={{ fontSize: "80px", color: "green" }}
+                        sx={{ fontSize: "70px", color: "green" }}
                       />
                       <LocalDrinkIcon
-                        sx={{ fontSize: "80px", color: "green" }}
+                        sx={{ fontSize: "70px", color: "green" }}
                       />
                       <LocalDrinkIcon
-                        sx={{ fontSize: "80px", color: "green" }}
+                        sx={{ fontSize: "70px", color: "green" }}
                       />
                     </div>
-                    <p>
+                    <p className={styles.p}>
                       <b className={styles.year_text}>
                         {purchaseCount * 2.5} Years!
                       </b>
