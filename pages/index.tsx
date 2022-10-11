@@ -67,7 +67,7 @@ export default function Home() {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            padding: "7em 0 10em 0",
+            padding: "7em 1em 10em 1em",
           }}
         >
           <Typography variant="h2" fontWeight={500} textAlign="center">
@@ -78,6 +78,7 @@ export default function Home() {
             variant="h2"
             color="#0ac05e"
             sx={{ marginBottom: "0.25em" }}
+            textAlign="center"
           >
             clothing footprint?
           </Typography>

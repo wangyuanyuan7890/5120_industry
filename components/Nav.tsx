@@ -21,7 +21,7 @@ const routes = [
 // Navbar that appears on all pages
 export default function Nav({ stickyNav, setStickyNav }) {
   const router = useRouter()
-  const isMobile = useMediaQuery("(max-width:768px)")
+  const isMobile = useMediaQuery("(max-width:1000px)")
   const [expandedMenu, setExpandedMenu] = useState(false)
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Nav({ stickyNav, setStickyNav }) {
   }, [])
 
   const handleDetectExpandedMenu = () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1000) {
       setExpandedMenu(false)
     }
   }
