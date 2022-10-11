@@ -35,8 +35,8 @@ const steps: Step[] = [
     title: "Reuse",
     subtitle: "When you refuse to reuse, its our Earth you abuse.",
     description:
-      "The average Victorian yields around 27kg of clothing waste each year! Each item in your wardrobe should be worn at least 30 times to reduce this unnecessary waste.  Form a connection to your clothes, look after them and compare your wears of your favourite items to your friends.",
-    links: [{ label: "Clothing tracker", href: "clothingtracker" }],
+      "The average Victorian yields around 27kg of clothing waste each year. Each item in your wardrobe should be worn at least 30 times to reduce this unnecessary waste.  Form a connection to your clothes, look after them and compare your wears of your favourite items to your friends.",
+    links: [{ label: "Sustainable wardrobe", href: "clothingtracker" }],
     image: <ReuseImage className={styles.clothing_lifecycle} />,
   },
   {
@@ -51,7 +51,7 @@ const steps: Step[] = [
     title: "Recycle",
     subtitle: "Recycle today for a better tomorrow.",
     description:
-      "The majority of materials in landfill each year could be recycled! More and more commercial companies are dedicated to the repair, recycling and reselling of clothing, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. Victoria also hosts countless textile recycling opportunities.",
+      "The majority of materials in landfill each year could be recycled. More and more commercial companies are dedicated to the repair, recycling and reselling of clothing, while some encourage consumers to resell their unwanted fashion products in exchange for discounts. Victoria also hosts countless textile recycling opportunities.",
     links: [{ label: "Material checker", href: "materials" }],
     image: <RecycleImage className={styles.clothing_lifecycle} />,
   },

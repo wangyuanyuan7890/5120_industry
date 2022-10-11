@@ -160,13 +160,13 @@ export default function Home() {
         }}
       >
         <Typography variant="h4" sx={{ textAlign: "center" }}>
-          Interactive bedroom <ThreeDRotationIcon fontSize="medium" />
+          Interactive Room <ThreeDRotationIcon fontSize="medium" />
         </Typography>
         <Typography
           variant="body1"
           sx={{ textAlign: "center", marginBottom: "1em" }}
         >
-          Drag to rotate scene
+          Drag to explore our sustainable features
         </Typography>
         <SplineContainer target={target} />
       </Container>

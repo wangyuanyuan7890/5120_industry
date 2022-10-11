@@ -14,7 +14,7 @@ import ClothingImage from "@/public/clothingtracker/clothing.svg"
 import Link from "next/link"
 
 const breadcrumbs = [
-  { label: "Tracker", href: "/clothingtracker" },
+  { label: "Wardrobe", href: "/clothingtracker" },
   { label: "Summary" },
 ]
 
@@ -29,11 +29,11 @@ export default function Summary() {
   }, [])
 
   return (
-    <Page title="Clothing tracker summary">
+    <Page title="Sustainable wardrobe summary">
       <Container maxWidth="lg">
         <Hero
-          title="Clothing tracker summary"
-          description="Sustainable management summary of tracked clothing items."
+          title="Sustainable wardrobe summary"
+          description="A sustainability dashboard of your Ecofash wardrobe."
           breadcrumbs={breadcrumbs}
         />
       </Container>

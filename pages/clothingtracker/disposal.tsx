@@ -27,7 +27,7 @@ import {
 } from "@/components/clothingtracker/ClothingTableRow"
 
 const breadcrumbs = [
-  { label: "Tracker", href: "/clothingtracker" },
+  { label: "Wardrobe", href: "/clothingtracker" },
   { label: "Disposal tool" },
 ]
 
