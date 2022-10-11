@@ -20,6 +20,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material"
 import Image from "next/image"
 import PageScrollToTop from "@/components/PageScrollToTop"
 import ThreeDRotationIcon from "@mui/icons-material/ThreeDRotation"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 // Home page design
 export default function Home() {
@@ -39,7 +40,7 @@ export default function Home() {
                 top: "50%",
                 left: "2em",
                 zIndex: -1,
-                opacity: 0.9,
+                opacity: 0.75,
                 transform: "translate(0, -50%)",
               }}
             >
@@ -51,7 +52,7 @@ export default function Home() {
                 top: "50%",
                 right: "2em",
                 zIndex: -1,
-                opacity: 0.9,
+                opacity: 0.75,
                 transform: "translate(0, -50%);",
               }}
             >
@@ -76,13 +77,13 @@ export default function Home() {
             fontWeight={500}
             variant="h2"
             color="#0ac05e"
-            sx={{ marginBottom: "0.5em" }}
+            sx={{ marginBottom: "0.25em" }}
           >
-            Clothing Footprint?
+            clothing footprint?
           </Typography>
           <Typography
             variant="h6"
-            sx={{ marginBottom: "0.5em" }}
+            sx={{ marginBottom: "0.75em" }}
             textAlign="center"
           >
             Walk the sustainable catwalk and see how eco-friendly you are
@@ -136,6 +137,16 @@ export default function Home() {
         </Container>
         <Container maxWidth="lg">
           <FactGroup />
+        </Container>
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ExpandMoreIcon fontSize="large" sx={{ color: "white" }} />
         </Container>
       </Box>
       <Container
