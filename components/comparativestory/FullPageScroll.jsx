@@ -731,9 +731,12 @@ const FullPageScroll = () => {
                     <LineScaleChart data={renewCount} />
                   </div>
                   {renewCount >= 10 && (
-                    <div>
-                      <p style={{ fontSize: "12px" }}>
-                        <i>
+                    <div className={styles.italic_text}>
+                      <p
+                        className={styles.italic_word}
+                        style={{ fontSize: "12px" }}
+                      >
+                        <i className={styles.i_word}>
                           You are off renewal activity scale. Great sustainable
                           activity, keep it up!
                         </i>
@@ -741,9 +744,12 @@ const FullPageScroll = () => {
                     </div>
                   )}
                   {renewCount < 1 && (
-                    <div>
-                      <p style={{ fontSize: "12px" }}>
-                        <i>
+                    <div className={styles.italic_text}>
+                      <p
+                        className={styles.italic_word}
+                        style={{ fontSize: "12px" }}
+                      >
+                        <i className={styles.i_word}>
                           You are way lower than the average renewal activity
                           scale. Please act now!
                         </i>
