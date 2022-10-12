@@ -15,10 +15,9 @@ export default function SustainableScaleChart(props) {
         <span className={styles.box_title}>Percentage</span>
         <div
           style={{
-            height: "100%",
-            width: "30px",
+            height: "250px",
+            width: "25px",
             borderRadius: "6px",
-            marginTop: "6px",
             background: "#D3D3D3",
             transform: "scale(-1)",
           }}
@@ -38,14 +37,15 @@ export default function SustainableScaleChart(props) {
               style={{
                 position: "absolute",
                 width: "200px",
-                right: "50px",
-                height: `${props.data * 0.83}mm`,
-                fontSize: "15px",
+                right: "40px",
+                height: `${(props.data / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               ◄ Your sustainability {props.data}%
@@ -54,14 +54,15 @@ export default function SustainableScaleChart(props) {
               style={{
                 position: "absolute",
                 width: "200px",
-                right: "-170px",
-                height: `${valueVic * 0.83}mm`,
-                fontSize: "15px",
+                right: "-125px",
+                height: `${(valueVic / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               AVG Victorians {valueVic}% ➤
@@ -70,14 +71,15 @@ export default function SustainableScaleChart(props) {
               style={{
                 position: "absolute",
                 width: "200px",
-                right: "-170px",
-                height: `${valueSus * 0.83}mm`,
-                fontSize: "15px",
+                right: "-130px",
+                height: `${(valueSus / 100) * 250}px`,
+                fontSize: "11px",
                 fontWeight: "500",
                 color: "#000000",
                 background: "transparent",
                 zIndex: "1",
                 transform: "scale(-1)",
+                top: "5px",
               }}
             >
               Sustainable goal {valueSus}% ➤

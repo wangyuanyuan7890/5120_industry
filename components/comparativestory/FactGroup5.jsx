@@ -1,5 +1,5 @@
 import styles from "@/styles/components/comparativestory/FactGroup.module.scss"
-import Fact from "../home/Fact"
+import Fact from "../comparativestory/Fact_Special"
 import RecycledMaterialsIcon from "@/public/comparativestory/recycled_materials_fact.svg"
 import GarbageTruckIcon from "@/public/comparativestory/garbage_truck_fact.svg"
 
@@ -12,7 +12,7 @@ export default function FactGroup5() {
         text="of raw materials in the textile and apparel industry have not been recycled"
       />
       <Fact
-        image={<GarbageTruckIcon className={styles.fact_icon} />}
+        image={<GarbageTruckIcon className={styles.fact_icon_special} />}
         text="a garbage truck of textiles is discarded every second"
       />
     </div>

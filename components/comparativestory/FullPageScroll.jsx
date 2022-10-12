@@ -374,10 +374,15 @@ const FullPageScroll = () => {
                     variant="contained"
                     color="success"
                     onClick={handleClick1}
-                    sx={{ width: "90px", height: "40px", fontSize: "11px" }}
+                    sx={{
+                      width: "80px",
+                      height: "35px",
+                      fontSize: "11px",
+                      textTransform: "lowercase",
+                    }}
                     className={styles.lock_it_in}
                   >
-                    LOCK IT IN
+                    lock it in
                   </Button>
                 </div>
                 <div className={styles.sub_section_div2}>
@@ -512,14 +517,15 @@ const FullPageScroll = () => {
                     color="success"
                     sx={{
                       marginRight: "1.5rem",
-                      width: "75px",
-                      height: "35px",
+                      width: "70px",
+                      height: "30px",
                       fontSize: "11px",
+                      textTransform: "lowercase",
                     }}
                     onClick={handleClick2}
                     className={styles.confirm}
                   >
-                    CONFIRM
+                    Confirm
                   </Button>
                 </div>
               </div>
@@ -626,7 +632,7 @@ const FullPageScroll = () => {
               </h1>
               <div className={styles.section_4_lower}>
                 <p className={styles.p}>
-                  Select your 3 monthly renewal count estimate
+                  Input your 3 monthly renewal count estimate
                 </p>
                 <Box
                   component="form"
@@ -660,14 +666,15 @@ const FullPageScroll = () => {
                   color="success"
                   sx={{
                     marginLeft: "0.5rem",
-                    width: "75px",
-                    height: "35px",
+                    width: "70px",
+                    height: "30px",
                     fontSize: "11px",
+                    textTransform: "lowercase",
                   }}
                   onClick={handleClick3}
                   className={styles.confirm}
                 >
-                  CONFIRM
+                  Confirm
                 </Button>
               </div>
             </FullpageSection>
@@ -764,50 +771,62 @@ const FullPageScroll = () => {
         <div ref={section5}>
           {!isShown4 && (
             <FullpageSection style={SectionStyle1}>
-              <h3>
+              <h3 className={styles.h3}>
                 There is no such thing as a 100% sustainable fabric, but some
                 are much better than others.
               </h3>
               <div className={styles.filler_text_section_5}>
-                <p>
+                <p className={styles.p}>
                   A sustainable wardrobe is one that helps to reduce the impact
                   that your clothes have on the planet.
                 </p>
-                <p>
+                <p className={styles.p}>
                   A majority of clothing emissions is due to the unsustainable
                   materials. A couple of the major determining factors when
                   labelling sustainable materials are the amount of resources
                   used to produce the material and the lifecycle analysis of the
                   product.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Dressing sustainably can be affordable and offer you all the
                   choice of clothes that you want.
                 </p>
               </div>
-              <h1>What percentage of your wardrobe is sustainable?</h1>
+              <h1 className={styles.h1}>
+                What percentage of your wardrobe is sustainable?
+              </h1>
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
-                  <Typography gutterBottom>Percentage</Typography>
+                  <Typography sx={{ fontSize: "0.8em" }} gutterBottom>
+                    Percentage
+                  </Typography>
                   <WearCountSlider5
                     valueLabelDisplay="on"
                     aria-label="percentage"
                     defaultValue={susPercentage}
                     orientation="vertical"
+                    sx={{ height: "250px" }}
                     onChange={handleSliderChange2}
                     onKeyDown={preventHorizontalKeyboardNavigation}
                   />
                 </div>
                 <div className={styles.sub_section_div4}>
-                  <p>
+                  <p className={styles.p}>
                     Use the slider to estimate the percentage of your wardrobe
                   </p>
                   <Button
                     variant="contained"
                     color="success"
                     onClick={handleClick4}
+                    sx={{
+                      width: "80px",
+                      height: "35px",
+                      fontSize: "11px",
+                      textTransform: "lowercase",
+                    }}
+                    className={styles.lock_it_in}
                   >
-                    LOCK IT IN
+                    Lock it in
                   </Button>
                 </div>
               </div>
@@ -821,41 +840,43 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
                 />
               </div>
-              <h3>
+              <h3 className={styles.h3}>
                 There is no such thing as a 100% sustainable fabric, but some
                 are much better than others.
               </h3>
               <div className={styles.filler_text_section_5}>
-                <p>
+                <p className={styles.p}>
                   A sustainable wardrobe is one that helps to reduce the impact
                   that your clothes have on the planet.
                 </p>
-                <p>
+                <p className={styles.p}>
                   A majority of clothing emissions is due to the unsustainable
                   materials. A couple of the major determining factors when
                   labelling sustainable materials are the amount of resources
                   used to produce the material and the lifecycle analysis of the
                   product.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Dressing sustainably can be affordable and offer you all the
                   choice of clothes that you want.
                 </p>
               </div>
-              <h1>What percentage of your wardrobe is sustainable?</h1>
+              <h1 className={styles.h1}>
+                What percentage of your wardrobe is sustainable?
+              </h1>
               <div className={styles.section_5_hidden_container}>
-                <div>
+                <div className={styles.sustainableScaleChart}>
                   <SustainableScaleChart data={susPercentage} />
                 </div>
                 <div className={styles.section_5_hidden_text}>
-                  <p>
+                  <p className={styles.p}>
                     <b>Suggestion:</b> <br /> If you are far less than a
                     sustainable amount, use the{" "}
                     <a>
@@ -874,19 +895,21 @@ const FullPageScroll = () => {
         <div ref={section6}>
           {!isShown5 && !isShown6 && (
             <FullpageSection style={SectionStyle1}>
-              <h3>Recycling Clothing can give clothing another life</h3>
+              <h3 className={styles.h1}>
+                Recycling Clothing can give clothing another life
+              </h3>
               <div className={styles.filler_text_section_6}>
-                <p>
+                <p className={styles.p}>
                   Just 12 per cent of discarded textiles is recycled, an
                   estimated 800 million kilograms of it winds up in landfill.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Often, our first thought of recycling clothing is to donate to
                   charities and foundations. However, only about 0.1 per cent of
                   recycled clothing collected by charities and take-back
                   programmes is used to make new textile fibers.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Where possible, always try to give unwanted clothes which have
                   reached the end of their life to clothes banks where materials
                   can either be donated or recycled into fabrics or other useful
@@ -894,10 +917,10 @@ const FullPageScroll = () => {
                 </p>
               </div>
               <div className={styles.section_text}>
-                <h1>
+                <h1 className={styles.h1}>
                   Have you had any of your clothes <b>Recycled</b>?
                 </h1>
-                <p>
+                <p className={styles.p}>
                   There are Clothing Recycling opportunities for many popular
                   clothing brands. <br /> Alternatively there are clothing
                   recycling centres all over Victoria.
@@ -909,8 +932,14 @@ const FullPageScroll = () => {
                   color="success"
                   value={1}
                   onClick={(e) => handleClick5(e, 1)}
+                  sx={{
+                    textTransform: "lowercase",
+                    height: "35px",
+                    width: "25px",
+                    marginTop: "20px",
+                  }}
                 >
-                  YES
+                  yes
                 </Button>
                 <Button
                   variant="contained"
@@ -920,11 +949,15 @@ const FullPageScroll = () => {
                       backgroundColor: "darkorange",
                       transition: "0.7s",
                     },
+                    textTransform: "lowercase",
+                    height: "35px",
+                    width: "25px",
+                    marginTop: "20px",
                   }}
                   value={0}
                   onClick={(e) => handleClick5(e, 0)}
                 >
-                  NO
+                  no
                 </Button>
               </div>
             </FullpageSection>
@@ -937,40 +970,42 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
                 />
               </div>
-              <h3>Recycling Clothing can give clothing another life</h3>
+              <h3 className={styles.h3}>
+                Recycling Clothing can give clothing another life
+              </h3>
               <div className={styles.filler_text_section_6}>
-                <p>
+                <p className={styles.p}>
                   Just 12 per cent of discarded textiles is recycled, an
                   estimated 800 million kilograms of it winds up in landfill.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Often, our first thought of recycling clothing is to donate to
                   charities and foundations. However, only about 0.1 per cent of
                   recycled clothing collected by charities and take-back
                   programmes is used to make new textile fibers.
                 </p>
-                <p>
+                <p className={styles.p}>
                   Where possible, always try to give unwanted clothes which have
                   reached the end of their life to clothes banks where materials
                   can either be donated or recycled into fabrics or other useful
                   products.
                 </p>
               </div>
-              <h1>
+              <h1 className={styles.h1}>
                 Have you had any of your clothes <b>Recycled</b>?
               </h1>
               <div className={styles.fact_card_group_5}>
                 <FactGroup5 />
               </div>
               <div>
-                <h1>
+                <h1 className={styles.h1}>
                   Want to compare your Ecofash Expected waste against the
                   average Victorians?
                 </h1>
@@ -978,6 +1013,12 @@ const FullPageScroll = () => {
                   variant="contained"
                   color="success"
                   onClick={handleClick6}
+                  sx={{
+                    textTransform: "lowercase",
+                    height: "35px",
+                    width: "85px",
+                  }}
+                  className={styles.lets_see}
                 >
                   LETS SEE
                 </Button>
@@ -992,8 +1033,8 @@ const FullPageScroll = () => {
                   sx={{
                     backgroundColor: "darkgreen",
                     color: "white",
-                    height: "35px",
-                    width: "45px",
+                    height: "30px",
+                    width: "35px",
                     borderRadius: "20%",
                     cursor: "pointer",
                   }}
@@ -1001,15 +1042,15 @@ const FullPageScroll = () => {
               </div>
               <div className={styles.section_6_container}>
                 <div className={styles.section_6_icon_container}>
-                  <h1 style={{ marginBottom: 50 }}>
-                    Your EcoFash Expected Waste
+                  <h1 style={{ marginBottom: 50 }} className={styles.h1}>
+                    Your EcoFash Expected Annual Waste
                   </h1>
                   <div className={styles.section_6_icon}>
                     <WasteIcon transform={`scale(${ecofash_waste / 27 / 2})`} />
                   </div>
                   <div className={styles.waste_number_container}>
                     <h1
-                      style={{ fontSize: 50 }}
+                      style={{ fontSize: 40 }}
                       className={styles.waste_number_container}
                     >
                       <Number
@@ -1026,7 +1067,7 @@ const FullPageScroll = () => {
                   </div>
                 </div>
                 <div className={styles.section_6_icon_container}>
-                  <h1 style={{ marginBottom: 50 }}>
+                  <h1 style={{ marginBottom: 50 }} className={styles.h1}>
                     Average Victorian Annual Waste
                   </h1>
                   <div className={styles.section_6_icon_2}>
@@ -1034,7 +1075,7 @@ const FullPageScroll = () => {
                   </div>
                   <div className={styles.waste_number_container}>
                     <h1
-                      style={{ fontSize: 50 }}
+                      style={{ fontSize: 40 }}
                       className={styles.waste_number_container}
                     >
                       <Number n={27} /> KG
@@ -1042,15 +1083,21 @@ const FullPageScroll = () => {
                   </div>
                 </div>
               </div>
-              <div>
-                <h2>Want to reduce your Ecofash waste?</h2>
-                <p>
-                  Try wear each item at least <b>30 times</b>! Use the Wear
+              <div className={styles.section_6_container_lower}>
+                <h2 className={styles.h2}>
+                  Want to reduce your Ecofash waste?
+                </h2>
+                <p className={styles.p}>
+                  Try wear each item at least <b>30 times</b>. Use the Wear
                   Tracker to support you.
                 </p>
                 <Link href="/clothingtracker">
-                  <Button variant="contained" color="success">
-                    CLOTHING TRACKER
+                  <Button
+                    variant="contained"
+                    color="success"
+                    sx={{ fontSize: "10px", textTransform: "lowercase" }}
+                  >
+                    Sustainable Wardrobe
                   </Button>
                 </Link>
               </div>

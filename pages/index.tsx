@@ -113,7 +113,7 @@ export default function Home() {
             }}
           >
             <Typography variant="h5" color="#0ac05e">
-              What we&apos;re trying to do
+              What we do
             </Typography>
             <Typography
               variant="body1"
