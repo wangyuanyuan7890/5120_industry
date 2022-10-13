@@ -4,6 +4,7 @@ import DisposalOption from "./DisposalOption"
 import Link from "next/link"
 import DisposalOptionGroupContainer from "./DisposalOptionGroupContainer"
 import DisposalOptionGroupHeader from "./DisposalOptionGroupHeader"
+import { Box, useMediaQuery } from "@mui/material"
 
 interface Option {
   title: string
@@ -73,6 +74,8 @@ const highWearOptions = [
 ]
 
 export default function DisposalOptionGroup({ clothingItem }) {
+  const isMobile = useMediaQuery("(max-width:768px)")
+
   return (
     <div className={styles.option_group}>
       {clothingItem.wearCount >= 0 && clothingItem.wearCount < 30 && (
@@ -102,13 +105,22 @@ export default function DisposalOptionGroup({ clothingItem }) {
             limit={null}
             type="high"
           />
-          <DisposalOptionGroupContainer options={highWearOptions} />
-          {clothingItem.isBiodegradable && (
-            <DisposalOption
-              title={options.compost.title}
-              description={options.compost.description}
-            />
-          )}
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: !isMobile ? "1fr 1fr 1fr" : "1fr",
+              columnGap: "1em",
+              rowGap: "1em",
+            }}
+          >
+            <DisposalOptionGroupContainer options={highWearOptions} />
+            {clothingItem.isBiodegradable && (
+              <DisposalOption
+                title={options.compost.title}
+                description={options.compost.description}
+              />
+            )}
+          </Box>
         </>
       )}
       <div className={styles.links}>

@@ -368,7 +368,7 @@ const FullPageScroll = () => {
               <div className={styles.section_div}>
                 <div className={styles.sub_section_div1}>
                   <p className={styles.p}>
-                    Use the slider to estimate your average wear count
+                    Use the slider to estimate your average total wear count
                   </p>
                   <Button
                     variant="contained"
@@ -387,11 +387,11 @@ const FullPageScroll = () => {
                 </div>
                 <div className={styles.sub_section_div2}>
                   <Typography sx={{ fontSize: "0.8em" }} gutterBottom>
-                    Wear Count
+                    Total wear count
                   </Typography>
                   <WearCountSlider
                     valueLabelDisplay="on"
-                    aria-label="wear count"
+                    aria-label="total wear count"
                     defaultValue={wearCount}
                     orientation="vertical"
                     sx={{ height: "250px" }}

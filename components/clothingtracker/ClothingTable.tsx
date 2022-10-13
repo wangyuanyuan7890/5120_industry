@@ -30,7 +30,7 @@ const headCells: any[] = [
   { id: 1, label: "Name", width: 30 },
   { id: 2, label: "Type", width: 25 },
   { id: 3, label: "Materials", width: 20 },
-  { id: 4, label: "Wear count", width: 12.5, align: "center" },
+  { id: 4, label: "Total wear count", width: 12.5, align: "center" },
 ]
 
 // handles all of the clothing records

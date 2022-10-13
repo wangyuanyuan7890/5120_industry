@@ -48,7 +48,7 @@ const headerCells = [
   },
   {
     id: 4,
-    label: "Wear count",
+    label: "Total wear count",
     index: "wearCount",
     width: "15%",
     center: true,

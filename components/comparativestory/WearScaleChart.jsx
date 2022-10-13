@@ -25,7 +25,7 @@ export default function WearScaleChart(props) {
   return (
     <div className={styles.container}>
       <div className={styles.box}>
-        <span className={styles.box_title}>Wear Count</span>
+        <span className={styles.box_title}>Total wear count</span>
         <div
           style={{
             height: "250px",
@@ -62,7 +62,7 @@ export default function WearScaleChart(props) {
                 top: "5px",
               }}
             >
-              ◄ Your wear count is {props.data} times
+              ◄ Your total wear count is {props.data} times
             </span>
             <span
               style={{

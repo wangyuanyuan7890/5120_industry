@@ -36,7 +36,7 @@ const headCells: any[] = [
   { id: 1, label: "Name", width: 30 },
   { id: 2, label: "Type", width: 15 },
   { id: 3, label: "Materials", width: 20 },
-  { id: 4, label: "Wear count", width: 15, align: "center" },
+  { id: 4, label: "Total wear count", width: 15, align: "center" },
   { id: 5, label: "Biodegradable", width: 10, align: "center" },
   { id: 6, label: "Sustainable", width: 10, align: "center" },
 ]

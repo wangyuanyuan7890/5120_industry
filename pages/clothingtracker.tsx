@@ -39,7 +39,8 @@ export default function ClothingTracker() {
                   your clothing item, the{" "}
                   <span style={{ fontWeight: "bold" }}>type</span>, a list of{" "}
                   <span style={{ fontWeight: "bold" }}>materials</span> and the
-                  rough <span style={{ fontWeight: "bold" }}>wear count</span>{" "}
+                  rough{" "}
+                  <span style={{ fontWeight: "bold" }}>total wear count</span>{" "}
                   for the lifetime of that clothing item
                 </li>
                 <li>
