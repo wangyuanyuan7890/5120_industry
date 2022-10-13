@@ -378,11 +378,11 @@ const FullPageScroll = () => {
                       width: "80px",
                       height: "35px",
                       fontSize: "11px",
-                      textTransform: "lowercase",
+                      // textTransform: "lowercase",
                     }}
                     className={styles.lock_it_in}
                   >
-                    lock it in
+                    Confirm
                   </Button>
                 </div>
                 <div className={styles.sub_section_div2}>
@@ -461,7 +461,7 @@ const FullPageScroll = () => {
                   you&apos;re wearing?
                 </p>
                 <p className={styles.p}>
-                  A growing proportion of Victorian Emissions are due to
+                  A growing proportion of Victorian emissions are due to
                   clothing production. The development of the Fast Fashion
                   industry has disconnection consumers from this issue. A
                   majority of clothing materials utilise unsustainable water and
@@ -517,10 +517,10 @@ const FullPageScroll = () => {
                     color="success"
                     sx={{
                       marginRight: "1.5rem",
-                      width: "70px",
-                      height: "30px",
+                      width: "80px",
+                      height: "35px",
                       fontSize: "11px",
-                      textTransform: "lowercase",
+                      // textTransform: "lowercase",
                     }}
                     onClick={handleClick2}
                     className={styles.confirm}
@@ -666,10 +666,10 @@ const FullPageScroll = () => {
                   color="success"
                   sx={{
                     marginLeft: "0.5rem",
-                    width: "70px",
-                    height: "30px",
+                    width: "80px",
+                    height: "35px",
                     fontSize: "11px",
-                    textTransform: "lowercase",
+                    // textTransform: "lowercase",
                   }}
                   onClick={handleClick3}
                   className={styles.confirm}
@@ -822,11 +822,11 @@ const FullPageScroll = () => {
                       width: "80px",
                       height: "35px",
                       fontSize: "11px",
-                      textTransform: "lowercase",
+                      // textTransform: "lowercase",
                     }}
                     className={styles.lock_it_in}
                   >
-                    Lock it in
+                    Confirm
                   </Button>
                 </div>
               </div>
@@ -933,13 +933,14 @@ const FullPageScroll = () => {
                   value={1}
                   onClick={(e) => handleClick5(e, 1)}
                   sx={{
-                    textTransform: "lowercase",
+                    // textTransform: "lowercase",
                     height: "35px",
                     width: "25px",
                     marginTop: "20px",
+                    fontSize: "11px",
                   }}
                 >
-                  yes
+                  Yes
                 </Button>
                 <Button
                   variant="contained"
@@ -949,15 +950,16 @@ const FullPageScroll = () => {
                       backgroundColor: "darkorange",
                       transition: "0.7s",
                     },
-                    textTransform: "lowercase",
+                    // textTransform: "lowercase",
                     height: "35px",
                     width: "25px",
                     marginTop: "20px",
+                    fontSize: "11px",
                   }}
                   value={0}
                   onClick={(e) => handleClick5(e, 0)}
                 >
-                  no
+                  No
                 </Button>
               </div>
             </FullpageSection>
@@ -1014,13 +1016,14 @@ const FullPageScroll = () => {
                   color="success"
                   onClick={handleClick6}
                   sx={{
-                    textTransform: "lowercase",
+                    // textTransform: "lowercase",
                     height: "35px",
                     width: "85px",
+                    fontSize: "11px",
                   }}
                   className={styles.lets_see}
                 >
-                  LETS SEE
+                  Lets See
                 </Button>
               </div>
             </FullpageSection>
@@ -1095,7 +1098,7 @@ const FullPageScroll = () => {
                   <Button
                     variant="contained"
                     color="success"
-                    sx={{ fontSize: "10px", textTransform: "lowercase" }}
+                    sx={{ fontSize: "11px" }}
                   >
                     Sustainable Wardrobe
                   </Button>
