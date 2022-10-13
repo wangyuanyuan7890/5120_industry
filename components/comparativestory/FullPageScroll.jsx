@@ -1091,8 +1091,8 @@ const FullPageScroll = () => {
                   Want to reduce your Ecofash waste?
                 </h2>
                 <p className={styles.p}>
-                  Try wear each item at least <b>30 times</b>. Use the Wear
-                  Tracker to support you.
+                  Try to wear each item at least <b>30 times</b>, use our
+                  sustainable wardrobe to help you.
                 </p>
                 <Link href="/clothingtracker">
                   <Button
