@@ -11,11 +11,11 @@ import { useEffect, useState } from "react"
 // Page routes
 const routes = [
   { name: "Home", path: "/" },
+  { name: "Comparative Story", path: "/comparativestory" },
   { name: "Sustainable wardrobe", path: "/clothingtracker" },
   { name: "Material checker", path: "/materials" },
-  { name: "Lifecycle", path: "/lifecycle" },
   { name: "Sustainable locations", path: "/sustainablelocations" },
-  { name: "Comparative Story", path: "/comparativestory" },
+  { name: "Lifecycle", path: "/lifecycle" },
 ]
 
 // Navbar that appears on all pages
