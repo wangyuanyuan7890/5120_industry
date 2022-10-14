@@ -14,7 +14,7 @@ export default function DisposalOptionGroupHeader({ wearCount, limit, type }) {
           <span>
             , wear it another <span className={styles.bold}>{wearsLeft}</span>{" "}
             time
-            {wearsLeft > 1 && "s"} to see new suggestions.
+            {wearsLeft > 1 && "s"} to hit the next sustainability goal.
           </span>
         ) : (
           <span>.</span>

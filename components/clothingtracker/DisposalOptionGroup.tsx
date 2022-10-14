@@ -85,7 +85,16 @@ export default function DisposalOptionGroup({ clothingItem }) {
             limit={30}
             type="low"
           />
-          <DisposalOptionGroupContainer options={lowWearOptions} />
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: !isMobile ? "1fr 1fr 1fr" : "1fr",
+              columnGap: "1em",
+              rowGap: "1em",
+            }}
+          >
+            <DisposalOptionGroupContainer options={lowWearOptions} />
+          </Box>
         </>
       )}
       {clothingItem.wearCount >= 30 && clothingItem.wearCount < 60 && (
@@ -95,7 +104,16 @@ export default function DisposalOptionGroup({ clothingItem }) {
             limit={60}
             type="moderate"
           />
-          <DisposalOptionGroupContainer options={mediumWearOptions} />
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: !isMobile ? "1fr 1fr 1fr" : "1fr",
+              columnGap: "1em",
+              rowGap: "1em",
+            }}
+          >
+            <DisposalOptionGroupContainer options={mediumWearOptions} />
+          </Box>
         </>
       )}
       {clothingItem.wearCount >= 60 && (

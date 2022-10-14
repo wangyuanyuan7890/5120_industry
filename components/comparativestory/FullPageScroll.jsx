@@ -335,8 +335,9 @@ const FullPageScroll = () => {
               <li>
                 <p className={styles.p}>
                   <b>The Data:</b> The numbers we&apos;re quoting here come from
-                  Australian Government waste <br /> and production reports and
-                  ABS population statistics.
+                  Australian Government waste reports, <br /> Australian
+                  Government production reports, Google Trends data, and ABS
+                  population statistics.
                 </p>
               </li>
             </ul>
@@ -989,7 +990,7 @@ const FullPageScroll = () => {
                 </p>
                 <p className={styles.p}>
                   Often, our first thought of recycling clothing is to donate to
-                  charities and foundations. However, only about 0.1 per cent of
+                  charities and foundations. However, only about 0.1% of
                   recycled clothing collected by charities and take-back
                   programmes is used to make new textile fibers.
                 </p>
