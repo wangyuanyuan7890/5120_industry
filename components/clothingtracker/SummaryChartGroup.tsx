@@ -18,14 +18,18 @@ export default function SummaryChartGroup({ clothingItems }) {
 
   // generates data set for wear count
   const prepareWearCountData = () => {
-    const labels: string[] = clothingItems.map((x: ClothingItem) => x.name)
-    const datasetData: number[] = [
-      ...clothingItems.sort((a, b) => {
-        if (a.type < b.type) return -1
-        if (a.type > b.type) return 1
-        return 0
-      }),
-    ].map((x: ClothingItem) => x.wearCount)
+    const labels: string[] = [
+      ...clothingItems
+        .sort((a, b) => {
+          if (a.type < b.type) return -1
+          if (a.type > b.type) return 1
+          return 0
+        })
+        .map((x: ClothingItem) => x.name),
+    ]
+    const datasetData: number[] = [...clothingItems].map(
+      (x: ClothingItem) => x.wearCount
+    )
     const { backgroundColors, borderColors } = generateColors(clothingItems)
     const data = {
       labels,
